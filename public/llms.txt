@@ -1,0 +1,24 @@
+# Hazine
+
+Hazine is a guided, interactive demonstration of a provenance-first intelligence system for commodities trader Ezgi.
+
+## Core model
+
+Hazine collects market information, connects it to people, evidence, prior thinking, and decisions, then surfaces the right memory when the present moment makes it relevant.
+
+## Intelligence taxonomy
+
+- FACT
+- SIGNAL
+- INTERPRETATION
+- HYPOTHESIS
+- STRATEGY
+
+## Product surfaces
+
+The desktop application is the treasury. The agent plugin is the doorway into that same shared intelligence layer.
+
+## Experience
+
+- [Enter the Hazine guided experience](/#threshold)
+- [See the hybrid system](/#hybrid)

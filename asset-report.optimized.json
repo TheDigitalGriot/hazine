@@ -1,0 +1,162 @@
+[
+  {
+    "name": "mining_quarry.glb",
+    "bytes": 5456640,
+    "nodes": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "vertices": 613622,
+    "triangles": 1088588,
+    "materials": 1,
+    "textures": 1,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -6.022909879684444,
+        -3.397058674076364,
+        -1.951761363834489
+      ],
+      "max": [
+        10.855060815811157,
+        0.3157137119563025,
+        9.418346523136247
+      ]
+    },
+    "materialNames": [
+      "Material_0"
+    ],
+    "textureMimes": [
+      "image/webp"
+    ]
+  },
+  {
+    "name": "sky_blue_crystal.glb",
+    "bytes": 946868,
+    "nodes": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "vertices": 11547,
+    "triangles": 13887,
+    "materials": 1,
+    "textures": 4,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -2.3967190079756406,
+        -3.8774389525330353,
+        -5.428892135620117
+      ],
+      "max": [
+        3.4289219670363096,
+        4.705519129840164,
+        5.012458801269529
+      ]
+    },
+    "materialNames": [
+      "CristalesinitialShadingGroup"
+    ],
+    "textureMimes": [
+      "image/webp"
+    ]
+  },
+  {
+    "name": "caterpillar_797f_mining_truck.glb",
+    "bytes": 1521296,
+    "nodes": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "vertices": 248436,
+    "triangles": 171761,
+    "materials": 1,
+    "textures": 0,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -19.506879746024396,
+        -0.18794743115204504,
+        -25.25978851318359
+      ],
+      "max": [
+        15.995785652701642,
+        24.008454778735807,
+        27.536609649658207
+      ]
+    },
+    "materialNames": [
+      "mia_material1SG"
+    ],
+    "textureMimes": []
+  },
+  {
+    "name": "xlist_vault.glb",
+    "bytes": 2353528,
+    "nodes": 13,
+    "meshes": 13,
+    "primitives": 13,
+    "vertices": 133312,
+    "triangles": 110166,
+    "materials": 13,
+    "textures": 26,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -6.879387022357499,
+        -0.15142932130229791,
+        -22.356649714083936
+      ],
+      "max": [
+        6.820129516357789,
+        5.0175813716286815,
+        13.398681328909984
+      ]
+    },
+    "materialNames": [
+      "SteelShader",
+      "Lights",
+      "NordinGold.001",
+      "Metal.004",
+      "TotemGold.002",
+      "TotemGold.004",
+      "Floor",
+      "Walls",
+      "ElevatorPlate",
+      "Celling",
+      "ThorFrame",
+      "NordinFrame",
+      "ThorFreya"
+    ],
+    "textureMimes": [
+      "image/webp"
+    ]
+  },
+  {
+    "name": "vault_01.glb",
+    "bytes": 1145412,
+    "nodes": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "vertices": 53725,
+    "triangles": 85218,
+    "materials": 1,
+    "textures": 1,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -25.429162002313408,
+        -7.105427357601002e-15,
+        -25.429162002313397
+      ],
+      "max": [
+        25.429162002313408,
+        54.96469879150391,
+        25.42916200231342
+      ]
+    },
+    "materialNames": [
+      "Material__25"
+    ],
+    "textureMimes": [
+      "image/webp"
+    ]
+  }
+]

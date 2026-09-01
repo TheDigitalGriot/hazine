@@ -1,0 +1,38 @@
+{
+  "name": "hazine-living-treasury-experience",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "inspect:assets": "node scripts/inspect-assets.mjs",
+    "optimize:assets": "node scripts/optimize-assets.mjs",
+    "generate:models": "node scripts/generate-models.mjs"
+  },
+  "dependencies": {
+    "@react-three/drei": "latest",
+    "@react-three/fiber": "latest",
+    "@react-three/postprocessing": "latest",
+    "@theatre/core": "latest",
+    "animejs": "latest",
+    "gsap": "latest",
+    "postprocessing": "latest",
+    "react": "latest",
+    "react-dom": "latest",
+    "three": "latest",
+    "zustand": "latest"
+  },
+  "devDependencies": {
+    "@gltf-transform/cli": "latest",
+    "@gltf-transform/core": "latest",
+    "@gltf-transform/extensions": "latest",
+    "@gltf-transform/functions": "latest",
+    "@vitejs/plugin-react": "latest",
+    "gltfjsx": "latest",
+    "leva": "latest",
+    "meshoptimizer": "latest",
+    "vite": "latest"
+  }
+}

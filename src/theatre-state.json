@@ -1,0 +1,15 @@
+{
+  "sheetsById": {
+    "Guided Experience": {
+      "staticOverrides": { "byObject": {} },
+      "sequence": {
+        "subUnitsPerUnit": 30,
+        "length": 8,
+        "type": "PositionalSequence",
+        "tracksByObject": {}
+      }
+    }
+  },
+  "definitionVersion": "0.4.0",
+  "revisionHistory": ["hazine-scroll-story-v1"]
+}
