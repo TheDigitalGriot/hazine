@@ -1,0 +1,627 @@
+{
+  "epic": {
+    "name": "griot-r3f-starter",
+    "source": ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-PRD.md",
+    "qualityGates": [
+      "pnpm run build"
+    ],
+    "decisions": [
+      "The controller must verify epic-hazine-hardening-delivery completed with a clean canonical repository, final public proof, and acceptance report before launching this epic.",
+      "Before launch, the controller must resolve or create the canonical starter repository and verify its baseline `pnpm run build` succeeds so the epic gate is safe after every story.",
+      "Use C:/Users/digit/GriotClients/griot-r3f-starter unless repository discovery resolves a different existing canonical home before creation.",
+      "TheDigitalGriot/r3f-vite-theatre-starter is reference input and is never silently overwritten.",
+      "All Hazine-specific names, values, brand assets, and licensed client models are removed or parameterized.",
+      "Generated dependency ranges are pinned and compatible."
+    ],
+    "references": [
+      ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md",
+      ".prism/shared/validation/2026-09-03-hazine-report.md",
+      "TheDigitalGriot/r3f-vite-theatre-starter",
+      ".prism/stories/epic-hazine-hardening-delivery/coverage.md"
+    ],
+    "outOfScope": [
+      "Hazine brand assets",
+      "Licensed Hazine GLBs",
+      "Unvalidated experimental code",
+      "Future shader/WebGPU tracks"
+    ],
+    "risks": [
+      "Premature generalization",
+      "Client provenance leaking into a public sample",
+      "Dependency drift",
+      "Starter behavior diverging from Hazine proofs"
+    ]
+  },
+  "stories": [
+    {
+      "id": "STORY-077",
+      "title": "Trace every exported primitive",
+      "description": "As a starter user, every exported primitive includes a provenance note naming the Hazine source module and acceptance check that proved it.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/docs/provenance.md",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/index.ts",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Discover the canonical starter home without overwriting the reference repository.",
+          "done": false
+        },
+        {
+          "description": "Define a provenance record containing Hazine module, story/check, and parameterized/removed values.",
+          "done": false
+        },
+        {
+          "description": "Require one complete record for every public export.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Hazine remains the traceable proof source for generic primitives.",
+        "risks": [
+          "Exports can be added without evidence."
+        ],
+        "edgeCases": [
+          "One primitive combines several proven source modules."
+        ],
+        "patterns": [
+          "Use the final Hazine public proof report evidence; no speculative exports."
+        ],
+        "graphTargets": [
+          "starter::exports",
+          "starter::provenance"
+        ]
+      }
+    },
+    {
+      "id": "STORY-078",
+      "title": "Configure reusable scene actors",
+      "description": "As a starter user, I can declare actors, visibility envelopes, transforms, responsive variants, preload groups, and material behavior in a typed scene manifest.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-077",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/scene/sceneManifest.ts",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/scene/ActorDirector.tsx",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/scene/materialLifecycle.ts",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Extract typed contracts from Hazine ActorDirector, profiles, manifest, and material lifecycle.",
+          "done": false
+        },
+        {
+          "description": "Parameterize all Hazine actor names, transforms, envelopes, and groups.",
+          "done": false
+        },
+        {
+          "description": "Verify array/glass lifecycle and responsive variants with neutral fixtures.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Scene behavior should be reusable without copying Hazine geometry assumptions.",
+        "risks": [
+          "Overfitting types to Hazine's actor set."
+        ],
+        "edgeCases": [
+          "Optional materials, empty groups, and envelope boundaries."
+        ],
+        "patterns": [
+          "Extract only STORY-013, STORY-014, STORY-053, and STORY-054 proofs."
+        ],
+        "graphTargets": [
+          "SceneManifest",
+          "ActorDirector",
+          "materialLifecycle"
+        ]
+      }
+    },
+    {
+      "id": "STORY-079",
+      "title": "Author reusable choreography",
+      "description": "As a starter user, I can configure normalized scroll chapters, camera keys, spline passages, Theatre synchronization, and reduced-motion behavior without Hazine-specific names or geometry.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-078",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/choreography/experienceManifest.ts",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/choreography/CameraDirector.tsx",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/choreography/theatreAdapter.ts",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Extract normalized progress and named chapter contracts.",
+          "done": false
+        },
+        {
+          "description": "Generalize keyframe/spline and meaningful Theatre-property synchronization.",
+          "done": false
+        },
+        {
+          "description": "Provide deterministic reduced-motion resolution and neutral tests.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Authored spatial storytelling is the starter's core reusable capability.",
+        "risks": [
+          "Clock-only Theatre integration becomes decorative."
+        ],
+        "edgeCases": [
+          "Chapter boundary and spline endpoint behavior."
+        ],
+        "patterns": [
+          "Use STORY-001 through STORY-004, STORY-008, and STORY-046 proofs."
+        ],
+        "graphTargets": [
+          "ExperienceManifest",
+          "CameraDirector",
+          "TheatreAdapter"
+        ]
+      }
+    },
+    {
+      "id": "STORY-080",
+      "title": "Bridge DOM and 3D state",
+      "description": "As a starter user, DOM controls, R3F reactions, data selection, and product-surface switching share a small predictable state bridge.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-079",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/state/createExperienceStore.ts",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/state/dom3dBridge.ts",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Extract configurable progress, chapter, selection, surface, and playback slices.",
+          "done": false
+        },
+        {
+          "description": "Expose selectors/actions usable by DOM and R3F without frame-loop React writes.",
+          "done": false
+        },
+        {
+          "description": "Test same-frame selection and surface persistence with neutral data.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The product proof depends on one intelligence state across surfaces.",
+        "risks": [
+          "A generic store can become an oversized framework."
+        ],
+        "edgeCases": [
+          "Direct route initialization and component remounts."
+        ],
+        "patterns": [
+          "Extract the minimum proven by STORY-021 through STORY-023 and STORY-031."
+        ],
+        "graphTargets": [
+          "createExperienceStore",
+          "dom3dBridge"
+        ]
+      }
+    },
+    {
+      "id": "STORY-081",
+      "title": "Manage Anime.js lifecycle",
+      "description": "As a starter user, reusable Anime.js helpers scope animations to a root, replay safely, cancel on change/unmount, and honor live reduced-motion policy.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-080",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/motion/createScopedAnimation.ts",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/motion/useMotionPolicy.ts",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Extract root-scoped target resolution and lifecycle cancellation.",
+          "done": false
+        },
+        {
+          "description": "Define replay semantics for rapid state changes.",
+          "done": false
+        },
+        {
+          "description": "Test unmount and live reduced-motion changes.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "DOM motion must explain state without leaking or persisting incorrectly.",
+        "risks": [
+          "Global selectors animate unrelated surfaces."
+        ],
+        "edgeCases": [
+          "Rapid replay and preference change mid-animation."
+        ],
+        "patterns": [
+          "Extract STORY-034, STORY-046, and STORY-047 behavior."
+        ],
+        "graphTargets": [
+          "createScopedAnimation",
+          "useMotionPolicy"
+        ]
+      }
+    },
+    {
+      "id": "STORY-082",
+      "title": "Run a manifest-driven asset toolchain",
+      "description": "As a starter user, documented commands inspect, optionally repair, optimize, validate, promote, and generate gltfjsx output from a license-aware manifest.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-081",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/assets/manifest.schema.json",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/scripts/inspect-assets.mjs",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/scripts/optimize-assets.mjs",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/scripts/promote-assets.mjs",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/scripts/generate-models.mjs",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Extract and document the Hazine-proven manifest schema.",
+          "done": false
+        },
+        {
+          "description": "Parameterize every pipeline stage and license field.",
+          "done": false
+        },
+        {
+          "description": "Run twice from neutral source fixtures and compare outputs.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Reliable 3D projects need reproducible derivatives and attribution.",
+        "risks": [
+          "Toolchain assumptions can be Windows- or Hazine-specific."
+        ],
+        "edgeCases": [
+          "Skipped repair and multiple-license inputs."
+        ],
+        "patterns": [
+          "Extract STORY-048 through STORY-051 only."
+        ],
+        "graphTargets": [
+          "assetManifest",
+          "assetPipeline"
+        ]
+      }
+    },
+    {
+      "id": "STORY-083",
+      "title": "Recover from scene failures",
+      "description": "As a starter user, reusable boundaries detect WebGL, report loading progress, contain scene/asset/module failures, offer retry, and preserve an authored static fallback.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-082",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/resilience/SceneErrorBoundary.tsx",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/resilience/StaticSceneFallback.tsx",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/resilience/SceneAssetGroup.tsx",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Extract classified loading/failure contracts and bounded retry.",
+          "done": false
+        },
+        {
+          "description": "Make fallback content configurable and DOM interaction-preserving.",
+          "done": false
+        },
+        {
+          "description": "Verify loading, broken asset, lazy failure, WebGL absence, and retry fixtures.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Resilience is part of the starter's quality floor.",
+        "risks": [
+          "Fallback APIs can assume Hazine chapters."
+        ],
+        "edgeCases": [
+          "Retry after WebGL context loss."
+        ],
+        "patterns": [
+          "Extract STORY-043 through STORY-045 and STORY-057."
+        ],
+        "graphTargets": [
+          "SceneErrorBoundary",
+          "StaticSceneFallback",
+          "SceneAssetGroup"
+        ]
+      }
+    },
+    {
+      "id": "STORY-084",
+      "title": "Configure responsive 3D profiles",
+      "description": "As a starter user, I can supply aspect-ratio-aware camera/actor profiles and verify them with standard viewport fixtures.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-083",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/scene/responsiveProfiles.ts",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/tests/fixtures/viewports.ts",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Extract typed aspect-ratio profile selection.",
+          "done": false
+        },
+        {
+          "description": "Provide desktop/mobile and intermediate fixture definitions.",
+          "done": false
+        },
+        {
+          "description": "Verify resize/orientation behavior without Hazine coordinates.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Responsive spatial composition must be authored and testable.",
+        "risks": [
+          "Only two hard-coded breakpoints do not generalize."
+        ],
+        "edgeCases": [
+          "Profile transition during orientation change."
+        ],
+        "patterns": [
+          "Extract STORY-014 and STORY-061 proofs."
+        ],
+        "graphTargets": [
+          "responsiveProfiles",
+          "viewportFixtures"
+        ]
+      }
+    },
+    {
+      "id": "STORY-085",
+      "title": "Instrument adaptive scene performance",
+      "description": "As a starter user, I can opt into development performance instrumentation, adaptive DPR, lazy scene groups, bundle reports, and allocation-free render-loop examples.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-084",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/performance/AdaptiveScene.tsx",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/src/performance/DevPerformancePanel.tsx",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/vite.config.ts",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Extract lazy-group and no-allocation examples.",
+          "done": false
+        },
+        {
+          "description": "Add optional development metrics and adaptive DPR policy.",
+          "done": false
+        },
+        {
+          "description": "Generate bundle reports and verify production instrumentation is opt-in.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Teams need evidence-led performance controls without default fidelity loss.",
+        "risks": [
+          "Adaptive DPR can oscillate or mask authoring problems."
+        ],
+        "edgeCases": [
+          "Development panel excluded from production bundle."
+        ],
+        "patterns": [
+          "Extract STORY-052, STORY-055, STORY-056, and STORY-063 proofs."
+        ],
+        "graphTargets": [
+          "AdaptiveScene",
+          "DevPerformancePanel",
+          "vite::bundleReport"
+        ]
+      }
+    },
+    {
+      "id": "STORY-086",
+      "title": "Deploy beneath configurable base paths",
+      "description": "As a starter user, pinned compatible dependencies, configurable Vite base paths, SPA/subroute handling, and a GitHub Pages workflow deploy the sample beneath any repository subpath.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-085",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/package.json",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/vite.config.ts",
+          "action": "modify"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/scripts/prepare-pages.mjs",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/.github/workflows/deploy-pages.yml",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Pin the Hazine-proven compatible dependency ranges.",
+          "done": false
+        },
+        {
+          "description": "Extract base-aware assets and root/subroute Pages fallback generation.",
+          "done": false
+        },
+        {
+          "description": "Run CI build/type/lint/test and public subpath deployment checks.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Deployment readiness must be built into the starter.",
+        "risks": [
+          "Repository-name assumptions break generated projects."
+        ],
+        "edgeCases": [
+          "Trailing slash and direct nested-route refresh."
+        ],
+        "patterns": [
+          "Extract STORY-005 through STORY-007 and STORY-064 through the final Hazine public proof."
+        ],
+        "graphTargets": [
+          "vite::base",
+          "prepare-pages",
+          "deploy-pages"
+        ]
+      }
+    },
+    {
+      "id": "STORY-087",
+      "title": "Ship a neutral documented sample",
+      "description": "As a starter user, I receive architecture and extension-point documentation, practical recipes, and a reduced Hazine-derived sample that contains no client brand assets or licensed models.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-086",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/README.md",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/docs/architecture.md",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/docs/recipes.md",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/docs/migration.md",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/examples/neutral-story",
+          "action": "create"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/griot-r3f-starter/docs/validation.md",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Document architecture, extension points, dependency policy, and migration.",
+          "done": false
+        },
+        {
+          "description": "Add recipes for scroll stories, viewers, transitions, and dual DOM/3D surfaces.",
+          "done": false
+        },
+        {
+          "description": "Build a neutral reduced sample and scan output for Hazine brand/model files.",
+          "done": false
+        },
+        {
+          "description": "Compare fixtures against Hazine proofs and record exclusions/future tracks.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The starter must teach proven extension without leaking client identity.",
+        "risks": [
+          "Example copy, filenames, or binary assets can retain client material."
+        ],
+        "edgeCases": [
+          "Transitive imports from Hazine-only paths."
+        ],
+        "patterns": [
+          "Parameterize concepts; include no public/brand files or licensed GLBs."
+        ],
+        "graphTargets": [
+          "neutralStory",
+          "starterDocs",
+          "starterValidation"
+        ]
+      }
+    }
+  ]
+}

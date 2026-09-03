@@ -1,0 +1,71 @@
+{
+  "epic": {
+    "name": "Hazine Preview Delivery",
+    "source": ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-PRD.md",
+    "qualityGates": ["pnpm run build"],
+    "decisions": [
+      "The controller must verify Phase 0 created a clean dedicated canonical baseline branch/commit before launching this epic.",
+      "Run Spectrum from C:/Users/digit/GriotClients/Hazine, never from the non-Git working snapshot.",
+      "This is an honest progress build; its validation report must distinguish present, provisional, and deferred behavior.",
+      "Use direct three-globe and keep approved brand assets and original GLBs immutable.",
+      "Resolve the actual remote and Pages target without guessing."
+    ],
+    "references": [
+      ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md",
+      ".prism/shared/handoffs/2026-09-02_10-22-29_hazine-scroll-story-choreography.md",
+      "Phase 0 baseline branch/commit handoff"
+    ],
+    "outOfScope": ["Full choreography correction", "Complete live-intelligence state", "Hardening", "Starter extraction"],
+    "risks": ["Root-absolute assets fail below the repository base", "SPA fallback drops the base prefix", "A guessed remote publishes to the wrong repository", "A preview can overstate unfinished behavior"]
+  },
+  "stories": [
+    {
+      "id": "STORY-001", "title": "Resolve assets beneath the repository base", "description": "As a preview visitor, every runtime model, texture, brand, and navigation asset loads beneath the configured GitHub Pages repository base.", "priority": 1, "status": "pending", "blockedBy": null,
+      "files": [{"path": "src/lib/assetUrl.js", "action": "create"}, {"path": "src/components/HazineScene.jsx", "action": "modify"}, {"path": "src/main.jsx", "action": "modify"}, {"path": "vite.config.js", "action": "modify"}],
+      "steps": [{"description": "Create assetUrl(path) around import.meta.env.BASE_URL.", "done": false}, {"description": "Migrate model, texture, brand, and navigation references.", "done": false}, {"description": "Build with a simulated repository base and inspect emitted asset URLs.", "done": false}],
+      "context": {"why": "The preview must load when Pages serves it below a repository prefix.", "risks": ["Mixed absolute and base-aware paths create partial scene failures."], "edgeCases": ["Leading slashes, root local development, and already-prefixed paths."], "patterns": ["Centralize all runtime URL construction in src/lib/assetUrl.js."], "graphTargets": ["assetUrl", "HazineScene::assetImports", "main::routing"]}
+    },
+    {
+      "id": "STORY-002", "title": "Load the workbench directly on Pages", "description": "As a preview visitor, I can navigate directly to or refresh /workbench beneath the repository base without a 404.", "priority": 1, "status": "pending", "blockedBy": "STORY-001",
+      "files": [{"path": "scripts/prepare-pages.mjs", "action": "create"}, {"path": "src/main.jsx", "action": "modify"}, {"path": "vite.config.js", "action": "modify"}, {"path": "package.json", "action": "modify"}],
+      "steps": [{"description": "Generate dist/workbench/index.html and dist/404.html after build.", "done": false}, {"description": "Make route selection and fallback restoration base-aware.", "done": false}, {"description": "Direct-load and refresh /hazine/workbench/ in a production preview.", "done": false}],
+      "context": {"why": "The workbench is a first-class shareable preview route.", "risks": ["Fallback restoration can lose query/path state or the base prefix."], "edgeCases": ["Trailing slash and Pages 404 entry."], "patterns": ["Generate static route entry plus Pages-compatible SPA fallback."], "graphTargets": ["prepare-pages", "main::routeSelect"]}
+    },
+    {
+      "id": "STORY-003", "title": "Pin the preview dependency set", "description": "As a maintainer rebuilding the preview, I receive explicit compatible dependency ranges instead of mutable latest releases.", "priority": 1, "status": "pending", "blockedBy": "STORY-002",
+      "files": [{"path": "package.json", "action": "modify"}, {"path": "pnpm-lock.yaml", "action": "modify"}],
+      "steps": [{"description": "Resolve proven versions from the baseline lockfile.", "done": false}, {"description": "Replace latest specifiers with compatible explicit ranges.", "done": false}, {"description": "Install from the frozen lockfile and build.", "done": false}],
+      "context": {"why": "A shareable proof must rebuild deterministically.", "risks": ["Range changes can alter React/Three peer compatibility."], "edgeCases": ["React 19 compatibility with R3F, Theatre, and direct three-globe."], "patterns": ["Retain direct three-globe and reject r3f-globe."], "graphTargets": ["package.json::dependencies", "pnpm-lock.yaml"]}
+    },
+    {
+      "id": "STORY-004", "title": "Build the preview reproducibly in Pages CI", "description": "As a maintainer, the same frozen install and production build create deployable root, workbench, and fallback artifacts locally and in GitHub Pages CI.", "priority": 1, "status": "pending", "blockedBy": "STORY-003",
+      "files": [{"path": ".github/workflows/deploy-pages.yml", "action": "create"}, {"path": "package.json", "action": "modify"}, {"path": "scripts/prepare-pages.mjs", "action": "modify"}, {"path": "vite.config.js", "action": "modify"}],
+      "steps": [{"description": "Create a Pages workflow with frozen install, build, dist upload, and deploy jobs.", "done": false}, {"description": "Use the same build path locally and in CI.", "done": false}, {"description": "Assert dist root, workbench entry, 404 fallback, and base-prefixed assets exist.", "done": false}],
+      "context": {"why": "Deployment must not rely on unrecorded local state.", "risks": ["CI and local scripts can diverge."], "edgeCases": ["Repository-derived base differs from local simulation."], "patterns": ["One canonical package build script called by CI."], "graphTargets": ["deploy-pages::build", "package.json::build", "prepare-pages"]}
+    },
+    {
+      "id": "STORY-005", "title": "Publish an honest preview validation", "description": "As a reviewer, I can see exactly which Hazine preview behaviors are present, provisional, or deferred, with evidence for the deployed progress scope.", "priority": 1, "status": "pending", "blockedBy": "STORY-004",
+      "files": [{"path": ".prism/shared/validation/2026-09-03-hazine-preview-report.md", "action": "create"}],
+      "steps": [{"description": "Define the preview-only acceptance matrix.", "done": false}, {"description": "Record build, asset, root/workbench route, console, and responsive evidence.", "done": false}, {"description": "List full-experience and hardening behaviors as explicitly deferred rather than implied complete.", "done": false}],
+      "context": {"why": "A progress build must be shareable without misrepresenting product completeness.", "risks": ["Using final PRD language can overclaim the preview."], "edgeCases": ["A partially working chapter or interaction."], "patterns": ["Use present/provisional/deferred status with concrete evidence links."], "graphTargets": ["previewValidation::matrix"]}
+    },
+    {
+      "id": "STORY-006", "title": "Configure the exact Hazine remote", "description": "As a maintainer, the canonical repository points to the explicitly discovered TheDigitalGriot Hazine remote and Pages target rather than an inferred destination.", "priority": 1, "status": "pending", "blockedBy": "STORY-005",
+      "files": [{"path": "C:/Users/digit/GriotClients/Hazine/.git/config", "action": "modify"}, {"path": ".prism/shared/validation/2026-09-03-hazine-preview-report.md", "action": "modify"}],
+      "steps": [{"description": "Discover the existing organization repository and Pages configuration from authoritative GitHub state.", "done": false}, {"description": "Record the resolved repository, remote URL, default branch, and Pages source.", "done": false}, {"description": "Configure and verify the canonical remote without changing unrelated Git settings.", "done": false}],
+      "context": {"why": "No remote is currently configured and guessing could publish client work incorrectly.", "risks": ["Wrong repository, organization, branch, or Pages source."], "edgeCases": ["Repository does not yet exist and requires an explicit external decision."], "patterns": ["Discovery and evidence before Git remote mutation."], "graphTargets": ["git::remote", "previewValidation::repositoryTarget"]}
+    },
+    {
+      "id": "STORY-007", "title": "Deploy the reviewed preview commit", "description": "As a maintainer, only the reviewed progress commit is pushed and deployed through the configured Pages workflow.", "priority": 1, "status": "pending", "blockedBy": "STORY-006",
+      "files": [{"path": ".github/workflows/deploy-pages.yml", "action": "modify"}, {"path": ".prism/shared/validation/2026-09-03-hazine-preview-report.md", "action": "modify"}],
+      "steps": [{"description": "Review and commit the preview diff atomically.", "done": false}, {"description": "Push the configured deployment branch and observe the Pages workflow.", "done": false}, {"description": "Record the commit SHA and workflow/deployment result.", "done": false}],
+      "context": {"why": "The public preview must correspond to an exact reviewed state.", "risks": ["Publishing a dirty or different commit invalidates the proof."], "edgeCases": ["Workflow succeeds for a superseded commit."], "patterns": ["Commit-based deployment with SHA equality checks."], "graphTargets": ["git::HEAD", "deploy-pages::commit"]}
+    },
+    {
+      "id": "STORY-008", "title": "Verify public preview routes", "description": "As a preview visitor, the public root and direct /workbench URL load the reviewed commit with assets, refresh behavior, console, and desktop/mobile layout intact.", "priority": 1, "status": "pending", "blockedBy": "STORY-007",
+      "files": [{"path": ".prism/shared/validation/2026-09-03-hazine-preview-report.md", "action": "modify"}],
+      "steps": [{"description": "Confirm public deployment SHA equals the reviewed preview commit.", "done": false}, {"description": "Exercise root and direct/refresh workbench flows with console and network capture.", "done": false}, {"description": "Verify both routes on desktop and mobile and record the live URLs.", "done": false}],
+      "context": {"why": "CI success does not prove public routing, assets, or runtime behavior.", "risks": ["Cached older deploys and Pages subpath 404s."], "edgeCases": ["Hard refresh, trailing slash, and mobile safe areas."], "patterns": ["Verify the public artifact, not only the workflow result."], "graphTargets": ["previewValidation::publicRoot", "previewValidation::publicWorkbench"]}
+    }
+  ]
+}

@@ -1,13 +1,14 @@
 export const chapters = [
-  { id: 'threshold', index: '00', eyebrow: 'A guided experience', title: 'What you know, when it matters.', tone: 'dark' },
-  { id: 'quarry', index: '01', eyebrow: 'The quarry', title: 'Intelligence begins as terrain.', tone: 'dark' },
-  { id: 'collect', index: '02', eyebrow: 'Collect', title: 'Gather deliberately. Lose nothing.', tone: 'light' },
-  { id: 'discern', index: '03', eyebrow: 'Discern', title: 'Find the signal inside the noise.', tone: 'dark' },
-  { id: 'connect', index: '04', eyebrow: 'Connect', title: 'Every insight belongs to a living context.', tone: 'light' },
-  { id: 'provenance', index: '05', eyebrow: 'Preserve', title: 'Memory is only valuable when its lineage survives.', tone: 'light' },
-  { id: 'surface', index: '06', eyebrow: 'Surface', title: 'The right memory returns at the right moment.', tone: 'dark' },
-  { id: 'hybrid', index: '07', eyebrow: 'Desktop + plugin', title: 'One intelligence, wherever the work happens.', tone: 'light' },
-  { id: 'treasury', index: '08', eyebrow: 'The living treasury', title: 'The system gets richer every time Ezgi thinks.', tone: 'dark' },
+  { id: 'threshold', index: '00', eyebrow: 'The threshold', title: 'Every treasury begins with a passage.', tone: 'dark' },
+  { id: 'vault', index: '01', eyebrow: 'The inner room', title: 'Enter the living treasury.', tone: 'dark' },
+  { id: 'call', index: '02', eyebrow: 'The live call', title: 'Ezgi never has to leave the conversation.', tone: 'dark' },
+  { id: 'geography', index: '03', eyebrow: 'The wider world', title: 'A phrase becomes geography.', tone: 'dark' },
+  { id: 'evidence', index: '04', eyebrow: 'Evidence', title: 'A claim becomes inspectable.', tone: 'dark' },
+  { id: 'relationship', index: '05', eyebrow: 'Relationship', title: 'Every person carries a living history.', tone: 'dark' },
+  { id: 'decision', index: '06', eyebrow: 'Decision window', title: 'The right moment becomes visible.', tone: 'dark' },
+  { id: 'walkthrough', index: '07', eyebrow: 'Knowledge system', title: 'Collect. Discern. Connect. Surface.', tone: 'light' },
+  { id: 'hybrid', index: '08', eyebrow: 'Desktop + plugin', title: 'One intelligence, wherever the work happens.', tone: 'light' },
+  { id: 'treasury', index: '09', eyebrow: 'The living treasury', title: 'The system gets richer every time Ezgi thinks.', tone: 'dark' },
 ]
 
 export const taxonomy = [

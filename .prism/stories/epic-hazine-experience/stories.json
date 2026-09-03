@@ -1,0 +1,2206 @@
+{
+  "epic": {
+    "name": "Hazine Experience",
+    "source": ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-PRD.md",
+    "qualityGates": [
+      "pnpm run build"
+    ],
+    "decisions": [
+      "The controller must verify epic-hazine-preview-delivery completed and its public preview report passed before launching this epic.",
+      "Spectrum runs from the Phase 0 canonical baseline lineage in C:/Users/digit/GriotClients/Hazine.",
+      "Normalized GSAP progress is the master scroll clock and Theatre consumes that clock.",
+      "One canonical manifest owns chapter, overlay, actor-envelope, instrument, and responsive safe-zone metadata.",
+      "One selected-moment store drives story, plugin, desktop, and workbench presentations.",
+      "Claude plugin is the initial and reload-default surface.",
+      "R3F and Theatre own spatial choreography; Anime.js owns scoped DOM/SVG transformations.",
+      "Approved public/brand assets and original GLBs are immutable."
+    ],
+    "references": [
+      ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md",
+      ".prism/shared/handoffs/2026-09-02_10-22-29_hazine-scroll-story-choreography.md",
+      ".prism/shared/validation/2026-09-03-hazine-preview-report.md"
+    ],
+    "outOfScope": [
+      "Production integrations, trading execution, financial advice, authentication, billing, permissions, enterprise administration, custom globe engines, and replacement brand assets"
+    ],
+    "risks": [
+      "Duplicated choreography tables can drift across DOM, R3F, Theatre, overlay, and navigation consumers.",
+      "Actor/UI competition can hide narrative meaning on narrow viewports.",
+      "Root-absolute URLs and route handling can fail beneath a repository subpath.",
+      "Static chapter switching can masquerade as a connected intelligence product."
+    ]
+  },
+  "stories": [
+    {
+      "id": "STORY-009",
+      "title": "Normalize the experience clock",
+      "description": "As a viewer, scrolling the complete experience produces one stable progress value from 0 through 1.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define the normalized master progress contract in the shared store.",
+          "done": false
+        },
+        {
+          "description": "Drive it from the story scroll range with clamping at both bounds.",
+          "done": false
+        },
+        {
+          "description": "Verify monotonic 0..1 behavior at document start and end.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Every narrative system needs one authoritative clock.",
+        "risks": [
+          "Competing clocks cause visual drift."
+        ],
+        "edgeCases": [
+          "Zero-height or resized scroll ranges."
+        ],
+        "patterns": [
+          "Use the GSAP ScrollTrigger master-clock decision from the implementation plan."
+        ],
+        "graphTargets": [
+          "experienceStore::progress",
+          "App::ScrollTrigger"
+        ]
+      }
+    },
+    {
+      "id": "STORY-010",
+      "title": "Derive named chapter state",
+      "description": "As a viewer, the current named chapter is derived from one canonical ten-record experience manifest.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-009",
+      "files": [
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "create"
+        },
+        {
+          "path": "src/data/chapters.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Create ten stable chapter records with progress ranges.",
+          "done": false
+        },
+        {
+          "description": "Replace chapter-number assumptions with manifest ID lookup.",
+          "done": false
+        },
+        {
+          "description": "Assert IDs and ranges are unique, ordered, and complete.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Named state prevents parallel-table drift.",
+        "risks": [
+          "Boundary ambiguity at adjacent ranges."
+        ],
+        "edgeCases": [
+          "Exact chapter boundary progress."
+        ],
+        "patterns": [
+          "Replace src/data/chapters.js parallel data with src/config/experienceManifest.js."
+        ],
+        "graphTargets": [
+          "experienceManifest::chapters",
+          "experienceStore::chapterId"
+        ]
+      }
+    },
+    {
+      "id": "STORY-011",
+      "title": "Align all chapter consumers",
+      "description": "As a viewer, DOM copy, R3F actors, Theatre sequence, navigation, and overlays show the same current chapter and phase.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-010",
+      "files": [
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/InstrumentRail.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Add overlay, actor-envelope, Theatre, and instrument references to each chapter record.",
+          "done": false
+        },
+        {
+          "description": "Migrate every consumer to manifest IDs.",
+          "done": false
+        },
+        {
+          "description": "Assert every reference resolves for all ten chapters.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The product story must read as one authored system.",
+        "risks": [
+          "A stale consumer can show the wrong evidence or actor."
+        ],
+        "edgeCases": [
+          "Fast scrolling across multiple chapters."
+        ],
+        "patterns": [
+          "Follow src/App.jsx:16-195 and remove duplicated tables in HazineScene and LiveSystemOverlay."
+        ],
+        "graphTargets": [
+          "experienceManifest::chapter",
+          "InstrumentRail",
+          "HazineScene",
+          "LiveSystemOverlay"
+        ]
+      }
+    },
+    {
+      "id": "STORY-012",
+      "title": "Restore deep-linked visual state",
+      "description": "As a visitor opening a chapter anchor directly, I arrive at that chapter's correct DOM, 3D, overlay, and instrument state.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-011",
+      "files": [
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Resolve anchor IDs through the canonical manifest.",
+          "done": false
+        },
+        {
+          "description": "Set scroll and shared state after layout is ready.",
+          "done": false
+        },
+        {
+          "description": "Test each of the ten anchors on direct load and navigation.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Shared links must reproduce the intended story state.",
+        "risks": [
+          "Anchor restoration can race scene/layout initialization."
+        ],
+        "edgeCases": [
+          "Unknown anchors and reduced-motion loads."
+        ],
+        "patterns": [
+          "Use stable chapter IDs, never duplicated indexes."
+        ],
+        "graphTargets": [
+          "App::anchorRestore",
+          "experienceStore::chapterId"
+        ]
+      }
+    },
+    {
+      "id": "STORY-013",
+      "title": "Prove the Theatre integration boundary",
+      "description": "As a maintainer and viewer, Theatre drives at least one meaningful authored camera or scene property through a documented adapter instead of remaining a decorative clock-only dependency.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-012",
+      "files": [
+        {
+          "path": "src/scene/TheatreSequenceAdapter.js",
+          "action": "create"
+        },
+        {
+          "path": "src/scene/CameraDirector.jsx",
+          "action": "create"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Establish the minimal CameraDirector interface consumed by the Theatre adapter.",
+          "done": false
+        },
+        {
+          "description": "Create an adapter that receives normalized progress and owns Theatre sequence synchronization.",
+          "done": false
+        },
+        {
+          "description": "Bind at least one perceptible authored camera or scene property where Theatre adds value.",
+          "done": false
+        },
+        {
+          "description": "Document and test the isolated clock-only fallback so critical runtime behavior does not depend on an unused Theatre track.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The locked Theatre dependency must carry meaningful authored value or be isolated from the critical runtime.",
+        "risks": [
+          "A nominal track can duplicate R3F logic or introduce two competing property owners."
+        ],
+        "edgeCases": [
+          "Reduced motion, direct chapter restoration, and adapter initialization before the Theatre project is ready."
+        ],
+        "patterns": [
+          "Normalized GSAP progress remains master; TheatreSequenceAdapter is the only synchronization boundary."
+        ],
+        "graphTargets": [
+          "TheatreSequenceAdapter",
+          "CameraDirector::theatreTrack",
+          "HazineScene::theatreSequence"
+        ]
+      }
+    },
+    {
+      "id": "STORY-014",
+      "title": "Isolate story and workbench styles",
+      "description": "As a visitor, story, plugin, and workbench styles never change one another when routes or surfaces mount in the same application.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-013",
+      "files": [
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/live-system.css",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/workbench.css",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Introduce explicit route/component roots and scope every story, plugin, and workbench selector beneath them.",
+          "done": false
+        },
+        {
+          "description": "Remove or rename colliding global selectors and generic element rules.",
+          "done": false
+        },
+        {
+          "description": "Load each route before and after the other and compare computed styles and screenshots for both target viewports.",
+          "done": false
+        },
+        {
+          "description": "Run pnpm run build after the isolation changes.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Shared global class names currently let one product surface corrupt another.",
+        "risks": [
+          "Specificity increases can mask rather than remove collisions."
+        ],
+        "edgeCases": [
+          "Direct workbench load, client-side route switching, and responsive media queries."
+        ],
+        "patterns": [
+          "Use explicit component/route namespaces instead of ordering stylesheets for precedence."
+        ],
+        "graphTargets": [
+          "styles.css::storyRoot",
+          "live-system.css::pluginRoot",
+          "workbench.css::workbenchRoot"
+        ]
+      }
+    },
+    {
+      "id": "STORY-015",
+      "title": "Guarantee manifest record parity",
+      "description": "As a maintainer, chapter and instrument manifests always expose the same ten resolvable records.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-014",
+      "files": [
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/data/chapters.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/InstrumentRail.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Remove the legacy nine-record instrument source.",
+          "done": false
+        },
+        {
+          "description": "Derive chapter and instrument projections from the same ten records.",
+          "done": false
+        },
+        {
+          "description": "Add a build-time assertion for count and reference parity.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The current 10/9 mismatch is a structural source of drift.",
+        "risks": [
+          "A derived view can silently filter a record."
+        ],
+        "edgeCases": [
+          "Chapters intentionally hiding a control must still retain a manifest record."
+        ],
+        "patterns": [
+          "One manifest; projections may differ, record identity may not."
+        ],
+        "graphTargets": [
+          "experienceManifest",
+          "InstrumentRail::records"
+        ]
+      }
+    },
+    {
+      "id": "STORY-016",
+      "title": "Traverse the vault door frame",
+      "description": "As a viewer, the camera visibly crosses the physical vault door frame while moving through the two-room model.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-015",
+      "files": [
+        {
+          "path": "src/scene/CameraDirector.jsx",
+          "action": "create"
+        },
+        {
+          "path": "src/scene/sceneProfiles.js",
+          "action": "create"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Author and sample the vault spline.",
+          "done": false
+        },
+        {
+          "description": "Tune start, midpoint, and end camera transforms through the doorway.",
+          "done": false
+        },
+        {
+          "description": "Capture the three proof frames at both target viewports.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The threshold-to-treasury passage carries the narrative premise.",
+        "risks": [
+          "A shortcut spline reads as a model flyover."
+        ],
+        "edgeCases": [
+          "Narrow viewport clipping."
+        ],
+        "patterns": [
+          "R3F/Theatre own camera choreography; CameraDirector owns the passage."
+        ],
+        "graphTargets": [
+          "CameraDirector::vaultSpline",
+          "HazineScene::camera"
+        ]
+      }
+    },
+    {
+      "id": "STORY-017",
+      "title": "Establish four vault compositions",
+      "description": "As a viewer, threshold, room one, doorway transition, and room two read as four distinct compositions.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-016",
+      "files": [
+        {
+          "path": "src/scene/CameraDirector.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Assign composition beats and safe zones to manifest ranges.",
+          "done": false
+        },
+        {
+          "description": "Tune camera look-at and copy placement per beat.",
+          "done": false
+        },
+        {
+          "description": "Verify adjacent beats remain visually distinct.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Distinct rooms make spatial movement meaningful rather than decorative.",
+        "risks": [
+          "Overlapping ranges collapse two rooms into one."
+        ],
+        "edgeCases": [
+          "Fast scroll and mobile crop."
+        ],
+        "patterns": [
+          "Use manifest safe-zone metadata and authored keyframes."
+        ],
+        "graphTargets": [
+          "CameraDirector::vaultCompositions",
+          "experienceManifest::safeZones"
+        ]
+      }
+    },
+    {
+      "id": "STORY-018",
+      "title": "Frame Ezgi away from camera",
+      "description": "As a viewer in the live-call chapter, I see Ezgi as an away-from-camera phone silhouette without product UI obscuring her.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-017",
+      "files": [
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/sceneProfiles.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Adjust caller orientation and office composition.",
+          "done": false
+        },
+        {
+          "description": "Reserve transcript and copy safe zones.",
+          "done": false
+        },
+        {
+          "description": "Verify silhouette legibility at both target viewports.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Presence in the negotiation must be felt without turning Ezgi into a presenter.",
+        "risks": [
+          "UI obstruction or front-facing framing breaks the scenario."
+        ],
+        "edgeCases": [
+          "Mobile overlay stacking."
+        ],
+        "patterns": [
+          "Use sceneProfiles responsive actor variants."
+        ],
+        "graphTargets": [
+          "HazineScene::callerActor",
+          "sceneProfiles::office"
+        ]
+      }
+    },
+    {
+      "id": "STORY-019",
+      "title": "Exit through the office window",
+      "description": "As a viewer, the camera travels through the office window and rises to the building exterior before geography begins.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-018",
+      "files": [
+        {
+          "path": "src/scene/CameraDirector.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Author window and exterior camera keys.",
+          "done": false
+        },
+        {
+          "description": "Align office/building visibility to the passage.",
+          "done": false
+        },
+        {
+          "description": "Verify the window crossing is spatially continuous.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The wider-world transition connects the call to geography.",
+        "risks": [
+          "A cut-like jump loses spatial causality."
+        ],
+        "edgeCases": [
+          "Window geometry clipping."
+        ],
+        "patterns": [
+          "Use CameraDirector keyframes and explicit actor envelopes."
+        ],
+        "graphTargets": [
+          "CameraDirector::officeExit",
+          "ActorDirector::building"
+        ]
+      }
+    },
+    {
+      "id": "STORY-020",
+      "title": "Dissolve building into globe",
+      "description": "As a viewer, the building yields to the globe through a leader/follower dissolve without both holding competing full opacity.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-019",
+      "files": [
+        {
+          "path": "src/scene/ActorDirector.jsx",
+          "action": "create"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define shortened building and delayed globe envelopes.",
+          "done": false
+        },
+        {
+          "description": "Implement overlap budget enforcement.",
+          "done": false
+        },
+        {
+          "description": "Capture the transition midpoint and assert neither actor competes at full opacity.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Geography should emerge from the office context, not collide with it.",
+        "risks": [
+          "Opacity overlap reads as a rendering defect."
+        ],
+        "edgeCases": [
+          "Transparent materials with non-linear perceived opacity."
+        ],
+        "patterns": [
+          "Apply the leader/follower hierarchy with 20-40% overlap."
+        ],
+        "graphTargets": [
+          "ActorDirector::influenceAt",
+          "experienceManifest::actorEnvelopes"
+        ]
+      }
+    },
+    {
+      "id": "STORY-021",
+      "title": "Enforce actor envelopes and UI safe zones",
+      "description": "As a viewer, no narrative actor reaches unintended full opacity or covers copy, transcript, or source cards outside its authored envelope.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-020",
+      "files": [
+        {
+          "path": "src/scene/ActorDirector.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Encode visibility ranges and maximum overlap per actor.",
+          "done": false
+        },
+        {
+          "description": "Encode composition safe zones per chapter/profile.",
+          "done": false
+        },
+        {
+          "description": "Assert opacity and obstruction at chapter checkpoints.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Spatial priority makes the story legible.",
+        "risks": [
+          "High-blast-radius actor rules affect every scene."
+        ],
+        "edgeCases": [
+          "Glass actors and crossfades at exact range boundaries."
+        ],
+        "patterns": [
+          "Implement ActorDirector before per-actor polish; src/components/HazineScene.jsx:22-310 is the source."
+        ],
+        "graphTargets": [
+          "ActorDirector::traverse",
+          "ActorDirector::influenceAt"
+        ]
+      }
+    },
+    {
+      "id": "STORY-022",
+      "title": "Adapt 3D composition by aspect ratio",
+      "description": "As a desktop or mobile viewer, camera composition and actor framing remain intentional for my aspect ratio.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-021",
+      "files": [
+        {
+          "path": "src/scene/sceneProfiles.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/CameraDirector.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/ActorDirector.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define desktop and mobile camera/actor profiles.",
+          "done": false
+        },
+        {
+          "description": "Select profiles from viewport aspect ratio.",
+          "done": false
+        },
+        {
+          "description": "Verify all live-intelligence phases at 1440x900 and 390x844.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Responsive 3D requires authored framing, not CSS alone.",
+        "risks": [
+          "Profile switches can jump during resize."
+        ],
+        "edgeCases": [
+          "Orientation change and intermediate aspect ratios."
+        ],
+        "patterns": [
+          "Keep profile data in src/scene/sceneProfiles.js."
+        ],
+        "graphTargets": [
+          "sceneProfiles",
+          "CameraDirector::profile"
+        ]
+      }
+    },
+    {
+      "id": "STORY-023",
+      "title": "Align a focusable seal to 3D",
+      "description": "As a keyboard or pointer user, the treasury seal is a focusable DOM control that stays aligned with its responsive 3D object.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-022",
+      "files": [
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Project the seal anchor into responsive screen coordinates.",
+          "done": false
+        },
+        {
+          "description": "Use a semantic focusable DOM control.",
+          "done": false
+        },
+        {
+          "description": "Verify alignment after resize and keyboard focus.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The invitation must remain physically grounded and accessible.",
+        "risks": [
+          "DOM/3D drift causes an unusable hit target."
+        ],
+        "edgeCases": [
+          "Canvas resize and offscreen projection."
+        ],
+        "patterns": [
+          "Use the DOM/3D state bridge rather than mesh-only interaction."
+        ],
+        "graphTargets": [
+          "HazineScene::sealAnchor",
+          "App::sealControl"
+        ]
+      }
+    },
+    {
+      "id": "STORY-024",
+      "title": "Activate the living seal",
+      "description": "As a user, hover or focus signals that the seal is available and keyboard or pointer activation opens the next narrative state.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-023",
+      "files": [
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Add hover/focus availability feedback.",
+          "done": false
+        },
+        {
+          "description": "Route click and keyboard activation to the same state transition.",
+          "done": false
+        },
+        {
+          "description": "Verify feedback begins within 150ms.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The threshold becomes an invitation rather than passive decoration.",
+        "risks": [
+          "Different pointer and keyboard paths can diverge."
+        ],
+        "edgeCases": [
+          "Repeated activation and focus during transition."
+        ],
+        "patterns": [
+          "Use one semantic activation handler and visible focus treatment."
+        ],
+        "graphTargets": [
+          "App::activateSeal",
+          "experienceStore::chapterId"
+        ]
+      }
+    },
+    {
+      "id": "STORY-025",
+      "title": "Keep the seal subordinate to copy",
+      "description": "As a viewer before activation, the treasury seal remains visually smaller and subordinate to the chapter copy.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-024",
+      "files": [
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/sceneProfiles.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Reduce the base scale per responsive profile.",
+          "done": false
+        },
+        {
+          "description": "Define the activated scale separately.",
+          "done": false
+        },
+        {
+          "description": "Review threshold screenshots for copy competition.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The seal should invite entry without overpowering the premise.",
+        "risks": [
+          "Mobile scale can dominate even when desktop is balanced."
+        ],
+        "edgeCases": [
+          "Large text settings."
+        ],
+        "patterns": [
+          "Use scene profile values, not ad hoc viewport branches."
+        ],
+        "graphTargets": [
+          "sceneProfiles::seal",
+          "HazineScene::sealScale"
+        ]
+      }
+    },
+    {
+      "id": "STORY-026",
+      "title": "Preserve seal meaning without decorative motion",
+      "description": "As a reduced-motion user, the seal remains understandable and activatable without rotation, bobbing, or rapid expansion.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-025",
+      "files": [
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Gate seal motion through the shared motion policy interface.",
+          "done": false
+        },
+        {
+          "description": "Provide static focus and activation feedback.",
+          "done": false
+        },
+        {
+          "description": "Test live preference changes while the seal is visible.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Reduced motion must retain the invitation's meaning.",
+        "risks": [
+          "CSS or frame-loop motion can bypass the policy."
+        ],
+        "edgeCases": [
+          "Preference changes mid-animation."
+        ],
+        "patterns": [
+          "Prepare for src/hooks/useMotionPolicy.js in the hardening epic."
+        ],
+        "graphTargets": [
+          "HazineScene::sealMotion",
+          "App::motionPolicy"
+        ]
+      }
+    },
+    {
+      "id": "STORY-027",
+      "title": "Present an active call",
+      "description": "As Ezgi, I see an active call with current speaker, timestamp, and waveform state.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-026",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "create"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/live-system.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define transcript moments with speaker and time data.",
+          "done": false
+        },
+        {
+          "description": "Render active speaker, elapsed time, and waveform state.",
+          "done": false
+        },
+        {
+          "description": "Keep playback presentation coherent across chapter changes.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Hazine begins beside a real-time negotiation, not after it.",
+        "risks": [
+          "Synthetic call state can look disconnected from transcript timing."
+        ],
+        "edgeCases": [
+          "Paused playback and final moment."
+        ],
+        "patterns": [
+          "Replace static CSS phase switching in LiveSystemOverlay.jsx:6-123."
+        ],
+        "graphTargets": [
+          "liveMeeting::moments",
+          "LiveSystemOverlay::callState"
+        ]
+      }
+    },
+    {
+      "id": "STORY-028",
+      "title": "Select any transcript moment",
+      "description": "As Ezgi, I can select every transcript moment by pointer or keyboard.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-027",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Store selectedMomentId centrally.",
+          "done": false
+        },
+        {
+          "description": "Render each moment as a semantic selectable row.",
+          "done": false
+        },
+        {
+          "description": "Verify focus, Enter/Space, pointer, and selected state for every row.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The walkthrough must be operable, not only narrated.",
+        "risks": [
+          "Rows can become pointer-only or lose focus after rerender."
+        ],
+        "edgeCases": [
+          "Selecting the already-active moment."
+        ],
+        "patterns": [
+          "Use Zustand shared experience state."
+        ],
+        "graphTargets": [
+          "experienceStore::selectedMomentId",
+          "LiveSystemOverlay::TranscriptRow"
+        ]
+      }
+    },
+    {
+      "id": "STORY-029",
+      "title": "Update all connected intelligence",
+      "description": "As Ezgi, selecting a transcript moment updates evidence, geography, relationship, confidence, and strategy in the same interaction frame.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-028",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/StoryWidgets.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Attach all connected records to each moment ID.",
+          "done": false
+        },
+        {
+          "description": "Derive every panel from one selected moment snapshot.",
+          "done": false
+        },
+        {
+          "description": "Test every transcript moment for atomic visible updates.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Collect-Connect-Surface is proven only when one selection coherently changes the system.",
+        "risks": [
+          "Independent subscriptions can expose mixed moment state."
+        ],
+        "edgeCases": [
+          "Missing optional geography or strategy data."
+        ],
+        "patterns": [
+          "Use one selected record selector; avoid chained effects."
+        ],
+        "graphTargets": [
+          "experienceStore::selectedMoment",
+          "StoryWidgets::connectedPanels"
+        ]
+      }
+    },
+    {
+      "id": "STORY-030",
+      "title": "Persist selection across surfaces",
+      "description": "As Ezgi, my chosen transcript moment and connected intelligence remain selected when I switch between Claude plugin and desktop.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-029",
+      "files": [
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Keep surface and selectedMomentId as independent store fields.",
+          "done": false
+        },
+        {
+          "description": "Ensure neither presentation resets selection on mount.",
+          "done": false
+        },
+        {
+          "description": "Toggle surfaces after every transcript selection.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "One intelligence layer must survive presentation changes.",
+        "risks": [
+          "Route or conditional mounting can reset local state."
+        ],
+        "edgeCases": [
+          "Surface switch while playback is paused."
+        ],
+        "patterns": [
+          "Shared Zustand state, never component-local selection."
+        ],
+        "graphTargets": [
+          "experienceStore::surface",
+          "experienceStore::selectedMomentId"
+        ]
+      }
+    },
+    {
+      "id": "STORY-031",
+      "title": "Pause autoplay on manual selection",
+      "description": "As Ezgi, manually selecting a transcript moment immediately pauses automatic transcript playback.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-030",
+      "files": [
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Store playback state centrally.",
+          "done": false
+        },
+        {
+          "description": "Make manual selection atomically set paused state.",
+          "done": false
+        },
+        {
+          "description": "Verify timers cannot advance after the same interaction.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Manual inspection must not be stolen by autoplay.",
+        "risks": [
+          "A pending timer can advance after pause."
+        ],
+        "edgeCases": [
+          "Selection at an autoplay tick boundary."
+        ],
+        "patterns": [
+          "Cancel scheduled playback before changing selectedMomentId."
+        ],
+        "graphTargets": [
+          "experienceStore::playback",
+          "LiveSystemOverlay::selectMoment"
+        ]
+      }
+    },
+    {
+      "id": "STORY-032",
+      "title": "Expose required provenance fields",
+      "description": "As Ezgi, every consequential intelligence item exposes source or speaker, timestamp or retrieval time, lineage, taxonomy class, and confidence when applicable.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-031",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/StoryWidgets.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define the required provenance shape for consequential objects.",
+          "done": false
+        },
+        {
+          "description": "Populate all demo records and render inspectable receipts.",
+          "done": false
+        },
+        {
+          "description": "Assert 100% provenance completeness.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Provenance must precede persuasion.",
+        "risks": [
+          "Optional fields can silently disappear on some record types."
+        ],
+        "edgeCases": [
+          "Confidence not applicable to direct facts."
+        ],
+        "patterns": [
+          "Follow PRD taxonomy FACT/SIGNAL/INTERPRETATION/HYPOTHESIS/STRATEGY."
+        ],
+        "graphTargets": [
+          "liveMeeting::provenance",
+          "StoryWidgets::SourceReceipt"
+        ]
+      }
+    },
+    {
+      "id": "STORY-033",
+      "title": "Trace strategy to supporting records",
+      "description": "As Ezgi, each surfaced strategy links back to the fact, signal, and hypothesis records supporting it.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-032",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Store strategy support IDs.",
+          "done": false
+        },
+        {
+          "description": "Render lineage links and support-record inspection.",
+          "done": false
+        },
+        {
+          "description": "Reject dangling or wrong-taxonomy links in validation.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "A strategic window is trustworthy only when its reasoning is inspectable.",
+        "risks": [
+          "Broken references turn provenance into decoration."
+        ],
+        "edgeCases": [
+          "A strategy supported by multiple records of one class."
+        ],
+        "patterns": [
+          "Use stable record IDs and source-receipt views."
+        ],
+        "graphTargets": [
+          "liveMeeting::strategy.supportingIds",
+          "WorkbenchApp::StrategyLineage"
+        ]
+      }
+    },
+    {
+      "id": "STORY-034",
+      "title": "Inspect relationship evidence",
+      "description": "As Ezgi, each relationship pattern exposes the prior calls or completed trades from which it was derived.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-033",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Attach sourced interaction IDs to relationship patterns.",
+          "done": false
+        },
+        {
+          "description": "Expose prior-call and completed-trade receipts.",
+          "done": false
+        },
+        {
+          "description": "Verify every pattern has at least one inspectable source.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Persona memory must remain sourced rather than becoming an invented profile.",
+        "risks": [
+          "Aggregated labels can conceal weak evidence."
+        ],
+        "edgeCases": [
+          "Single-observation patterns."
+        ],
+        "patterns": [
+          "Separate observed history from interpretation in the data model."
+        ],
+        "graphTargets": [
+          "liveMeeting::relationshipPatterns",
+          "WorkbenchApp::RelationshipPanel"
+        ]
+      }
+    },
+    {
+      "id": "STORY-035",
+      "title": "Keep inference distinct from fact",
+      "description": "As Ezgi, no interpretation, hypothesis, or strategy is ever labeled or styled as a fact.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-034",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/KnowledgeTransform.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/live-system.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Constrain records to the immutable five-class taxonomy.",
+          "done": false
+        },
+        {
+          "description": "Render explicit class labels consistently.",
+          "done": false
+        },
+        {
+          "description": "Add a data/UI assertion that non-facts cannot receive FACT treatment.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The system must never disguise interpretation as truth.",
+        "risks": [
+          "Color-only encoding can blur class boundaries."
+        ],
+        "edgeCases": [
+          "Records reclassified during knowledge transformation."
+        ],
+        "patterns": [
+          "Use immutable taxonomy constants shared by data and UI."
+        ],
+        "graphTargets": [
+          "liveMeeting::taxonomy",
+          "KnowledgeTransform::classification"
+        ]
+      }
+    },
+    {
+      "id": "STORY-036",
+      "title": "Default to Claude plugin",
+      "description": "As a first-time or reloading visitor, the product presentation opens in Claude plugin mode.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-035",
+      "files": [
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Set plugin as the store's initial surface.",
+          "done": false
+        },
+        {
+          "description": "Avoid persisting desktop as a reload override.",
+          "done": false
+        },
+        {
+          "description": "Test fresh load and reload after desktop use.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Plugin first is a locked product decision.",
+        "risks": [
+          "Persisted UI state can violate the default."
+        ],
+        "edgeCases": [
+          "Reload during a selected moment."
+        ],
+        "patterns": [
+          "Selection may persist during live switching; surface resets on reload."
+        ],
+        "graphTargets": [
+          "experienceStore::initialState"
+        ]
+      }
+    },
+    {
+      "id": "STORY-037",
+      "title": "Present focused plugin context",
+      "description": "As Ezgi in plugin mode, I see an embedded companion focused on the live decision context.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-036",
+      "files": [
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/live-system.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define plugin-specific information hierarchy.",
+          "done": false
+        },
+        {
+          "description": "Render only focused context and necessary controls.",
+          "done": false
+        },
+        {
+          "description": "Verify it reads as embedded rather than a shrunken desktop.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The plugin supports the conversation without replacing it.",
+        "risks": [
+          "Feature parity can produce a cramped dashboard."
+        ],
+        "edgeCases": [
+          "Long provenance labels in the narrow frame."
+        ],
+        "patterns": [
+          "Differentiate information architecture, not only rail visibility."
+        ],
+        "graphTargets": [
+          "LiveSystemOverlay::PluginSurface"
+        ]
+      }
+    },
+    {
+      "id": "STORY-038",
+      "title": "Present the expanded desktop treasury",
+      "description": "As Ezgi in desktop mode, I see the full navigation rail and a larger working surface.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-037",
+      "files": [
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/live-system.css",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/InstrumentRail.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define desktop-specific information hierarchy.",
+          "done": false
+        },
+        {
+          "description": "Expose full rail and expanded panels.",
+          "done": false
+        },
+        {
+          "description": "Verify selected data matches plugin mode exactly.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Desktop expands the same intelligence into a larger treasury.",
+        "risks": [
+          "A separate presentation can drift into separate data."
+        ],
+        "edgeCases": [
+          "Switching at mobile widths."
+        ],
+        "patterns": [
+          "Both surfaces consume the same selected record."
+        ],
+        "graphTargets": [
+          "LiveSystemOverlay::DesktopSurface",
+          "InstrumentRail"
+        ]
+      }
+    },
+    {
+      "id": "STORY-039",
+      "title": "Share one intelligence model",
+      "description": "As Ezgi, plugin, desktop, story overlay, and workbench present the same data and selection state.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-038",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Remove duplicate route-specific meeting data.",
+          "done": false
+        },
+        {
+          "description": "Expose route-safe shared selectors.",
+          "done": false
+        },
+        {
+          "description": "Compare record IDs and selection across every presentation.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "One intelligence layer across surfaces is a core thesis.",
+        "risks": [
+          "Route-specific stores can diverge on refresh."
+        ],
+        "edgeCases": [
+          "Workbench direct load without story initialization."
+        ],
+        "patterns": [
+          "Reuse src/data/liveMeeting.js and a route-safe shared store slice."
+        ],
+        "graphTargets": [
+          "liveMeeting",
+          "experienceStore::selectedMoment"
+        ]
+      }
+    },
+    {
+      "id": "STORY-040",
+      "title": "Select raw knowledge fragments",
+      "description": "As Ezgi, I can select raw meeting, market, research, and relationship fragments.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-039",
+      "files": [
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/KnowledgeTransform.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define selectable fragments across all four source kinds.",
+          "done": false
+        },
+        {
+          "description": "Add semantic pointer/keyboard selection.",
+          "done": false
+        },
+        {
+          "description": "Verify selection feedback for every fragment.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Users must manipulate the raw material of the treasury.",
+        "risks": [
+          "Source-kind styling can imply taxonomy class."
+        ],
+        "edgeCases": [
+          "Multiple fragments from the same source."
+        ],
+        "patterns": [
+          "Use liveMeeting stable IDs and KnowledgeTransform.jsx:18-52."
+        ],
+        "graphTargets": [
+          "KnowledgeTransform::Fragment",
+          "liveMeeting::fragments"
+        ]
+      }
+    },
+    {
+      "id": "STORY-041",
+      "title": "Assemble connected intelligence visibly",
+      "description": "As Ezgi, selecting fragments visibly assembles a source receipt, relationship memory, classification, and strategy.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-040",
+      "files": [
+        {
+          "path": "src/components/KnowledgeTransform.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/StoryWidgets.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Map selected fragments to each assembled output.",
+          "done": false
+        },
+        {
+          "description": "Render the four-stage result with lineage retained.",
+          "done": false
+        },
+        {
+          "description": "Verify assembly for each source-kind selection.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The Collect-Connect-Surface transformation must be directly legible.",
+        "risks": [
+          "Animation can obscure which source produced which result."
+        ],
+        "edgeCases": [
+          "A fragment without relationship history."
+        ],
+        "patterns": [
+          "Keep provenance visible throughout transformation."
+        ],
+        "graphTargets": [
+          "KnowledgeTransform::assembly",
+          "StoryWidgets::SourceReceipt"
+        ]
+      }
+    },
+    {
+      "id": "STORY-042",
+      "title": "Animate scoped knowledge transformations",
+      "description": "As Ezgi, DOM and connected-line motion shows how selected information changes form without leaking animation state to other components.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-041",
+      "files": [
+        {
+          "path": "src/components/KnowledgeTransform.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/StoryWidgets.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Scope Anime.js targets to each component root.",
+          "done": false
+        },
+        {
+          "description": "Implement replay and cancellation on selection changes.",
+          "done": false
+        },
+        {
+          "description": "Route timing and reduced motion through shared policy inputs.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Motion explains transformation rather than decorating it.",
+        "risks": [
+          "Global selectors can animate the wrong surface."
+        ],
+        "edgeCases": [
+          "Rapid repeated selection and unmount during animation."
+        ],
+        "patterns": [
+          "Anime.js owns DOM/SVG; use root scoping, cancellation, and replay semantics."
+        ],
+        "graphTargets": [
+          "KnowledgeTransform::animationScope",
+          "StoryWidgets::lineAnimation"
+        ]
+      }
+    },
+    {
+      "id": "STORY-043",
+      "title": "Inspect every taxonomy layer",
+      "description": "As Ezgi, I can directly inspect FACT, SIGNAL, INTERPRETATION, HYPOTHESIS, and STRATEGY layers without losing lineage.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-042",
+      "files": [
+        {
+          "path": "src/components/KnowledgeTransform.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Expose one inspectable control for each immutable class.",
+          "done": false
+        },
+        {
+          "description": "Show source and parent lineage in every class view.",
+          "done": false
+        },
+        {
+          "description": "Verify all five classes and transitions.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Explicit taxonomy protects epistemic integrity.",
+        "risks": [
+          "Collapsed layers can conceal inference."
+        ],
+        "edgeCases": [
+          "A class with no selected-moment record."
+        ],
+        "patterns": [
+          "Keep class labels textual, not color-only."
+        ],
+        "graphTargets": [
+          "KnowledgeTransform::taxonomyLayers"
+        ]
+      }
+    },
+    {
+      "id": "STORY-044",
+      "title": "Apply the Hazine workbench system",
+      "description": "As a /workbench user, I see the approved light ivory center workspace, dark rails, typography, and restrained Hazine accents.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-043",
+      "files": [
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/workbench.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Rebuild the workbench layout with dark rails and ivory center.",
+          "done": false
+        },
+        {
+          "description": "Apply approved typography and semantic gold/green accents.",
+          "done": false
+        },
+        {
+          "description": "Capture desktop and mobile workbench proofs.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Workbench must be a deeper Hazine surface, not a separate prototype.",
+        "risks": [
+          "Global selectors can contaminate the story."
+        ],
+        "edgeCases": [
+          "Transparent content over dark/luminous scene regions."
+        ],
+        "patterns": [
+          "Scope workbench selectors; follow src/workbench/workbench.css:1-160."
+        ],
+        "graphTargets": [
+          "WorkbenchApp",
+          "workbench.css"
+        ]
+      }
+    },
+    {
+      "id": "STORY-045",
+      "title": "Drive every workbench panel from selection",
+      "description": "As a workbench user, transcript selection drives Live Intelligence, Evidence, Relationship, confidence, geography, and strategy panels rather than only a headline.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-044",
+      "files": [
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/data/liveMeeting.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Bind every panel to the shared selected record.",
+          "done": false
+        },
+        {
+          "description": "Remove static panel placeholders.",
+          "done": false
+        },
+        {
+          "description": "Validate all panel states for every transcript moment.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The workbench is the strongest operational proof of connected intelligence.",
+        "risks": [
+          "One stale panel breaks the single-state model."
+        ],
+        "edgeCases": [
+          "Direct workbench load before playback begins."
+        ],
+        "patterns": [
+          "Reuse the selector proven in STORY-021."
+        ],
+        "graphTargets": [
+          "WorkbenchApp::panels",
+          "experienceStore::selectedMoment"
+        ]
+      }
+    },
+    {
+      "id": "STORY-046",
+      "title": "Inspect workbench receipts and lineage",
+      "description": "As a workbench user, evidence and relationship views change with selection and let me inspect source receipts and strategy lineage.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-045",
+      "files": [
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/workbench.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Add source-receipt inspection to evidence views.",
+          "done": false
+        },
+        {
+          "description": "Add sourced-call/trade inspection to relationship views.",
+          "done": false
+        },
+        {
+          "description": "Add supporting-record inspection to strategy views.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "A larger treasury surface should deepen provenance inspection.",
+        "risks": [
+          "Nested inspection can obscure the live-call context."
+        ],
+        "edgeCases": [
+          "Missing optional receipt metadata."
+        ],
+        "patterns": [
+          "Reuse stable provenance IDs from STORY-024 through STORY-026."
+        ],
+        "graphTargets": [
+          "WorkbenchApp::EvidencePanel",
+          "WorkbenchApp::RelationshipPanel",
+          "WorkbenchApp::StrategyLineage"
+        ]
+      }
+    },
+    {
+      "id": "STORY-047",
+      "title": "Render the desktop chapter instrument",
+      "description": "As a desktop viewer, I navigate with a vertical chapter instrument rail.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-046",
+      "files": [
+        {
+          "path": "src/components/InstrumentRail.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Render chapter controls from the manifest.",
+          "done": false
+        },
+        {
+          "description": "Connect each control to stable chapter navigation.",
+          "done": false
+        },
+        {
+          "description": "Verify current and focus states at desktop size.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The rail makes the long-form experience operable.",
+        "risks": [
+          "Rail indexes can drift from chapter IDs."
+        ],
+        "edgeCases": [
+          "Keyboard navigation during smooth scrolling."
+        ],
+        "patterns": [
+          "Refactor InstrumentRail.jsx:4-43 to consume the manifest."
+        ],
+        "graphTargets": [
+          "InstrumentRail"
+        ]
+      }
+    },
+    {
+      "id": "STORY-048",
+      "title": "Render the mobile bottom island",
+      "description": "As a mobile viewer, I navigate with a horizontal bottom island that respects the device safe area.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-047",
+      "files": [
+        {
+          "path": "src/components/InstrumentRail.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Switch the instrument to horizontal mobile presentation.",
+          "done": false
+        },
+        {
+          "description": "Apply safe-area inset spacing.",
+          "done": false
+        },
+        {
+          "description": "Verify reachability, focus, and no content obstruction at 390x844.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Mobile choreography needs a purpose-built control surface.",
+        "risks": [
+          "The island can cover transcript actions."
+        ],
+        "edgeCases": [
+          "Devices with zero or large safe-area insets."
+        ],
+        "patterns": [
+          "Use CSS env(safe-area-inset-bottom)."
+        ],
+        "graphTargets": [
+          "InstrumentRail::mobileIsland"
+        ]
+      }
+    },
+    {
+      "id": "STORY-049",
+      "title": "Synchronize chapter instrument feedback",
+      "description": "As a viewer, current chapter, normalized progress, and a short system observation update together.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-048",
+      "files": [
+        {
+          "path": "src/components/InstrumentRail.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/state/experience.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Add concise observation copy to manifest records.",
+          "done": false
+        },
+        {
+          "description": "Select chapter, progress, and observation from one state snapshot.",
+          "done": false
+        },
+        {
+          "description": "Verify synchronized updates during fast scroll and anchor jumps.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The instrument should report one coherent system state.",
+        "risks": [
+          "Independent animations can make labels lag progress."
+        ],
+        "edgeCases": [
+          "Exact chapter transitions."
+        ],
+        "patterns": [
+          "Derive all three values from the canonical manifest and master clock."
+        ],
+        "graphTargets": [
+          "InstrumentRail::status",
+          "experienceStore::progress"
+        ]
+      }
+    },
+    {
+      "id": "STORY-050",
+      "title": "Resolve all ten chapter states",
+      "description": "As a reviewer, each of the ten chapters resolves to its correct DOM, 3D, overlay, Theatre, and instrument state.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-049",
+      "files": [
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/InstrumentRail.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Enumerate the ten stable chapter IDs and expected consumer state for each.",
+          "done": false
+        },
+        {
+          "description": "Exercise scroll and direct-anchor entry for every chapter.",
+          "done": false
+        },
+        {
+          "description": "Correct any consumer mismatch and rerun the full ten-chapter matrix.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The full experience is only coherent when every consumer agrees in every chapter.",
+        "risks": [
+          "Testing only sequential scroll can miss direct-entry initialization defects."
+        ],
+        "edgeCases": [
+          "Exact boundaries, fast multi-chapter scroll, direct anchor, and reduced-motion state."
+        ],
+        "patterns": [
+          "Validate projections from the canonical manifest; never patch a consumer-specific table."
+        ],
+        "graphTargets": [
+          "experienceManifest",
+          "App::chapterState",
+          "HazineScene::chapterState",
+          "LiveSystemOverlay::phase",
+          "InstrumentRail::chapter"
+        ]
+      }
+    }
+  ]
+}

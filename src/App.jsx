@@ -2,7 +2,10 @@ import { lazy, Suspense, useEffect, useLayoutEffect, useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { animate, stagger } from 'animejs'
-import { CollectionWidget, ConnectionWidget, HybridWidget, ProvenanceWidget, RecallWidget, TaxonomyWidget } from './components/StoryWidgets.jsx'
+import { HybridWidget, TaxonomyWidget } from './components/StoryWidgets.jsx'
+import InstrumentRail from './components/InstrumentRail.jsx'
+import KnowledgeTransform from './components/KnowledgeTransform.jsx'
+import LiveSystemOverlay from './components/LiveSystemOverlay.jsx'
 import { chapters } from './data/chapters.js'
 import { useExperience } from './state/experience.js'
 
@@ -47,15 +50,25 @@ function ScrollDirector() {
       sections.forEach((section) => {
         if (!media.matches) {
           gsap.from(section.querySelectorAll('.reveal'), {
-            y: 32,
+            y: 28,
             opacity: 0,
-            duration: 0.8,
-            stagger: 0.09,
+            duration: 0.72,
+            stagger: 0.08,
             ease: 'power3.out',
             scrollTrigger: { trigger: section, start: 'top 72%', toggleActions: 'play none none reverse' },
           })
         }
       })
+
+      const vaultPassage = document.querySelector('.vault-passage')
+      if (vaultPassage && !media.matches) {
+        gsap.to(vaultPassage.querySelector('.vault-whisper'), {
+          opacity: 0,
+          scale: 0.94,
+          ease: 'none',
+          scrollTrigger: { trigger: vaultPassage, start: '45% center', end: '72% center', scrub: 0.35 },
+        })
+      }
     })
 
     return () => {
@@ -68,19 +81,12 @@ function ScrollDirector() {
 
 function Navigation() {
   const chapter = useExperience((state) => state.chapter)
-  const progress = useExperience((state) => state.progress)
   return (
-    <>
-      <header className="topbar">
-        <a href="#threshold" className="brand-link"><span>HAZINE</span><small>living intelligence</small></a>
-        <div className="chapter-readout"><span>{chapters[chapter]?.index}</span>{chapters[chapter]?.eyebrow}</div>
-        <a className="quiet-link" href="#hybrid">See the system</a>
-      </header>
-      <aside className="progress-rail" aria-hidden="true">
-        <span className="progress-fill" style={{ transform: `scaleY(${progress})` }} />
-        {chapters.map((item, index) => <i className={index === chapter ? 'active' : ''} key={item.id} />)}
-      </aside>
-    </>
+    <header className="topbar">
+      <a href="#threshold" className="brand-link"><span>HAZINE</span><small>living intelligence</small></a>
+      <div className="chapter-readout"><span>{chapters[chapter]?.index}</span>{chapters[chapter]?.eyebrow}</div>
+      <a className="quiet-link" href="/workbench">Enter the live system</a>
+    </header>
   )
 }
 
@@ -94,120 +100,98 @@ function Section({ chapter, children, className = '' }) {
 
 export default function App() {
   const hero = useRef()
+  const openTreasury = useExperience((state) => state.openTreasury)
+  const treasuryOpen = useExperience((state) => state.treasuryOpen)
+  const setSealHovered = useExperience((state) => state.setSealHovered)
+
   useEffect(() => {
     window.scrollTo(0, 0)
     const motion = animate(hero.current.querySelectorAll('.hero-beat'), {
-      opacity: [0, 1],
-      translateY: [22, 0],
-      delay: stagger(115, { start: 180 }),
-      duration: 900,
-      ease: 'out(4)',
+      opacity: [0, 1], translateY: [22, 0], delay: stagger(115, { start: 180 }), duration: 900, ease: 'out(4)',
     })
     return () => motion.cancel()
   }, [])
+
+  const enterLivingTreasury = () => {
+    openTreasury()
+    window.setTimeout(() => document.querySelector('#call')?.scrollIntoView({ behavior: 'smooth' }), 420)
+  }
 
   return (
     <div className="app-shell">
       <ScrollDirector />
       <Navigation />
-      <Suspense fallback={<div className="scene-shell scene-loading" aria-hidden="true" />}>
-        <HazineScene />
-      </Suspense>
+      <InstrumentRail />
+      <LiveSystemOverlay />
+      <Suspense fallback={<div className="scene-shell scene-loading" aria-hidden="true" />}><HazineScene /></Suspense>
+      <div className={`treasury-transition ${treasuryOpen ? 'is-active' : ''}`} aria-hidden="true" />
+
       <main className="experience">
-        <Section chapter={chapters[0]} className="hero-section">
-          <div className="hero-copy" ref={hero}>
+        <Section chapter={chapters[0]} className="hero-section threshold-section">
+          <div className="hero-copy spatial-hero" ref={hero}>
             <p className="hero-beat eyebrow">For Ezgi · A guided encounter with Hazine</p>
             <div className="hero-beat hero-wordmark" aria-label="Hazine">HAZINE</div>
-            <h1 className="hero-beat">A living treasury<br />of intelligence.</h1>
-            <p className="hero-beat hero-intro">Not a dashboard with a chatbot attached. A persistent intelligence layer surrounding the craft of a trader.</p>
-            <a className="hero-beat enter-link" href="#quarry"><span>Enter the story</span><i>↓</i></a>
+            <h1 className="hero-beat">The treasury<br />remembers.</h1>
+            <p className="hero-beat hero-intro">Pass through the threshold. What begins as a conversation becomes living, sourced intelligence.</p>
+            <a className="hero-beat enter-link" href="#vault"><span>Follow the passage</span><i>↓</i></a>
           </div>
           <div className="hero-side-note hero-beat"><span>Collect</span><span>Connect</span><span>Surface</span></div>
         </Section>
 
-        <Section chapter={chapters[1]}>
-          <div className="story-card align-left">
-            <p className="reveal chapter-index">01 / The quarry</p>
-            <h2 className="reveal">Intelligence begins as terrain.</h2>
-            <p className="reveal body-large">Markets arrive as layers: prices, calls, claims, memories, people, and pressure. Valuable, but not yet legible.</p>
-            <div className="reveal tension-line"><span>Raw information</span><i /><span>Strategic context</span></div>
+        <Section chapter={chapters[1]} className="vault-passage vault-entry-section">
+          <div className="vault-whisper">
+            <p className="reveal chapter-index">01 / The inner room</p>
+            <h2 className="reveal">The archive becomes alive when the present calls for it.</h2>
+          </div>
+          <button className="treasury-seal-control reveal" type="button"
+            onPointerEnter={() => setSealHovered(true)} onPointerLeave={() => setSealHovered(false)}
+            onFocus={() => setSealHovered(true)} onBlur={() => setSealHovered(false)} onClick={enterLivingTreasury}>
+            <i aria-hidden="true" /><span>ENTER THE</span><strong>LIVING TREASURY</strong><em>Begin Ezgi’s story →</em>
+          </button>
+        </Section>
+
+        <Section chapter={chapters[2]} className="use-case-section call-section">
+          <div className="case-caption align-left"><p className="reveal chapter-index">02 / The call</p><h2 className="reveal">Ezgi stays present.</h2><p className="reveal">Hazine listens beside her—transcribing, distinguishing claims, and watching for the detail that changes the deal.</p></div>
+        </Section>
+
+        <Section chapter={chapters[3]} className="use-case-section geography-section">
+          <div className="case-caption align-right"><p className="reveal chapter-index">03 / Geographic context</p><h2 className="reveal">The room opens into the world.</h2><p className="reveal">“Copper concentrate” connects the speaker, the destination, the mine corridor, and the market shaping the offer.</p></div>
+        </Section>
+
+        <Section chapter={chapters[4]} className="use-case-section evidence-section">
+          <div className="case-caption align-left"><p className="reveal chapter-index">04 / Evidence</p><h2 className="reveal">Nothing important arrives alone.</h2><p className="reveal">The claim keeps its speaker and timestamp. Market data keeps its source. Memory keeps the reasoning that made it relevant.</p></div>
+        </Section>
+
+        <Section chapter={chapters[5]} className="use-case-section relationship-section">
+          <div className="case-caption align-right"><p className="reveal chapter-index">05 / Relationship intelligence</p><h2 className="reveal">Marco is not a blank record.</h2><p className="reveal">His evolving persona is built from sourced moments: how he negotiates, when he concedes, and what creates certainty.</p></div>
+        </Section>
+
+        <Section chapter={chapters[6]} className="use-case-section decision-section">
+          <div className="case-caption align-left decision-caption">
+            <p className="reveal chapter-index">06 / The closing moment</p><h2 className="reveal">The window appears while it is still open.</h2><p className="reveal">Hazine connects the time-bound offer to Marco’s pattern and Ezgi’s earlier hypothesis—with every source one gesture away.</p>
+            <a className="reveal decision-link" href="/workbench">Inspect the live deal walkthrough →</a>
           </div>
         </Section>
 
-        <Section chapter={chapters[2]}>
-          <div className="light-workspace">
-            <div className="story-card align-right">
-              <p className="reveal chapter-index">02 / Collect</p>
-              <h2 className="reveal">Gather deliberately.<br />Lose nothing.</h2>
-              <p className="reveal">The desktop receives the full working world. The plugin captures intelligence in the moment—without pulling Ezgi away from the conversation.</p>
-            </div>
-            <div className="reveal widget-wrap"><CollectionWidget /></div>
+        <Section chapter={chapters[7]} className="feature-section">
+          <div className="feature-workspace">
+            <div className="story-card"><p className="reveal chapter-index">07 / The knowledge system</p><h2 className="reveal">Information changes form without losing lineage.</h2><p className="reveal">Explore how raw moments become evidence, relationships, hypotheses, and accountable strategy.</p></div>
+            <div className="reveal knowledge-demo"><KnowledgeTransform /></div>
+            <div className="reveal taxonomy-demo"><TaxonomyWidget /></div>
           </div>
         </Section>
 
-        <Section chapter={chapters[3]}>
-          <div className="story-card align-left narrow">
-            <p className="reveal chapter-index">03 / Discern</p>
-            <h2 className="reveal">Find the signal inside the noise.</h2>
-            <p className="reveal body-large">Hazine is explicit about what it knows, what it notices, and what it is still testing.</p>
-          </div>
-          <div className="reveal floating-widget"><TaxonomyWidget /></div>
-        </Section>
-
-        <Section chapter={chapters[4]}>
-          <div className="light-workspace split-layout">
-            <div className="story-card">
-              <p className="reveal chapter-index">04 / Connect</p>
-              <h2 className="reveal">Context is the real asset.</h2>
-              <p className="reveal">A commodity touches a market. A signal echoes a call. A claim points back to a person. A past hypothesis changes the meaning of today.</p>
-            </div>
-            <div className="reveal"><ConnectionWidget /></div>
-          </div>
-        </Section>
-
-        <Section chapter={chapters[5]}>
-          <div className="light-workspace split-layout reverse">
-            <div className="story-card">
-              <p className="reveal chapter-index">05 / Preserve</p>
-              <h2 className="reveal">Every conclusion keeps its receipts.</h2>
-              <p className="reveal">Source, speaker, timestamp, confidence, and reasoning travel together. Provenance is not metadata around the intelligence. It is part of the intelligence.</p>
-            </div>
-            <div className="reveal"><ProvenanceWidget /></div>
-          </div>
-        </Section>
-
-        <Section chapter={chapters[6]}>
-          <div className="story-card align-left narrow">
-            <p className="reveal chapter-index">06 / Surface</p>
-            <h2 className="reveal">The right memory returns.</h2>
-            <p className="reveal">Not because Ezgi searched for it. Because the present moment made it relevant.</p>
-          </div>
-          <div className="reveal floating-widget recall-float"><RecallWidget /></div>
-        </Section>
-
-        <Section chapter={chapters[7]}>
+        <Section chapter={chapters[8]}>
           <div className="light-workspace hybrid-workspace">
-            <div className="story-card center-copy">
-              <p className="reveal chapter-index">07 / Desktop + agent</p>
-              <h2 className="reveal">One intelligence.<br />Two natural surfaces.</h2>
-              <p className="reveal">The desktop is the treasury. The plugin is the doorway that follows Ezgi into the work.</p>
-            </div>
+            <div className="story-card center-copy"><p className="reveal chapter-index">08 / Desktop + agent</p><h2 className="reveal">One intelligence.<br />Two natural surfaces.</h2><p className="reveal">The desktop is the treasury. The plugin is the doorway that follows Ezgi into the work.</p></div>
             <div className="reveal"><HybridWidget /></div>
-            <figure className="reveal approved-system">
-              <img src="/brand/hazine-design-system-with-icon.png" alt="Approved Hazine design system, wordmark, glyph, lockup, and mineral-sparkle app icon" />
-              <figcaption>Approved visual system · immutable source assets</figcaption>
-            </figure>
+            <a className="reveal workbench-bridge" href="/workbench"><span>Enter the working system</span><strong>Experience Hazine during a live deal conversation →</strong></a>
+            <figure className="reveal approved-system"><img src="/brand/hazine-design-system-with-icon.png" alt="Approved Hazine design system, wordmark, glyph, lockup, and mineral-sparkle app icon" /><figcaption>Approved visual system · immutable source assets</figcaption></figure>
           </div>
         </Section>
 
-        <Section chapter={chapters[8]} className="final-section">
-          <div className="final-copy">
-            <p className="reveal eyebrow">The living treasury</p>
-            <h2 className="reveal">What Ezgi knows<br />does not disappear.</h2>
-            <p className="reveal body-large">It gathers context. It keeps its lineage. It returns with purpose.</p>
-            <div className="reveal final-equation"><span>Collect</span><i>→</i><span>Connect</span><i>→</i><span>Surface</span></div>
-            <div className="reveal final-lockup"><strong>HAZINE</strong><span>A living treasury of intelligence</span></div>
-          </div>
+        <Section chapter={chapters[9]} className="final-section">
+          <div className="final-copy"><p className="reveal eyebrow">The living treasury</p><h2 className="reveal">What Ezgi knows<br />does not disappear.</h2><p className="reveal body-large">It gathers context. It keeps its lineage. It returns with purpose.</p><div className="reveal final-equation"><span>Collect</span><i>→</i><span>Connect</span><i>→</i><span>Surface</span></div><div className="reveal final-lockup"><strong>HAZINE</strong><span>A living treasury of intelligence</span></div></div>
         </Section>
       </main>
     </div>

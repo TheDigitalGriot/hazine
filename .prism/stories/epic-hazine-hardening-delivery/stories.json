@@ -1,0 +1,1385 @@
+{
+  "epic": {
+    "name": "Hazine Hardening and Delivery",
+    "source": ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-PRD.md",
+    "qualityGates": [
+      "pnpm run build"
+    ],
+    "decisions": [
+      "The controller must verify epic-hazine-experience completed and its full experience gates passed before launching this epic.",
+      "Spectrum runs in the canonical repository created by Phase 0; no working-copy-to-canonical sync occurs here.",
+      "Original GLBs and approved brand assets remain immutable; only optimized derivatives are promoted.",
+      "One live motion policy governs all animation engines and CSS.",
+      "Deployment is commit-based from the canonical repository and rollback redeploys the last known-good commit."
+    ],
+    "references": [
+      ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md",
+      ".prism/shared/handoffs/2026-09-02_10-22-29_hazine-scroll-story-choreography.md",
+      ".prism/stories/epic-hazine-experience/coverage.md"
+    ],
+    "outOfScope": [
+      "Production integrations, business KPIs, production latency, and unvalidated starter extraction"
+    ],
+    "risks": [
+      "Incomplete motion shutdown across multiple engines",
+      "Attribution loss during optimization",
+      "Working/canonical repository divergence",
+      "Pages subpath regressions",
+      "Premature publication of an unverified commit"
+    ]
+  },
+  "stories": [
+    {
+      "id": "STORY-051",
+      "title": "Show authored loading states",
+      "description": "As a visitor, I see intentional route, lazy scene-module, and asset-loading states while Hazine prepares.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": null,
+      "files": [
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/SceneAssetGroup.jsx",
+          "action": "create"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define distinct route, module, and asset loading states.",
+          "done": false
+        },
+        {
+          "description": "Expose visible progress where measurable.",
+          "done": false
+        },
+        {
+          "description": "Simulate each loading state and verify authored presentation.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Loading is part of the product margin, not a blank gap.",
+        "risks": [
+          "Nested suspense states can obscure one another."
+        ],
+        "edgeCases": [
+          "Cached instant loads and stalled assets."
+        ],
+        "patterns": [
+          "Use SceneAssetGroup and route-level suspense boundaries."
+        ],
+        "graphTargets": [
+          "App::loading",
+          "SceneAssetGroup"
+        ]
+      }
+    },
+    {
+      "id": "STORY-052",
+      "title": "Contain scene and module failures",
+      "description": "As a visitor, lazy-module, WebGL, scene, and asset failures are caught by an explicit boundary with a retry path.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-051",
+      "files": [
+        {
+          "path": "src/components/SceneErrorBoundary.jsx",
+          "action": "create"
+        },
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Create an error boundary that classifies supported failure modes.",
+          "done": false
+        },
+        {
+          "description": "Add bounded retry/reset behavior.",
+          "done": false
+        },
+        {
+          "description": "Inject each failure and verify no uncaught error escapes.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "A shareable experience must fail intentionally.",
+        "risks": [
+          "Retry loops can repeatedly crash."
+        ],
+        "edgeCases": [
+          "Context loss and failure during retry."
+        ],
+        "patterns": [
+          "Contain the Canvas and lazy modules at stable boundaries."
+        ],
+        "graphTargets": [
+          "SceneErrorBoundary",
+          "App::sceneBoundary"
+        ]
+      }
+    },
+    {
+      "id": "STORY-053",
+      "title": "Provide a WebGL-free experience",
+      "description": "As a visitor without usable WebGL, I receive an intentional static narrative experience instead of a broken canvas.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-052",
+      "files": [
+        {
+          "path": "src/components/StaticSceneFallback.jsx",
+          "action": "create"
+        },
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/SceneErrorBoundary.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Detect WebGL availability before scene startup.",
+          "done": false
+        },
+        {
+          "description": "Render chapter-appropriate static visuals and working product UI.",
+          "done": false
+        },
+        {
+          "description": "Verify all essential meaning remains accessible without Canvas.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "3D is narrative infrastructure, but access to the story cannot depend on GPU support.",
+        "risks": [
+          "Fallback can become an empty poster."
+        ],
+        "edgeCases": [
+          "Context loss after a WebGL crash."
+        ],
+        "patterns": [
+          "StaticSceneFallback preserves DOM interaction and chapter state."
+        ],
+        "graphTargets": [
+          "StaticSceneFallback",
+          "App::webglDetection"
+        ]
+      }
+    },
+    {
+      "id": "STORY-054",
+      "title": "Apply live motion preference globally",
+      "description": "As a user, live prefers-reduced-motion changes immediately govern GSAP, Anime.js, R3F actors, seal, globe, camera, pointer effects, and CSS.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-053",
+      "files": [
+        {
+          "path": "src/hooks/useMotionPolicy.js",
+          "action": "create"
+        },
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/KnowledgeTransform.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Create a subscribed central motion policy.",
+          "done": false
+        },
+        {
+          "description": "Route every engine and CSS state through it.",
+          "done": false
+        },
+        {
+          "description": "Toggle preference live in every chapter and surface.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "A page-load-only check leaves active motion running after preference changes.",
+        "risks": [
+          "One engine can bypass the shared switch."
+        ],
+        "edgeCases": [
+          "Change preference mid-timeline or mid-camera passage."
+        ],
+        "patterns": [
+          "Centralize policy and cancel active timelines before applying static states."
+        ],
+        "graphTargets": [
+          "useMotionPolicy",
+          "HazineScene::frameMotion",
+          "KnowledgeTransform::animationScope"
+        ]
+      }
+    },
+    {
+      "id": "STORY-055",
+      "title": "Remove all decorative reduced-motion movement",
+      "description": "As a reduced-motion user, no decorative spatial or CSS motion remains active while state changes retain clear meaning.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-054",
+      "files": [
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/live-system.css",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Inventory seal, globe, actor, pointer, Sparkles, camera, GSAP, Anime.js, and CSS motion.",
+          "done": false
+        },
+        {
+          "description": "Replace decorative transitions with immediate/static meaningful states.",
+          "done": false
+        },
+        {
+          "description": "Record zero-motion verification evidence.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Reduced motion is a release criterion, not a partial aesthetic setting.",
+        "risks": [
+          "Shader/time uniforms or CSS pseudo-elements remain active."
+        ],
+        "edgeCases": [
+          "Hover and focus feedback must remain visible without motion."
+        ],
+        "patterns": [
+          "Use the shared useMotionPolicy result everywhere."
+        ],
+        "graphTargets": [
+          "HazineScene::useFrame",
+          "App::ScrollTrigger",
+          "styles.css::reducedMotion"
+        ]
+      }
+    },
+    {
+      "id": "STORY-056",
+      "title": "Preserve original and approved assets",
+      "description": "As a maintainer, source GLBs under assets/original and approved public/brand assets remain byte-for-byte untouched while derivatives are produced elsewhere.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-055",
+      "files": [
+        {
+          "path": "assets/manifest.json",
+          "action": "create"
+        },
+        {
+          "path": "scripts/inspect-assets.mjs",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Record immutable source paths and checksums in the manifest.",
+          "done": false
+        },
+        {
+          "description": "Make inspection fail if a source/approved asset changes.",
+          "done": false
+        },
+        {
+          "description": "Verify processing writes only derivatives.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Original client assets and approved identity cannot be silently rewritten.",
+        "risks": [
+          "In-place tools can destroy recoverable source quality."
+        ],
+        "edgeCases": [
+          "Same filename across original and public directories."
+        ],
+        "patterns": [
+          "Manifest is the single asset pipeline source of truth."
+        ],
+        "graphTargets": [
+          "assetManifest::originals",
+          "inspect-assets::immutability"
+        ]
+      }
+    },
+    {
+      "id": "STORY-057",
+      "title": "Drive asset tools from one manifest",
+      "description": "As a maintainer, inspect, repair, optimize, validate, promote, and gltfjsx generation all consume one asset manifest.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-056",
+      "files": [
+        {
+          "path": "assets/manifest.json",
+          "action": "modify"
+        },
+        {
+          "path": "scripts/inspect-assets.mjs",
+          "action": "modify"
+        },
+        {
+          "path": "scripts/optimize-assets.mjs",
+          "action": "modify"
+        },
+        {
+          "path": "scripts/generate-models.mjs",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Define source, repair hook, optimization, validation, promotion, generation, and license fields.",
+          "done": false
+        },
+        {
+          "description": "Remove hard-coded per-script asset lists.",
+          "done": false
+        },
+        {
+          "description": "Run every tool over the same manifest records.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "A repeatable pipeline cannot depend on diverging script inventories.",
+        "risks": [
+          "Schema drift can break all tooling at once."
+        ],
+        "edgeCases": [
+          "Assets that intentionally skip repair or generation."
+        ],
+        "patterns": [
+          "Follow scripts/inspect-assets.mjs:18-65 and optimize-assets.mjs:5-37."
+        ],
+        "graphTargets": [
+          "assetManifest",
+          "inspect-assets",
+          "optimize-assets",
+          "generate-models"
+        ]
+      }
+    },
+    {
+      "id": "STORY-058",
+      "title": "Validate derivatives and retain attribution",
+      "description": "As a maintainer or visitor, every optimized GLB is validated and its source/license attribution remains recorded and publishable.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-057",
+      "files": [
+        {
+          "path": "assets/manifest.json",
+          "action": "modify"
+        },
+        {
+          "path": "scripts/optimize-assets.mjs",
+          "action": "modify"
+        },
+        {
+          "path": "README.md",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Run structural validation after optimization.",
+          "done": false
+        },
+        {
+          "description": "Fail promotion for invalid output or missing license metadata.",
+          "done": false
+        },
+        {
+          "description": "Generate or update visible attribution documentation.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Optimization must not sever provenance or ship broken geometry.",
+        "risks": [
+          "CC BY attribution can be lost between stages."
+        ],
+        "edgeCases": [
+          "Multiple authors/licenses per asset."
+        ],
+        "patterns": [
+          "Keep license metadata on each manifest record."
+        ],
+        "graphTargets": [
+          "optimize-assets::validate",
+          "assetManifest::license"
+        ]
+      }
+    },
+    {
+      "id": "STORY-059",
+      "title": "Promote assets through an explicit pipeline",
+      "description": "As a maintainer, optimized artifacts reach public/models and generated components only through a repeatable validate-then-promote step.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-058",
+      "files": [
+        {
+          "path": "scripts/optimize-assets.mjs",
+          "action": "modify"
+        },
+        {
+          "path": "scripts/generate-models.mjs",
+          "action": "modify"
+        },
+        {
+          "path": "package.json",
+          "action": "modify"
+        },
+        {
+          "path": "assets/manifest.json",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Implement explicit repair, optimize, validate, promote, and generate stages.",
+          "done": false
+        },
+        {
+          "description": "Expose repeatable package scripts without implicit in-place writes.",
+          "done": false
+        },
+        {
+          "description": "Run the full pipeline twice and compare outputs.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Public assets must be reproducible from preserved originals.",
+        "risks": [
+          "Partial promotion can mix old and new derivatives."
+        ],
+        "edgeCases": [
+          "Failure after validation but before generation."
+        ],
+        "patterns": [
+          "Promote only validated outputs, then run gltfjsx."
+        ],
+        "graphTargets": [
+          "assetPipeline::promote",
+          "generate-models"
+        ]
+      }
+    },
+    {
+      "id": "STORY-060",
+      "title": "Keep render loops allocation-free",
+      "description": "As a visitor, custom frame loops avoid per-frame object allocation and React state writes that degrade interaction.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-059",
+      "files": [
+        {
+          "path": "src/scene/ActorDirector.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/CameraDirector.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Audit every custom useFrame callback.",
+          "done": false
+        },
+        {
+          "description": "Memoize/reuse vectors, scalars, and traversal buffers.",
+          "done": false
+        },
+        {
+          "description": "Replace frame-driven React state with imperative refs.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Allocation churn undermines smooth cinematic transitions.",
+        "risks": [
+          "High-blast-radius director changes affect every actor."
+        ],
+        "edgeCases": [
+          "Responsive profile changes outside frame loops."
+        ],
+        "patterns": [
+          "Keep imperative delta-time updates; remove new Vector3() in useFrame."
+        ],
+        "graphTargets": [
+          "HazineScene::useFrame",
+          "ActorDirector::useFrame",
+          "CameraDirector::useFrame"
+        ]
+      }
+    },
+    {
+      "id": "STORY-061",
+      "title": "Dispose cloned materials safely",
+      "description": "As a visitor navigating or retrying scenes, cloned materials are released exactly once without disposing shared source materials.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-060",
+      "files": [
+        {
+          "path": "src/scene/materialLifecycle.js",
+          "action": "create"
+        },
+        {
+          "path": "src/scene/ActorDirector.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Track ownership for cloned versus shared materials.",
+          "done": false
+        },
+        {
+          "description": "Dispose owned clones on actor/group unmount.",
+          "done": false
+        },
+        {
+          "description": "Exercise mount, retry, and unmount cycles for leaks/double disposal.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Scene retries and lazy groups must not leak GPU resources.",
+        "risks": [
+          "Disposing shared materials corrupts other actors."
+        ],
+        "edgeCases": [
+          "Multiple meshes sharing one clone."
+        ],
+        "patterns": [
+          "Centralize ownership in materialLifecycle.js."
+        ],
+        "graphTargets": [
+          "materialLifecycle::clone",
+          "materialLifecycle::dispose"
+        ]
+      }
+    },
+    {
+      "id": "STORY-062",
+      "title": "Support complex material shapes",
+      "description": "As a viewer, actor fading preserves material arrays and transparent/glass behavior instead of assuming one opaque material.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-061",
+      "files": [
+        {
+          "path": "src/scene/materialLifecycle.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/ActorDirector.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Normalize single and array material traversal.",
+          "done": false
+        },
+        {
+          "description": "Preserve transparency, depth, and glass-specific properties while fading.",
+          "done": false
+        },
+        {
+          "description": "Verify representative opaque, transparent, glass, and array actors.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Global material mutation currently affects every GLB unsafely.",
+        "risks": [
+          "Generic opacity changes can break glass rendering."
+        ],
+        "edgeCases": [
+          "Null entries and nested material arrays."
+        ],
+        "patterns": [
+          "Refactor HazineScene.jsx:44-102 through materialLifecycle."
+        ],
+        "graphTargets": [
+          "materialLifecycle::forEachMaterial",
+          "ActorDirector::applyOpacity"
+        ]
+      }
+    },
+    {
+      "id": "STORY-063",
+      "title": "Lazy-load chapter scene groups",
+      "description": "As a visitor, narrative actors load by chapter-oriented group rather than all blocking the initial scene.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-062",
+      "files": [
+        {
+          "path": "src/scene/SceneAssetGroup.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "assets/manifest.json",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Assign GLBs to manifest preload groups.",
+          "done": false
+        },
+        {
+          "description": "Load current and bounded next groups lazily.",
+          "done": false
+        },
+        {
+          "description": "Verify group failure remains contained and retryable.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Late narrative assets must not delay threshold interaction.",
+        "risks": [
+          "Too-late preloading causes visible scene gaps."
+        ],
+        "edgeCases": [
+          "Fast jumps to a distant chapter."
+        ],
+        "patterns": [
+          "Use chapter-oriented SceneAssetGroup boundaries."
+        ],
+        "graphTargets": [
+          "SceneAssetGroup",
+          "assetManifest::preloadGroup"
+        ]
+      }
+    },
+    {
+      "id": "STORY-064",
+      "title": "Measure before reducing scene fidelity",
+      "description": "As a maintainer, I receive bundle, transferred-byte, and frame-time baselines before any further mesh or shader reduction.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-063",
+      "files": [
+        {
+          "path": ".prism/shared/validation/2026-09-03-hazine-report.md",
+          "action": "modify"
+        },
+        {
+          "path": "vite.config.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Measure bundle composition and transferred assets.",
+          "done": false
+        },
+        {
+          "description": "Measure median frame time across defined transitions and profiles.",
+          "done": false
+        },
+        {
+          "description": "Record baselines before deciding any fidelity reduction.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Optimization without evidence can damage the experience without helping users.",
+        "risks": [
+          "Non-repeatable capture conditions invalidate comparisons."
+        ],
+        "edgeCases": [
+          "Warm cache versus cold load."
+        ],
+        "patterns": [
+          "Measure first; preserve authored quality until a measured bottleneck exists."
+        ],
+        "graphTargets": [
+          "vite::bundleReport",
+          "validation::performanceBaseline"
+        ]
+      }
+    },
+    {
+      "id": "STORY-065",
+      "title": "Keep threshold usable during late loads",
+      "description": "As a visitor, I can interact with the first chapter and its static scene while later 3D groups continue loading.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-064",
+      "files": [
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/StaticSceneFallback.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/SceneAssetGroup.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Separate first-interaction readiness from late-group completion.",
+          "done": false
+        },
+        {
+          "description": "Show the authored static scene until each group is ready.",
+          "done": false
+        },
+        {
+          "description": "Throttle late groups and verify the threshold remains operable.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Heavy 3D must not block the product's entry point.",
+        "risks": [
+          "A global loading overlay can still capture interaction."
+        ],
+        "edgeCases": [
+          "Late group fails permanently."
+        ],
+        "patterns": [
+          "Progressive scene groups plus StaticSceneFallback."
+        ],
+        "graphTargets": [
+          "App::firstReady",
+          "SceneAssetGroup::status"
+        ]
+      }
+    },
+    {
+      "id": "STORY-066",
+      "title": "Apply editorial and semantic visual restraint",
+      "description": "As a viewer, large copy stays restrained, labels stay concise, approved assets are used unchanged, gold means attention/value, mineral green means living context, and anomaly/danger colors remain reserved.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-065",
+      "files": [
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/live-system.css",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/workbench.css",
+          "action": "modify"
+        },
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Audit visible copy and operational labels.",
+          "done": false
+        },
+        {
+          "description": "Audit semantic color use across story, plugin, and workbench.",
+          "done": false
+        },
+        {
+          "description": "Compare rendered identity assets to approved public/brand sources.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Visual language communicates epistemic role and attention.",
+        "risks": [
+          "Overusing gold or green erases meaning."
+        ],
+        "edgeCases": [
+          "Warning-like confidence states that are not danger."
+        ],
+        "patterns": [
+          "Use the locked ivory/dark-rail palette and immutable assets."
+        ],
+        "graphTargets": [
+          "styles.css::tokens",
+          "experienceManifest::copy"
+        ]
+      }
+    },
+    {
+      "id": "STORY-067",
+      "title": "Honor motion hierarchy and timing budgets",
+      "description": "As a viewer, motion follows leader/follower sequencing with 20-40% overlap, feedback begins within 150ms, UI transitions land within 350ms, and cinematic transitions remain within 600-1500ms.",
+      "priority": 2,
+      "status": "pending",
+      "blockedBy": "STORY-066",
+      "files": [
+        {
+          "path": "src/config/experienceManifest.js",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/KnowledgeTransform.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/CameraDirector.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/scene/ActorDirector.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Encode timing and overlap budgets by beat type.",
+          "done": false
+        },
+        {
+          "description": "Apply budgets to UI, DOM lines, actors, and camera.",
+          "done": false
+        },
+        {
+          "description": "Measure representative interactions and transitions.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Authored timing lets the interface yield and return deliberately.",
+        "risks": [
+          "Engine-specific easing can extend perceived duration."
+        ],
+        "edgeCases": [
+          "Interrupted and reduced-motion transitions."
+        ],
+        "patterns": [
+          "One leader, followers overlap 20-40%; Anime.js for DOM, R3F/Theatre for 3D."
+        ],
+        "graphTargets": [
+          "experienceManifest::motion",
+          "CameraDirector::timeline"
+        ]
+      }
+    },
+    {
+      "id": "STORY-068",
+      "title": "Pass interaction accessibility checks",
+      "description": "As a keyboard or low-vision user, every control has semantics, labels, visible focus, and readable contrast even over dark or luminous 3D apertures.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-067",
+      "files": [
+        {
+          "path": "src/App.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/LiveSystemOverlay.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/InstrumentRail.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/workbench/WorkbenchApp.jsx",
+          "action": "modify"
+        },
+        {
+          "path": "src/styles.css",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Audit semantic roles and accessible names.",
+          "done": false
+        },
+        {
+          "description": "Keyboard every interactive path and repair focus behavior.",
+          "done": false
+        },
+        {
+          "description": "Measure contrast across transparent scene backgrounds and both target viewports.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "The margins are product and zero accessibility blockers is a success measure.",
+        "risks": [
+          "Dynamic backgrounds can invalidate static contrast checks."
+        ],
+        "edgeCases": [
+          "Focus after surface switch, retry, and chapter jump."
+        ],
+        "patterns": [
+          "Use visible non-color-only focus and opaque contrast protection where needed."
+        ],
+        "graphTargets": [
+          "App::interactiveControls",
+          "InstrumentRail::controls",
+          "WorkbenchApp::controls"
+        ]
+      }
+    },
+    {
+      "id": "STORY-069",
+      "title": "Verify responsive live-intelligence phases",
+      "description": "As a reviewer, every live-intelligence phase passes visual checks at 1440x900 and 390x844.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-068",
+      "files": [
+        {
+          "path": ".prism/shared/validation/2026-09-03-hazine-report.md",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Enumerate all live-intelligence phases and states.",
+          "done": false
+        },
+        {
+          "description": "Capture both required viewports for each state.",
+          "done": false
+        },
+        {
+          "description": "Record pass/fail evidence and resolve every failure before exit.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Fixed viewport evidence catches responsive 3D/UI competition.",
+        "risks": [
+          "Sampling only chapter defaults misses selected states."
+        ],
+        "edgeCases": [
+          "Loading, failure, and reduced-motion variants."
+        ],
+        "patterns": [
+          "Include all transcript selections and both surfaces."
+        ],
+        "graphTargets": [
+          "validation::responsiveMatrix"
+        ]
+      }
+    },
+    {
+      "id": "STORY-070",
+      "title": "Eliminate runtime and dependency errors",
+      "description": "As a visitor or reviewer, the verified flows have no uncaught or unexpected console errors and the obsolete r3f-globe wrapper is absent.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-069",
+      "files": [
+        {
+          "path": "package.json",
+          "action": "modify"
+        },
+        {
+          "path": "pnpm-lock.yaml",
+          "action": "modify"
+        },
+        {
+          "path": ".prism/shared/validation/2026-09-03-hazine-report.md",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Assert package and lockfile contain no r3f-globe.",
+          "done": false
+        },
+        {
+          "description": "Run root/workbench desktop/mobile flows with console capture.",
+          "done": false
+        },
+        {
+          "description": "Remove unexpected errors and document only unavoidable warnings.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Clean runtime evidence is required before extraction.",
+        "risks": [
+          "Warnings can conceal real errors."
+        ],
+        "edgeCases": [
+          "Errors appearing only on direct route or retry."
+        ],
+        "patterns": [
+          "Keep direct three-globe and record console evidence."
+        ],
+        "graphTargets": [
+          "package.json::dependencies",
+          "validation::console"
+        ]
+      }
+    },
+    {
+      "id": "STORY-071",
+      "title": "Meet measured performance gates",
+      "description": "As a visitor, hardening does not regress initial transferred bytes or median frame time by more than 10%, and active 3D transitions sustain at least 30 FPS on the defined low-power profile.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-070",
+      "files": [
+        {
+          "path": ".prism/shared/validation/2026-09-03-hazine-report.md",
+          "action": "modify"
+        },
+        {
+          "path": "src/components/HazineScene.jsx",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Repeat baseline measurements under identical conditions.",
+          "done": false
+        },
+        {
+          "description": "Compare bytes and median frame time to STORY-056.",
+          "done": false
+        },
+        {
+          "description": "Verify 30 FPS floor and remediate measured regressions only.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Performance quality needs a measurable floor without premature fidelity loss.",
+        "risks": [
+          "Hardware/noise differences can produce false regressions."
+        ],
+        "edgeCases": [
+          "Cold-load versus active-transition profiles."
+        ],
+        "patterns": [
+          "Use the recorded baseline and defined low-power fixture."
+        ],
+        "graphTargets": [
+          "validation::performanceComparison",
+          "HazineScene::performance"
+        ]
+      }
+    },
+    {
+      "id": "STORY-072",
+      "title": "Reproduce the production build",
+      "description": "As a maintainer, a clean frozen dependency install reproducibly builds the root and Pages-compatible workbench artifacts from the canonical source tree.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-071",
+      "files": [
+        {
+          "path": "package.json",
+          "action": "modify"
+        },
+        {
+          "path": "pnpm-lock.yaml",
+          "action": "modify"
+        },
+        {
+          "path": "scripts/prepare-pages.mjs",
+          "action": "modify"
+        },
+        {
+          "path": ".github/workflows/deploy-pages.yml",
+          "action": "create"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Install from the frozen lockfile in a clean environment.",
+          "done": false
+        },
+        {
+          "description": "Build and assert root, workbench, 404, and base-prefixed artifacts.",
+          "done": false
+        },
+        {
+          "description": "Make the Pages workflow execute the same build path.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Delivery must be reproducible from the canonical repository.",
+        "risks": [
+          "Local caches can hide undeclared inputs."
+        ],
+        "edgeCases": [
+          "Repository name/base differs from local /hazine/ simulation."
+        ],
+        "patterns": [
+          "Single build script shared by local verification and CI."
+        ],
+        "graphTargets": [
+          "package.json::build",
+          "deploy-pages::build"
+        ]
+      }
+    },
+    {
+      "id": "STORY-073",
+      "title": "Record complete Hazine acceptance evidence",
+      "description": "As a reviewer, every PRD acceptance criterion and phase quality gate has concrete pass/fail evidence in one validation report.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-072",
+      "files": [
+        {
+          "path": ".prism/shared/validation/2026-09-03-hazine-report.md",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Map every Hazine acceptance criterion to commands, captures, and observed results.",
+          "done": false
+        },
+        {
+          "description": "Include responsive, motion, failure, provenance, console, asset, and performance evidence.",
+          "done": false
+        },
+        {
+          "description": "Leave no criterion without a resolved pass or explicit failure.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Starter extraction requires proof, not confidence.",
+        "risks": [
+          "A report can claim checks without preserving evidence."
+        ],
+        "edgeCases": [
+          "Provisional performance gates must state fixture conditions."
+        ],
+        "patterns": [
+          "Use one acceptance-to-evidence matrix."
+        ],
+        "graphTargets": [
+          "validation::acceptanceMatrix"
+        ]
+      }
+    },
+    {
+      "id": "STORY-074",
+      "title": "Review the final canonical diff",
+      "description": "As a maintainer, the final canonical diff contains only intended Hazine and validation changes while preserving Phase 0 history, unmatched user files, and unrelated work.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-073",
+      "files": [
+        {
+          "path": ".prism/shared/validation/2026-09-03-hazine-report.md",
+          "action": "modify"
+        },
+        {
+          "path": "C:/Users/digit/GriotClients/Hazine",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Compare the final branch to the recorded Phase 0 baseline commit.",
+          "done": false
+        },
+        {
+          "description": "Review every changed path and record the intended story or validation source.",
+          "done": false
+        },
+        {
+          "description": "Confirm .git history, unmatched user files, and unrelated work remain intact.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Final delivery must remain traceable to the reviewed baseline without a second risky filesystem sync.",
+        "risks": [
+          "Unrelated canonical edits can be swept into the release commit."
+        ],
+        "edgeCases": [
+          "User changes made after Phase 0 and generated artifacts that should not ship."
+        ],
+        "patterns": [
+          "Review from the recorded baseline commit; do not copy or mirror the non-Git workspace again."
+        ],
+        "graphTargets": [
+          "git::baselineDiff",
+          "validation::finalDiff"
+        ]
+      }
+    },
+    {
+      "id": "STORY-075",
+      "title": "Deploy only the verified commit",
+      "description": "As a maintainer, the reviewed final canonical state is committed atomically and that exact commit is deployed through the remote and Pages target already proven by the preview.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-074",
+      "files": [
+        {
+          "path": "C:/Users/digit/GriotClients/Hazine/.git/config",
+          "action": "modify"
+        },
+        {
+          "path": ".github/workflows/deploy-pages.yml",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Commit the reviewed final canonical diff atomically.",
+          "done": false
+        },
+        {
+          "description": "Reconfirm the configured remote, deployment branch, and Pages source match the preview proof.",
+          "done": false
+        },
+        {
+          "description": "Push the final commit and observe the Pages workflow for the same SHA.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "Publishing must never outrun review or target discovery.",
+        "risks": [
+          "A changed remote, branch, or workflow can deploy a different commit."
+        ],
+        "edgeCases": [
+          "No remote exists or Pages is not yet configured."
+        ],
+        "patterns": [
+          "Reuse the preview-proven target; commit-based deployment with SHA equality."
+        ],
+        "graphTargets": [
+          "git::HEAD",
+          "deploy-pages::commit"
+        ]
+      }
+    },
+    {
+      "id": "STORY-076",
+      "title": "Validate the public Hazine proof",
+      "description": "As a reviewer, the public root, chapter anchor, and direct /workbench URL load the verified commit with assets, interactions, console, and mobile layout passing, and the canonical repository is clean at that deployed SHA.",
+      "priority": 1,
+      "status": "pending",
+      "blockedBy": "STORY-075",
+      "files": [
+        {
+          "path": ".prism/shared/validation/2026-09-03-hazine-report.md",
+          "action": "modify"
+        },
+        {
+          "path": "README.md",
+          "action": "modify"
+        }
+      ],
+      "steps": [
+        {
+          "description": "Confirm remote main and Pages deployment resolve to the reviewed commit.",
+          "done": false
+        },
+        {
+          "description": "Exercise public root, anchor, and workbench on desktop/mobile with console capture.",
+          "done": false
+        },
+        {
+          "description": "Record live URLs, commit SHA, evidence, and clean canonical status.",
+          "done": false
+        }
+      ],
+      "context": {
+        "why": "This is the proof boundary that permits starter extraction.",
+        "risks": [
+          "CI success can mask CDN, path, or runtime failures."
+        ],
+        "edgeCases": [
+          "Cached older deploy and direct-route 404 behavior."
+        ],
+        "patterns": [
+          "Verify the public artifact, not only the workflow result."
+        ],
+        "graphTargets": [
+          "validation::publicProof",
+          "git::status"
+        ]
+      }
+    }
+  ]
+}
