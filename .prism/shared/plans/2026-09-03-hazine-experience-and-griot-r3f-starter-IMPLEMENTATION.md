@@ -54,15 +54,15 @@ stories because the stories do not yet have a canonical repository in which to e
 
 ### Steps
 
-- [ ] Verify the exact resolved source and target paths and confirm the target contains the canonical `.git` directory.
-- [ ] Capture source and target inventories and canonical Git status before copying.
-- [ ] Build an explicit approved source-to-target copy manifest, including `.prism/`; do not use a deleting mirror.
-- [ ] Copy only manifest entries into the canonical repository while preserving `.git`, unmatched paths, and unrelated files.
-- [ ] Review the complete canonical diff and resolve unexpected additions, omissions, or overwrites.
-- [ ] Run `pnpm install --frozen-lockfile` and `pnpm run build` in the canonical repository.
-- [ ] Create a dedicated baseline branch from the reviewed canonical state.
-- [ ] Commit the reviewed bootstrap atomically and record the branch name and commit SHA in the run handoff.
-- [ ] Launch Spectrum only from that canonical baseline, one epic at a time in dependency order.
+- [x] Verify the exact resolved source and target paths and confirm the target contains the canonical `.git` directory.
+- [x] Capture source and target inventories and canonical Git status before copying.
+- [x] Build an explicit approved source-to-target copy manifest, including `.prism/`; do not use a deleting mirror.
+- [x] Copy only manifest entries into the canonical repository while preserving `.git`, unmatched paths, and unrelated files.
+- [x] Review the complete canonical diff and resolve unexpected additions, omissions, or overwrites.
+- [x] Run `pnpm install --frozen-lockfile` and `pnpm run build` in the canonical repository.
+- [x] Create a dedicated baseline branch from the reviewed canonical state.
+- [x] Commit the reviewed bootstrap atomically and record the branch name and commit SHA in the run handoff.
+- [x] Confirm Spectrum will launch only from that canonical baseline, one epic at a time in dependency order.
 
 ### Verification
 
@@ -71,7 +71,7 @@ stories because the stories do not yet have a canonical repository in which to e
 - `pnpm run build` passes in the canonical repository.
 - The dedicated baseline branch is clean at the recorded commit.
 
-**Checkpoint**: [ ] Phase 0 complete; controller may launch `epic-hazine-preview-delivery`
+**Checkpoint**: [x] Phase 0 complete; controller may launch `epic-hazine-preview-delivery`
 
 ### Spectrum queue and dependency protocol
 

@@ -1,7 +1,7 @@
 ---
 date: 2026-09-03
 stage: phase-0-canonical-bootstrap
-status: in-progress
+status: complete
 source: C:/Users/digit/Documents/Codex/2026-09-01/referenced-chatgpt-conversation-this-is-an/work/hazine-experience
 target: C:/Users/digit/GriotClients/Hazine
 pre_copy_head: 98bca9e36fe8712245f7e9ba7bc6cb7d1dda97c4
@@ -59,9 +59,10 @@ Never copy these generated or repository-owned roots:
 
 ## Completion record
 
-- Baseline branch: pending
-- Baseline commit: pending
-- Frozen install: pending
-- Production build: pending
-- Canonical diff review: pending
-- Final status: pending
+- Baseline branch: `prism/hazine-experience-baseline`
+- Baseline snapshot commit: `fdd6a7c0d69b28c14a6016db05f0aa5c85e395df`
+- Frozen install: passed with the locked 426-package dependency graph using pnpm 11.19.0.
+- Production build: passed with Vite 8.2.2; 988 modules transformed in 4.56 seconds.
+- Canonical diff review: passed; 42 tracked files committed, original GLBs remain locally preserved and ignored, and the prior target-only Prism plan remains intact.
+- Copy integrity: all 82 manifest files matched the source snapshot by SHA-256 before commit.
+- Final status: Phase 0 complete; the canonical branch was clean immediately after the baseline snapshot commit.
