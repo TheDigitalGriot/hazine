@@ -11,11 +11,13 @@
       "Original GLBs and approved brand assets remain immutable; only optimized derivatives are promoted.",
       "One live motion policy governs all animation engines and CSS.",
       "Deployment is commit-based from the canonical repository and rollback redeploys the last known-good commit."
+      ,"Before each story, read C:/Users/digit/.agents/skills/griot-r3f/SKILL.md and all task-relevant loading, performance, debugging, asset-pipeline, reduced-motion, and tooling recipes; treat them as implementation requirements."
     ],
     "references": [
       ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md",
       ".prism/shared/handoffs/2026-09-02_10-22-29_hazine-scroll-story-choreography.md",
       ".prism/stories/epic-hazine-experience/coverage.md"
+      ,"C:/Users/digit/.agents/skills/griot-r3f/SKILL.md"
     ],
     "outOfScope": [
       "Production integrations, business KPIs, production latency, and unvalidated starter extraction"

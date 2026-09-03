@@ -9,11 +9,13 @@
       "This is an honest progress build; its validation report must distinguish present, provisional, and deferred behavior.",
       "Use direct three-globe and keep approved brand assets and original GLBs immutable.",
       "Resolve the actual remote and Pages target without guessing."
+      ,"Before changing R3F or runtime asset-loading behavior, read C:/Users/digit/.agents/skills/griot-r3f/SKILL.md and the task-relevant loading/performance recipes; treat them as implementation requirements."
     ],
     "references": [
       ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md",
       ".prism/shared/handoffs/2026-09-02_10-22-29_hazine-scroll-story-choreography.md",
       "Phase 0 baseline branch/commit handoff"
+      ,"C:/Users/digit/.agents/skills/griot-r3f/SKILL.md"
     ],
     "outOfScope": ["Full choreography correction", "Complete live-intelligence state", "Hardening", "Starter extraction"],
     "risks": ["Root-absolute assets fail below the repository base", "SPA fallback drops the base prefix", "A guessed remote publishes to the wrong repository", "A preview can overstate unfinished behavior"]

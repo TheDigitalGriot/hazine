@@ -36,6 +36,7 @@ Finish, validate, and publish the Hazine experiential walkthrough, then extract 
 6. Resolve all runtime asset URLs through a centralized base-aware helper.
 7. Publish a verified Hazine milestone before starter extraction.
 8. Extract starter modules only when the corresponding Hazine story is complete and validated.
+9. Route every Prism execution phase through `C:/Users/digit/.agents/skills/griot-r3f/SKILL.md`; each story must read the task-relevant recipe references before changing R3F, Three.js, GLB, Theatre, animation, responsive-scene, loading, or performance code.
 
 ## Phase 0 — Canonical Repository Bootstrap (Prism Implement, Not Spectrum)
 
@@ -86,6 +87,10 @@ Every `stories.json` has a local `blockedBy: null` root and a scalar linear chai
 cross-epic `blockedBy` IDs. Before each launch, the controller verifies the prior epic's exit story,
 executable gate, and named validation evidence. Before the starter epic, the controller also resolves
 or creates its canonical repository and verifies the baseline `pnpm run build` succeeds.
+
+Every fresh Spectrum worker must treat the `griot-r3f` skill and its task-relevant recipe files as an
+execution contract. This requirement is repeated in each epic's decisions so it survives clean-session
+story execution and becomes part of the starter's provenance.
 
 ## Phase 1 — Shareable Hazine Preview Delivery
 

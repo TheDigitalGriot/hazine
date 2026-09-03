@@ -14,11 +14,13 @@
       "Claude plugin is the initial and reload-default surface.",
       "R3F and Theatre own spatial choreography; Anime.js owns scoped DOM/SVG transformations.",
       "Approved public/brand assets and original GLBs are immutable."
+      ,"Before each story, read C:/Users/digit/.agents/skills/griot-r3f/SKILL.md and all task-relevant scene, animation, controls, loading, state, performance, and Theatre/tooling recipes; treat them as implementation requirements."
     ],
     "references": [
       ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md",
       ".prism/shared/handoffs/2026-09-02_10-22-29_hazine-scroll-story-choreography.md",
       ".prism/shared/validation/2026-09-03-hazine-preview-report.md"
+      ,"C:/Users/digit/.agents/skills/griot-r3f/SKILL.md"
     ],
     "outOfScope": [
       "Production integrations, trading execution, financial advice, authentication, billing, permissions, enterprise administration, custom globe engines, and replacement brand assets"

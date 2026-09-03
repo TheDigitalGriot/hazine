@@ -12,12 +12,14 @@
       "TheDigitalGriot/r3f-vite-theatre-starter is reference input and is never silently overwritten.",
       "All Hazine-specific names, values, brand assets, and licensed client models are removed or parameterized.",
       "Generated dependency ranges are pinned and compatible."
+      ,"The griot-r3f skill and its task-relevant recipe library are normative source material for every extraction story; each starter primitive must trace both to a validated Hazine proof and to the applicable recipe contract."
     ],
     "references": [
       ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md",
       ".prism/shared/validation/2026-09-03-hazine-report.md",
       "TheDigitalGriot/r3f-vite-theatre-starter",
       ".prism/stories/epic-hazine-hardening-delivery/coverage.md"
+      ,"C:/Users/digit/.agents/skills/griot-r3f/SKILL.md"
     ],
     "outOfScope": [
       "Hazine brand assets",
