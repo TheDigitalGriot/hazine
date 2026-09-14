@@ -9,9 +9,12 @@ Title: Minimalistic Modern Office
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { modelUrl } from '../lib/assetManifest.js'
+
+const MODEL_URL = modelUrl('office')
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/models/minimalistic_modern_office.glb')
+  const { nodes, materials } = useGLTF(MODEL_URL)
   return (
     <group {...props} dispose={null}>
       <mesh name="Minimalistic_Modern_Office_Glass_0" castShadow receiveShadow geometry={nodes.Minimalistic_Modern_Office_Glass_0.geometry} material={materials.Glass} position={[2.406, 0.706, 0]} rotation={[-Math.PI / 2, Math.PI / 2, 0]} scale={[2.417, 7.25, 2.417]} userData={{ name: 'Minimalistic Modern Office_Glass_0' }} />
@@ -27,4 +30,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/models/minimalistic_modern_office.glb')
+useGLTF.preload(MODEL_URL)

@@ -9,9 +9,12 @@ Title: Vault 01
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { modelUrl } from '../lib/assetManifest.js'
+
+const MODEL_URL = modelUrl('threshold')
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/models/vault_01.glb')
+  const { nodes, materials } = useGLTF(MODEL_URL)
   return (
     <group {...props} dispose={null}>
       <mesh name="Object_2" castShadow receiveShadow geometry={nodes.Object_2.geometry} material={materials.Material__25} position={[0, 27.482, 0]} rotation={[-Math.PI / 2, 0, 0]} scale={27.482} userData={{ name: 'Object_2' }} />
@@ -19,4 +22,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/models/vault_01.glb')
+useGLTF.preload(MODEL_URL)

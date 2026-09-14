@@ -4,16 +4,12 @@ import { getBounds } from '@gltf-transform/functions'
 import { MeshoptDecoder } from 'meshoptimizer'
 import fs from 'node:fs/promises'
 import path from 'node:path'
+import { MODEL_ASSETS } from '../src/config/modelAssets.js'
 
-const target = process.argv[2] || 'original'
+const args = process.argv.slice(2).filter((value) => value !== '--')
+const target = args[0] || 'original'
 const root = path.resolve(`assets/${target}`)
-const names = [
-  'mining_quarry.glb',
-  'sky_blue_crystal.glb',
-  'caterpillar_797f_mining_truck.glb',
-  'xlist_vault.glb',
-  'vault_01.glb',
-]
+const names = MODEL_ASSETS.map(({ file }) => file)
 
 await MeshoptDecoder.ready
 const io = new NodeIO()

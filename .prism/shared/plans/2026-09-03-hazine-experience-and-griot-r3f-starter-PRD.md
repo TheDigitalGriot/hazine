@@ -9,6 +9,8 @@ tags: [prd, hazine, r3f, theatre-js, anime-js, claude-plugin, desktop, provenanc
 
 # Hazine — Experiential Walkthrough and `griot-r3f-starter` PRD
 
+> **Acceptance reconciliation — 2026-09-14:** Hazine requirements are mapped to fresh pass/defer evidence in the stage-03 acceptance report. GitHub publication remains the stage-04 gate; `griot-r3f-starter` remains a separate open deliverable. See `.prism/shared/validation/2026-09-14-hazine-acceptance-consolidation.md`.
+
 ## 1. Executive Summary
 
 Hazine is a living treasury of intelligence for a commodities trader. It listens beside Ezgi during a live negotiation, retains the provenance of every consequential statement, connects the conversation to market evidence, geography, relationship history, and strategy, then surfaces the right context while the decision window is still open.
@@ -437,4 +439,3 @@ Business KPIs and production data latency are intentionally outside this experie
 - [x] Acceptance criteria and provisional performance gates are measurable.
 - [x] Risks and mitigations are explicit.
 - [x] Known unknowns are excluded or labeled provisional rather than silently invented.
-

@@ -1,0 +1,54 @@
+{
+  "stage": "03_validate-hazine",
+  "capturedAt": "2026-09-14T13:54:05-04:00",
+  "verdict": "pass_with_explicit_product_deferrals",
+  "commands": {
+    "check": "pass",
+    "tests": { "status": "pass", "passed": 4, "failed": 0 },
+    "buildRoot": "pass",
+    "buildPagesBase": "pass",
+    "browserCapture": "pass",
+    "assetInspection": { "status": "pass", "models": 8 }
+  },
+  "routes": {
+    "/": "pass",
+    "/workbench/": "pass",
+    "/hazine/": "pass",
+    "/hazine/workbench/": "pass",
+    "/hazine/404.html": "pass",
+    "directChapterHashes": "pass_after_observed_repair"
+  },
+  "browser": {
+    "applicationErrors": 0,
+    "knownWarnings": ["THREE.Clock deprecation emitted by stable React Three Fiber 9.x"],
+    "pluginDefaultRestored": true,
+    "keyboardTabActivation": "pass",
+    "surfaceToggle": "pass",
+    "momentSelection": "pass",
+    "pauseResume": "pass",
+    "evidencePanel": "pass",
+    "relationshipPanel": "pass"
+  },
+  "visualEvidence": {
+    "count": 12,
+    "bytes": 9310739,
+    "desktop": "pass",
+    "mobile": "pass",
+    "reducedMotion": "pass",
+    "webglFallback": "pass"
+  },
+  "budgets": {
+    "largestModelMb": 5.2,
+    "hazineSceneMinifiedKb": 506.7,
+    "r3fStackMinifiedKb": 515.92,
+    "threeCoreMinifiedKb": 636.88,
+    "threeCoreGzipKb": 178.09,
+    "vendorChunkException": "recorded"
+  },
+  "deferrals": [
+    "production microphone and transcription",
+    "production Claude MCP/plugin transport",
+    "persistent intelligence graph and market connectors",
+    "Electron packaging"
+  ]
+}

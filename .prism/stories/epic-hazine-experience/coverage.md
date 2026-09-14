@@ -1,5 +1,7 @@
 # Coverage Report: epic-hazine-experience
 
+> **2026-09-14 execution reconciliation:** this ledger remains the 42-requirement traceability index. Runtime acceptance is recorded in `.prism/shared/validation/2026-09-14-hazine-acceptance-consolidation.md`; per-story statuses were intentionally not rewritten into fictional historical commits.
+
 **Source specs**: `.prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-PRD.md`; `.prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-IMPLEMENTATION.md`  
 **Generated**: 2026-09-03  
 **Global behavioral inventory range**: BR-009–BR-050  
@@ -116,5 +118,4 @@ None. FR-8.4 and all FR-13 delivery clauses are owned by `epic-hazine-preview-de
 ## Dependency Contract
 
 The controller verifies the completed public preview and preview validation report before launch. STORY-009 is the local root; STORY-010–050 form a scalar, transitive chain. The controller verifies STORY-050 and this epic's build before launching `epic-hazine-hardening-delivery`.
-
 

@@ -10,6 +10,8 @@ tags: [plan, hazine, r3f, anime-js, theatre-js, github-pages, starter]
 
 # Implementation Plan: Hazine Experience → `griot-r3f-starter`
 
+> **Execution reconciliation — 2026-09-14:** Hazine implementation and validation items below are satisfied by the stage-03 acceptance report, except the explicit GitHub publication and canonical-checkout synchronization gates owned by stage 04. Starter items remain open. See `.prism/shared/validation/2026-09-14-hazine-acceptance-consolidation.md`; legacy unchecked boxes are retained as the original decomposition record rather than rewritten as fictional per-story history.
+
 ## Goal
 
 Finish, validate, and publish the Hazine experiential walkthrough, then extract its proven choreography, state, asset, resilience, and deployment patterns into a robust reusable `griot-r3f-starter` without shipping Hazine-specific assets or speculative abstractions.

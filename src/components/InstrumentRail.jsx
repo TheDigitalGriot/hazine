@@ -1,22 +1,11 @@
-import { chapters } from '../data/chapters.js'
+import { chapters } from '../config/experienceManifest.js'
 import { useExperience } from '../state/experience.js'
-
-const instruments = [
-  ['Threshold', 'Enter the treasury'],
-  ['Terrain', '6 sources detected'],
-  ['Capture', '5 streams listening'],
-  ['Discern', 'Taxonomy explicit'],
-  ['Connect', '18 relationships'],
-  ['Preserve', 'Lineage verified'],
-  ['Surface', 'Memory ready'],
-  ['System', 'Two living surfaces'],
-  ['Treasury', 'Context compounds'],
-]
+import { assetUrl } from '../lib/assetUrl.js'
 
 export default function InstrumentRail() {
   const chapter = useExperience((state) => state.chapter)
   const progress = useExperience((state) => state.progress)
-  const current = instruments[chapter] || instruments[0]
+  const current = chapters[chapter]?.instrument || chapters[0].instrument
 
   return (
     <nav className="instrument-rail" aria-label="Hazine story instruments">
@@ -40,7 +29,7 @@ export default function InstrumentRail() {
           </a>
         ))}
       </div>
-      <a className="instrument-workbench" href="/workbench">Open live system <span>↗</span></a>
+      <a className="instrument-workbench" href={assetUrl('/workbench/')}>Open live system <span>↗</span></a>
     </nav>
   )
 }

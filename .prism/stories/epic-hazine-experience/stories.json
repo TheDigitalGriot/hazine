@@ -2,6 +2,12 @@
   "epic": {
     "name": "Hazine Experience",
     "source": ".prism/shared/plans/2026-09-03-hazine-experience-and-griot-r3f-starter-PRD.md",
+    "acceptanceConsolidation": {
+      "status": "accepted-by-evidence",
+      "recorded": "2026-09-14",
+      "evidence": ".prism/shared/spectrum-marathon/hazine-and-griot-r3f-starter/03_validate-hazine/output/hazine-acceptance-report.md",
+      "storyStatusPolicy": "Legacy story statuses remain decomposition provenance; no fictional per-story commit history was created."
+    },
     "qualityGates": [
       "pnpm run build"
     ],

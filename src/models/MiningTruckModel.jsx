@@ -9,9 +9,12 @@ Title: Caterpillar 797F Mining Truck
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { modelUrl } from '../lib/assetManifest.js'
+
+const MODEL_URL = modelUrl('truck')
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/models/caterpillar_797f_mining_truck.glb')
+  const { nodes, materials } = useGLTF(MODEL_URL)
   return (
     <group {...props} dispose={null}>
       <mesh name="Object_2" castShadow receiveShadow geometry={nodes.Object_2.geometry} material={materials.mia_material1SG} position={[-1.756, 11.91, 1.138]} rotation={[-Math.PI / 2, 0, 0]} scale={26.398} userData={{ name: 'Object_2' }} />
@@ -19,4 +22,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/models/caterpillar_797f_mining_truck.glb')
+useGLTF.preload(MODEL_URL)

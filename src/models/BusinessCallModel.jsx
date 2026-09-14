@@ -9,9 +9,12 @@ Title: Business Call
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { modelUrl } from '../lib/assetManifest.js'
+
+const MODEL_URL = modelUrl('caller')
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/models/business_call.glb')
+  const { nodes, materials } = useGLTF(MODEL_URL)
   return (
     <group {...props} dispose={null}>
       <mesh name="Object_4" castShadow receiveShadow geometry={nodes.Object_4.geometry} material={materials.material_0} position={[0, 0, -0.002]} scale={0.952} userData={{ name: 'Object_4' }} />
@@ -19,4 +22,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/models/business_call.glb')
+useGLTF.preload(MODEL_URL)

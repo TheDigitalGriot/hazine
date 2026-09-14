@@ -168,3 +168,44 @@ status: in-progress
 - Latest user correction is load-bearing: the plugin is not a secondary afterthought. The walkthrough begins there, and Desktop represents the expansion of the same intelligence system.
 - Do not ask Gavin to re-upload the approved Hazine UI unless the files in `public/brand/` are genuinely missing; they are present now.
 - Do not push to GitHub during resume without explicit final authorization at the repository boundary.
+## Pause checkpoint — 2026-09-03 08:28 EDT
+
+Gavin asked to stop with approximately 1% session capacity remaining. All Spectrum worker and reviewer processes started for this run were explicitly terminated. Do not discard, reset, or overwrite the partial STORY-001 work.
+
+### Gavin's execution-engine correction — locked
+
+Do **not** resume with Spectrum. Gavin clarified that Prism owns discovery, the PRD, the approved plan, decomposition, and the task queue, but `C:/Users/digit/.agents/skills/griot-r3f/SKILL.md` must directly drive implementation of that queue. Treat the decomposed stories as the ordered checklist and provenance ledger, not as instructions to relaunch `spectrum.sh`.
+
+For each remaining task, the implementing agent must identify the applicable `griot-r3f` domains, read the relevant recipe files in full, implement against those recipes, verify proportionately, and then update the Prism task/story record. Preserve atomic, reviewable commits, but do not use the Spectrum controller or its Claude worker loop.
+
+### Completed before the pause
+
+- Approved Hazine PRD, implementation plan, and repaired 87-story Prism decomposition are present in `.prism/`.
+- Prism Implement Phase 0 completed safely in the canonical repository.
+- Canonical branch: `prism/hazine-experience-baseline`.
+- Baseline snapshot commit: `fdd6a7c0d69b28c14a6016db05f0aa5c85e395df`.
+- Phase 0 checkpoint commit: `3a98e5231f4bfbc7813ca0dea898d34fa00cec45`.
+- `griot-r3f` was made a normative execution contract for all four Spectrum epics and committed as `34ff34f`.
+- Frozen install and production build passed before Spectrum began.
+
+### Exact stopped state
+
+- Canonical repository: `C:/Users/digit/GriotClients/Hazine`.
+- HEAD remains `34ff34f` on `prism/hazine-experience-baseline`; no STORY-001 commit was created.
+- Spectrum was interrupted during STORY-001, **Resolve assets beneath the repository base**.
+- The story file currently says `STORY-001: complete`, but has no `commitHash`. This is partial controller state, not a completed story.
+- Pending stories remain STORY-002 through STORY-008.
+- The working tree intentionally contains uncommitted STORY-001 changes across the base-aware URL helper and every actual runtime URL consumer, including generated model loaders, story UI, workbench UI, `src/main.jsx`, `vite.config.js`, and `src/lib/`.
+- `.prism/shared/spectrum/` contains the new progress files. `.prism/local/spectrum.lock` contains stale PID `566`; the next controller must verify no Spectrum worker is active before removing or allowing Spectrum to replace it.
+- The runtime-path blast radius exceeded the decomposed story's initial file array because models, brand links, navigation, and the workbench each contained root-absolute URLs. That broader set is behaviorally required by STORY-001 and must be reviewed explicitly before commit.
+
+### Resume protocol
+
+1. Work only in `C:/Users/digit/GriotClients/Hazine`; preserve the dirty tree.
+2. Verify no Spectrum/Claude process from this run is active.
+3. Inspect the existing STORY-001 diff before changing anything. Do not relaunch Spectrum; its interrupted controller left STORY-001 falsely marked complete.
+4. Reconcile STORY-001 state to `in_progress`, retain the existing implementation, and finish its production build, review, and browser verification directly through the `griot-r3f` loading/performance recipes.
+5. Commit STORY-001 atomically, then write its real `commitHash`, `completedAt`, and verified step state. Preserve one-story/one-commit semantics when reconciling state.
+6. Only after STORY-001 is clean and committed should the `griot-r3f`-driven implementation continue with STORY-002 from `.prism/stories/epic-hazine-preview-delivery/stories.json`.
+
+No GitHub remote or repository was created before this pause. GitHub target resolution remains owned by STORY-006; deployment remains STORY-007 and public verification remains STORY-008.

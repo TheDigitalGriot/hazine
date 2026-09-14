@@ -1,7 +1,15 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
+// GitHub Pages serves this project beneath a repository prefix. The base is
+// supplied by the environment so the same build path works for root development
+// (`/`) and for a repository-scoped deploy (`/hazine/`) without code changes.
+const repositoryName = process.env.GITHUB_REPOSITORY?.split('/').filter(Boolean).at(-1)
+const rawBase = process.env.VITE_BASE ?? (repositoryName ? `/${repositoryName}/` : '/')
+const base = rawBase.endsWith('/') ? rawBase : `${rawBase}/`
+
 export default defineConfig({
+  base,
   plugins: [react()],
   build: {
     target: 'es2022',

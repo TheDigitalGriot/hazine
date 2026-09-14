@@ -6,8 +6,13 @@ import { HybridWidget, TaxonomyWidget } from './components/StoryWidgets.jsx'
 import InstrumentRail from './components/InstrumentRail.jsx'
 import KnowledgeTransform from './components/KnowledgeTransform.jsx'
 import LiveSystemOverlay from './components/LiveSystemOverlay.jsx'
+import SceneErrorBoundary from './components/SceneErrorBoundary.jsx'
+import StaticSceneFallback from './components/StaticSceneFallback.jsx'
 import { chapters } from './data/chapters.js'
 import { useExperience } from './state/experience.js'
+import { assetUrl } from './lib/assetUrl.js'
+import { useMotionPolicy } from './hooks/useMotionPolicy.js'
+import './styles.css'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,14 +21,9 @@ const HazineScene = lazy(() => import('./components/HazineScene.jsx'))
 function ScrollDirector() {
   const setProgress = useExperience((state) => state.setProgress)
   const setChapter = useExperience((state) => state.setChapter)
-  const setReducedMotion = useExperience((state) => state.setReducedMotion)
+  const motionPolicy = useMotionPolicy()
 
   useLayoutEffect(() => {
-    const media = window.matchMedia('(prefers-reduced-motion: reduce)')
-    const updatePreference = () => setReducedMotion(media.matches)
-    updatePreference()
-    media.addEventListener('change', updatePreference)
-
     const context = gsap.context(() => {
       const clock = { progress: 0 }
       const sections = gsap.utils.toArray('.story-section')
@@ -34,7 +34,7 @@ function ScrollDirector() {
           trigger: '.experience',
           start: 'top top',
           end: 'bottom bottom',
-          scrub: media.matches ? false : 0.32,
+          scrub: motionPolicy.reduced ? false : 0.32,
           onUpdate: (self) => {
             setProgress(self.progress)
             const readingLine = window.scrollY + window.innerHeight * 0.52
@@ -48,7 +48,7 @@ function ScrollDirector() {
       })
 
       sections.forEach((section) => {
-        if (!media.matches) {
+        if (!motionPolicy.reduced) {
           gsap.from(section.querySelectorAll('.reveal'), {
             y: 28,
             opacity: 0,
@@ -61,7 +61,7 @@ function ScrollDirector() {
       })
 
       const vaultPassage = document.querySelector('.vault-passage')
-      if (vaultPassage && !media.matches) {
+      if (vaultPassage && !motionPolicy.reduced) {
         gsap.to(vaultPassage.querySelector('.vault-whisper'), {
           opacity: 0,
           scale: 0.94,
@@ -73,9 +73,8 @@ function ScrollDirector() {
 
     return () => {
       context.revert()
-      media.removeEventListener('change', updatePreference)
     }
-  }, [setChapter, setProgress, setReducedMotion])
+  }, [motionPolicy.reduced, setChapter, setProgress])
   return null
 }
 
@@ -85,7 +84,7 @@ function Navigation() {
     <header className="topbar">
       <a href="#threshold" className="brand-link"><span>HAZINE</span><small>living intelligence</small></a>
       <div className="chapter-readout"><span>{chapters[chapter]?.index}</span>{chapters[chapter]?.eyebrow}</div>
-      <a className="quiet-link" href="/workbench">Enter the live system</a>
+      <a className="quiet-link" href={assetUrl('/workbench/')}>Enter the live system</a>
     </header>
   )
 }
@@ -103,27 +102,51 @@ export default function App() {
   const openTreasury = useExperience((state) => state.openTreasury)
   const treasuryOpen = useExperience((state) => state.treasuryOpen)
   const setSealHovered = useExperience((state) => state.setSealHovered)
+  const setChapter = useExperience((state) => state.setChapter)
+  const setProgress = useExperience((state) => state.setProgress)
+  const motionPolicy = useMotionPolicy()
+
+  useLayoutEffect(() => {
+    const chapterIndex = chapters.findIndex(({ id }) => `#${id}` === window.location.hash)
+    if (chapterIndex < 0) return undefined
+
+    const frame = window.requestAnimationFrame(() => {
+      document.querySelector(window.location.hash)?.scrollIntoView()
+      setChapter(chapterIndex)
+      const scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight)
+      setProgress(window.scrollY / scrollRange)
+      ScrollTrigger.refresh()
+      ScrollTrigger.update()
+    })
+
+    return () => window.cancelAnimationFrame(frame)
+  }, [setChapter, setProgress])
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    if (motionPolicy.reduced) {
+      hero.current?.querySelectorAll('.hero-beat').forEach((element) => { element.style.opacity = 1 })
+      return undefined
+    }
     const motion = animate(hero.current.querySelectorAll('.hero-beat'), {
       opacity: [0, 1], translateY: [22, 0], delay: stagger(115, { start: 180 }), duration: 900, ease: 'out(4)',
     })
     return () => motion.cancel()
-  }, [])
+  }, [motionPolicy.reduced])
 
   const enterLivingTreasury = () => {
     openTreasury()
-    window.setTimeout(() => document.querySelector('#call')?.scrollIntoView({ behavior: 'smooth' }), 420)
+    window.setTimeout(() => document.querySelector('#call')?.scrollIntoView({ behavior: motionPolicy.scrollBehavior }), motionPolicy.reduced ? 0 : 420)
   }
 
   return (
-    <div className="app-shell">
+    <div className="app-shell hazine-story">
       <ScrollDirector />
       <Navigation />
       <InstrumentRail />
       <LiveSystemOverlay />
-      <Suspense fallback={<div className="scene-shell scene-loading" aria-hidden="true" />}><HazineScene /></Suspense>
+      <SceneErrorBoundary fallback={({ retry }) => <StaticSceneFallback onRetry={retry} />}>
+        <Suspense fallback={<StaticSceneFallback loading />}><HazineScene /></Suspense>
+      </SceneErrorBoundary>
       <div className={`treasury-transition ${treasuryOpen ? 'is-active' : ''}`} aria-hidden="true" />
 
       <main className="experience">
@@ -169,7 +192,7 @@ export default function App() {
         <Section chapter={chapters[6]} className="use-case-section decision-section">
           <div className="case-caption align-left decision-caption">
             <p className="reveal chapter-index">06 / The closing moment</p><h2 className="reveal">The window appears while it is still open.</h2><p className="reveal">Hazine connects the time-bound offer to Marco’s pattern and Ezgi’s earlier hypothesis—with every source one gesture away.</p>
-            <a className="reveal decision-link" href="/workbench">Inspect the live deal walkthrough →</a>
+            <a className="reveal decision-link" href={assetUrl('/workbench/')}>Inspect the live deal walkthrough →</a>
           </div>
         </Section>
 
@@ -185,8 +208,8 @@ export default function App() {
           <div className="light-workspace hybrid-workspace">
             <div className="story-card center-copy"><p className="reveal chapter-index">08 / Desktop + agent</p><h2 className="reveal">One intelligence.<br />Two natural surfaces.</h2><p className="reveal">The desktop is the treasury. The plugin is the doorway that follows Ezgi into the work.</p></div>
             <div className="reveal"><HybridWidget /></div>
-            <a className="reveal workbench-bridge" href="/workbench"><span>Enter the working system</span><strong>Experience Hazine during a live deal conversation →</strong></a>
-            <figure className="reveal approved-system"><img src="/brand/hazine-design-system-with-icon.png" alt="Approved Hazine design system, wordmark, glyph, lockup, and mineral-sparkle app icon" /><figcaption>Approved visual system · immutable source assets</figcaption></figure>
+            <a className="reveal workbench-bridge" href={assetUrl('/workbench/')}><span>Enter the working system</span><strong>Experience Hazine during a live deal conversation →</strong></a>
+            <figure className="reveal approved-system"><img src={assetUrl('/brand/hazine-design-system-with-icon.png')} alt="Approved Hazine design system, wordmark, glyph, lockup, and mineral-sparkle app icon" /><figcaption>Approved visual system · immutable source assets</figcaption></figure>
           </div>
         </Section>
 

@@ -1,91 +1,33 @@
 [
   {
-    "name": "mining_quarry.glb",
-    "bytes": 5456640,
+    "name": "vault_01.glb",
+    "bytes": 1145412,
     "nodes": 1,
     "meshes": 1,
     "primitives": 1,
-    "vertices": 613622,
-    "triangles": 1088588,
+    "vertices": 53725,
+    "triangles": 85218,
     "materials": 1,
     "textures": 1,
     "animations": [],
     "bounds": {
       "min": [
-        -6.022909879684444,
-        -3.397058674076364,
-        -1.951761363834489
+        -25.429162002313408,
+        -7.105427357601002e-15,
+        -25.429162002313397
       ],
       "max": [
-        10.855060815811157,
-        0.3157137119563025,
-        9.418346523136247
+        25.429162002313408,
+        54.96469879150391,
+        25.42916200231342
       ]
     },
     "materialNames": [
-      "Material_0"
+      "Material__25"
     ],
     "textureMimes": [
       "image/webp"
     ]
-  },
-  {
-    "name": "sky_blue_crystal.glb",
-    "bytes": 946868,
-    "nodes": 1,
-    "meshes": 1,
-    "primitives": 1,
-    "vertices": 11547,
-    "triangles": 13887,
-    "materials": 1,
-    "textures": 4,
-    "animations": [],
-    "bounds": {
-      "min": [
-        -2.3967190079756406,
-        -3.8774389525330353,
-        -5.428892135620117
-      ],
-      "max": [
-        3.4289219670363096,
-        4.705519129840164,
-        5.012458801269529
-      ]
-    },
-    "materialNames": [
-      "CristalesinitialShadingGroup"
-    ],
-    "textureMimes": [
-      "image/webp"
-    ]
-  },
-  {
-    "name": "caterpillar_797f_mining_truck.glb",
-    "bytes": 1521296,
-    "nodes": 1,
-    "meshes": 1,
-    "primitives": 1,
-    "vertices": 248436,
-    "triangles": 171761,
-    "materials": 1,
-    "textures": 0,
-    "animations": [],
-    "bounds": {
-      "min": [
-        -19.506879746024396,
-        -0.18794743115204504,
-        -25.25978851318359
-      ],
-      "max": [
-        15.995785652701642,
-        24.008454778735807,
-        27.536609649658207
-      ]
-    },
-    "materialNames": [
-      "mia_material1SG"
-    ],
-    "textureMimes": []
   },
   {
     "name": "xlist_vault.glb",
@@ -130,30 +72,197 @@
     ]
   },
   {
-    "name": "vault_01.glb",
-    "bytes": 1145412,
+    "name": "minimalistic_modern_office.glb",
+    "bytes": 1551404,
+    "nodes": 9,
+    "meshes": 9,
+    "primitives": 9,
+    "vertices": 107992,
+    "triangles": 93125,
+    "materials": 9,
+    "textures": 8,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -3.925731680331638,
+        -2.81016615501967,
+        -12.455470467709556
+      ],
+      "max": [
+        9.183064258998975,
+        5.30111331472464,
+        12.455468106890454
+      ]
+    },
+    "materialNames": [
+      "Glass",
+      "Structure",
+      "Background",
+      "Table",
+      "Chair",
+      "Plants",
+      "Lights",
+      "LightEmission",
+      "Carpet"
+    ],
+    "textureMimes": [
+      "image/webp"
+    ]
+  },
+  {
+    "name": "business_call.glb",
+    "bytes": 2638976,
     "nodes": 1,
     "meshes": 1,
     "primitives": 1,
-    "vertices": 53725,
-    "triangles": 85218,
+    "vertices": 194466,
+    "triangles": 323767,
+    "materials": 1,
+    "textures": 3,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -0.2641385114313565,
+        -0.9517289996147156,
+        -0.2647103567048032
+      ],
+      "max": [
+        0.26377852917923555,
+        0.9514790177345276,
+        0.26018636416635105
+      ]
+    },
+    "materialNames": [
+      "material_0"
+    ],
+    "textureMimes": [
+      "image/webp"
+    ]
+  },
+  {
+    "name": "free__atlanta_corperate_office_building.glb",
+    "bytes": 1175772,
+    "nodes": 12,
+    "meshes": 12,
+    "primitives": 12,
+    "vertices": 55150,
+    "triangles": 32613,
+    "materials": 12,
+    "textures": 22,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -2.9854886963698632,
+        8.134066636211415,
+        -95.2307082646443
+      ],
+      "max": [
+        57.83985165569926,
+        220.13285697304002,
+        1.6170589432948717
+      ]
+    },
+    "materialNames": [
+      "Cube.008__0",
+      "Lobby_Interior_Baked",
+      "Windows",
+      "Material",
+      "Blinds",
+      "Billboard",
+      "Glass",
+      "Emmisive",
+      "Glass_Lobby",
+      "Bulb",
+      "Lobby_Interior_Trimsheet",
+      "Parralax_Mapping"
+    ],
+    "textureMimes": [
+      "image/webp"
+    ]
+  },
+  {
+    "name": "mining_quarry.glb",
+    "bytes": 5456640,
+    "nodes": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "vertices": 613622,
+    "triangles": 1088588,
     "materials": 1,
     "textures": 1,
     "animations": [],
     "bounds": {
       "min": [
-        -25.429162002313408,
-        -7.105427357601002e-15,
-        -25.429162002313397
+        -6.022909879684444,
+        -3.397058674076364,
+        -1.951761363834489
       ],
       "max": [
-        25.429162002313408,
-        54.96469879150391,
-        25.42916200231342
+        10.855060815811157,
+        0.3157137119563025,
+        9.418346523136247
       ]
     },
     "materialNames": [
-      "Material__25"
+      "Material_0"
+    ],
+    "textureMimes": [
+      "image/webp"
+    ]
+  },
+  {
+    "name": "caterpillar_797f_mining_truck.glb",
+    "bytes": 1521296,
+    "nodes": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "vertices": 248436,
+    "triangles": 171761,
+    "materials": 1,
+    "textures": 0,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -19.506879746024396,
+        -0.18794743115204504,
+        -25.25978851318359
+      ],
+      "max": [
+        15.995785652701642,
+        24.008454778735807,
+        27.536609649658207
+      ]
+    },
+    "materialNames": [
+      "mia_material1SG"
+    ],
+    "textureMimes": []
+  },
+  {
+    "name": "sky_blue_crystal.glb",
+    "bytes": 946868,
+    "nodes": 1,
+    "meshes": 1,
+    "primitives": 1,
+    "vertices": 11547,
+    "triangles": 13887,
+    "materials": 1,
+    "textures": 4,
+    "animations": [],
+    "bounds": {
+      "min": [
+        -2.3967190079756406,
+        -3.8774389525330353,
+        -5.428892135620117
+      ],
+      "max": [
+        3.4289219670363096,
+        4.705519129840164,
+        5.012458801269529
+      ]
+    },
+    "materialNames": [
+      "CristalesinitialShadingGroup"
     ],
     "textureMimes": [
       "image/webp"

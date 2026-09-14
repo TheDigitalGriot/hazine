@@ -9,9 +9,12 @@ Title: [FREE]  Atlanta, Corperate Office Building
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { modelUrl } from '../lib/assetManifest.js'
+
+const MODEL_URL = modelUrl('building')
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/models/free__atlanta_corperate_office_building.glb')
+  const { nodes, materials } = useGLTF(MODEL_URL)
   return (
     <group {...props} dispose={null}>
       <mesh name="Cube009_Lobby_Interior_Baked_0" castShadow receiveShadow geometry={nodes.Cube009_Lobby_Interior_Baked_0.geometry} material={materials.Lobby_Interior_Baked} position={[26.652, 18.477, -46.807]} rotation={[-Math.PI / 2, 0, 0]} scale={44.684} userData={{ name: 'Cube.009_Lobby Interior Baked_0' }} />
@@ -30,4 +33,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/models/free__atlanta_corperate_office_building.glb')
+useGLTF.preload(MODEL_URL)

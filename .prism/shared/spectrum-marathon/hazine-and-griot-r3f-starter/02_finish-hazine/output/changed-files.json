@@ -1,0 +1,31 @@
+{
+  "stage": "02_finish-hazine",
+  "capturedAt": "2026-09-14T13:39:08-04:00",
+  "files": [
+    "package.json",
+    "scripts/generate-models.mjs",
+    "scripts/inspect-assets.mjs",
+    "scripts/optimize-assets.mjs",
+    "scripts/verify-project.mjs",
+    "src/App.jsx",
+    "src/components/HazineScene.jsx",
+    "src/components/SceneErrorBoundary.jsx",
+    "src/components/StaticSceneFallback.jsx",
+    "src/config/experienceManifest.js",
+    "src/config/modelAssets.js",
+    "src/lib/assetManifest.js",
+    "src/models/BusinessCallModel.jsx",
+    "src/models/CrystalModel.jsx",
+    "src/models/MiningTruckModel.jsx",
+    "src/models/OfficeBuildingModel.jsx",
+    "src/models/OfficeModel.jsx",
+    "src/models/QuarryModel.jsx",
+    "src/models/ThresholdVaultModel.jsx",
+    "src/models/TreasuryVaultModel.jsx",
+    "src/scene/ActorDirector.jsx",
+    "src/scene/CameraDirector.jsx",
+    "src/scene/sceneProfiles.js",
+    "src/styles.css",
+    "tests/sceneProfiles.test.mjs"
+  ]
+}

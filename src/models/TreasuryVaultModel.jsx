@@ -9,9 +9,12 @@ Title: XList Vault
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { modelUrl } from '../lib/assetManifest.js'
+
+const MODEL_URL = modelUrl('vault')
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/models/xlist_vault.glb')
+  const { nodes, materials } = useGLTF(MODEL_URL)
   return (
     <group {...props} dispose={null}>
       <mesh name="MainVaultInnerDoor_SteelShader_0" castShadow receiveShadow geometry={nodes.MainVaultInnerDoor_SteelShader_0.geometry} material={materials.SteelShader} position={[-0.056, 2.433, -4.565]} rotation={[-Math.PI / 2, 0, 0]} scale={17.791} userData={{ name: 'MainVaultInnerDoor_SteelShader_0' }} />
@@ -31,4 +34,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/models/xlist_vault.glb')
+useGLTF.preload(MODEL_URL)

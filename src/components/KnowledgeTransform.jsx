@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, stagger } from 'animejs'
+import { useMotionPolicy } from '../hooks/useMotionPolicy.js'
 
 const stages = [
   { name: 'Capture', note: 'Fragments retain their origin' },
@@ -19,6 +20,7 @@ export default function KnowledgeTransform() {
   const root = useRef(null)
   const stageRef = useRef(0)
   const [stage, setStage] = useState(0)
+  const motionPolicy = useMotionPolicy()
 
   useEffect(() => {
     const onScroll = () => {
@@ -39,6 +41,7 @@ export default function KnowledgeTransform() {
 
   useEffect(() => {
     if (!root.current) return
+    if (motionPolicy.reduced) return undefined
     const targets = root.current.querySelectorAll('.knowledge-fragment > *, .knowledge-core > *, .knowledge-receipt > *, .knowledge-relationship > *')
     const motion = animate(targets, {
       opacity: [0.32, 1],
@@ -49,7 +52,7 @@ export default function KnowledgeTransform() {
       ease: 'out(4)',
     })
     return () => motion.cancel()
-  }, [stage])
+  }, [motionPolicy.reduced, stage])
 
   const chooseStage = (index) => {
     stageRef.current = index
@@ -62,7 +65,7 @@ export default function KnowledgeTransform() {
         <div><small>LIVE KNOWLEDGE ASSEMBLY</small><strong>{stages[stage].note}</strong></div>
         <span>0{stage + 1} / 04</span>
       </div>
-      <div className="knowledge-stage" aria-live="polite">
+      <div className="knowledge-stage" id="knowledge-stage" role="tabpanel" aria-labelledby={`knowledge-tab-${stage}`} aria-live="polite">
         <svg className="knowledge-links" viewBox="0 0 680 360" aria-hidden="true">
           <path d="M115 78 C210 90 248 145 338 178" />
           <path d="M565 78 C475 92 430 140 338 178" />
@@ -70,7 +73,7 @@ export default function KnowledgeTransform() {
           <path d="M572 288 C472 267 430 220 338 178" />
         </svg>
         {fragments.map(([kind, text, meta], index) => (
-          <button className={`knowledge-fragment fragment-${index + 1}`} key={kind} onClick={() => chooseStage(Math.max(1, stage))}>
+          <button className={`knowledge-fragment fragment-${index + 1}`} key={kind} onClick={() => chooseStage(Math.max(1, stage))} aria-label={`Inspect ${kind} knowledge fragment`}>
             <small>{kind}</small><strong>{text}</strong><span>{meta}</span>
           </button>
         ))}
@@ -85,7 +88,7 @@ export default function KnowledgeTransform() {
       </div>
       <div className="knowledge-controls" role="tablist" aria-label="Knowledge transformation stages">
         {stages.map((item, index) => (
-          <button key={item.name} onClick={() => chooseStage(index)} className={stage === index ? 'is-active' : ''} role="tab" aria-selected={stage === index}>
+          <button key={item.name} id={`knowledge-tab-${index}`} aria-controls="knowledge-stage" onClick={() => chooseStage(index)} className={stage === index ? 'is-active' : ''} role="tab" aria-selected={stage === index} tabIndex={stage === index ? 0 : -1}>
             <i />{item.name}
           </button>
         ))}

@@ -1,0 +1,40 @@
+{
+  "observedAt": "2026-09-14T10:36:27-04:00",
+  "stage": "01_reconcile-reality",
+  "executionWorktree": {
+    "path": "C:\\Users\\digit\\Documents\\Codex\\2026-09-01\\referenced-chatgpt-conversation-this-is-an\\work\\hazine-canonical",
+    "branch": "prism/hazine-complete",
+    "head": "34ff34ff4a274807d15de6094ecbf7c0e289ab2c",
+    "remote": null,
+    "statusEntries": 66
+  },
+  "canonicalCheckout": {
+    "path": "C:\\Users\\digit\\GriotClients\\Hazine",
+    "branch": "prism/hazine-experience-baseline",
+    "head": "34ff34ff4a274807d15de6094ecbf7c0e289ab2c",
+    "remote": null,
+    "statusEntries": 20,
+    "preserveBeforeSync": true
+  },
+  "lockedExecutionRoute": [
+    "finish-execution-worktree",
+    "fresh-visual-and-technical-validation",
+    "commit-and-publish-hazine",
+    "preserve-and-synchronize-canonical-checkout",
+    "pin-hazine-proof-index",
+    "build-and-publish-separate-griot-r3f-starter"
+  ],
+  "remainingGapIds": [
+    "delivery-truth",
+    "loading-and-failure",
+    "chapter-aware-assets",
+    "responsive-safe-zones",
+    "asset-manifest-and-promotion",
+    "theatre-boundary",
+    "verification-surface",
+    "fresh-visual-evidence",
+    "starter-extraction"
+  ],
+  "historicalSpectrumInstructionSuperseded": true,
+  "productFilesEditedByStage": false
+}

@@ -9,9 +9,12 @@ Title: Mining Quarry
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { modelUrl } from '../lib/assetManifest.js'
+
+const MODEL_URL = modelUrl('quarry')
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/models/mining_quarry.glb')
+  const { nodes, materials } = useGLTF(MODEL_URL)
   return (
     <group {...props} dispose={null}>
       <mesh name="Object_2" castShadow receiveShadow geometry={nodes.Object_2.geometry} material={materials.Material_0} position={[2.416, -1.541, 3.733]} rotation={[0, Math.PI / 2, 0]} scale={8.439} userData={{ name: 'Object_2' }} />
@@ -19,4 +22,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/models/mining_quarry.glb')
+useGLTF.preload(MODEL_URL)

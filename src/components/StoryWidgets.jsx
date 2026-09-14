@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, stagger } from 'animejs'
 import { taxonomy } from '../data/chapters.js'
+import { assetUrl } from '../lib/assetUrl.js'
+import { useMotionPolicy } from '../hooks/useMotionPolicy.js'
 
 export function CollectionWidget() {
   const streams = ['Market data', 'Calls', 'Research', 'News', 'Notes']
@@ -26,7 +28,9 @@ export function CollectionWidget() {
 export function TaxonomyWidget() {
   const [active, setActive] = useState(0)
   const root = useRef()
+  const motionPolicy = useMotionPolicy()
   useEffect(() => {
+    if (motionPolicy.reduced) return undefined
     const motion = animate(root.current.querySelectorAll('.taxonomy-button'), {
       opacity: [0, 1],
       translateY: [14, 0],
@@ -35,7 +39,7 @@ export function TaxonomyWidget() {
       ease: 'out(3)',
     })
     return () => motion.cancel()
-  }, [])
+  }, [motionPolicy.reduced])
 
   return (
     <div className="widget taxonomy-widget" ref={root}>
@@ -131,12 +135,12 @@ export function HybridWidget() {
     <div className="hybrid-stage">
       <div className="product-frame desktop-frame">
         <div className="frame-label">Hazine desktop</div>
-        <img src="/brand/hazine-desktop-v4.png" alt="Approved Hazine desktop application design" />
+        <img src={assetUrl('/brand/hazine-desktop-v4.png')} alt="Approved Hazine desktop application design" />
       </div>
       <div className="bridge-line"><span>shared intelligence layer</span></div>
       <div className="product-frame plugin-frame">
         <div className="frame-label">Agent plugin</div>
-        <img src="/brand/hazine-claude-plugin-v4.png" alt="Approved Hazine Claude plugin design" />
+        <img src={assetUrl('/brand/hazine-claude-plugin-v4.png')} alt="Approved Hazine Claude plugin design" />
       </div>
     </div>
   )

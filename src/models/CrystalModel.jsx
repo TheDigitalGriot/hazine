@@ -9,9 +9,12 @@ Title: Sky blue crystal
 
 import React from 'react'
 import { useGLTF } from '@react-three/drei'
+import { modelUrl } from '../lib/assetManifest.js'
+
+const MODEL_URL = modelUrl('crystal')
 
 export function Model(props) {
-  const { nodes, materials } = useGLTF('/models/sky_blue_crystal.glb')
+  const { nodes, materials } = useGLTF(MODEL_URL)
   return (
     <group {...props} dispose={null}>
       <mesh name="Object_2" castShadow receiveShadow geometry={nodes.Object_2.geometry} material={materials.CristalesinitialShadingGroup} position={[0.516, 0.414, -0.208]} rotation={[-Math.PI / 2, 0, 0]} scale={5.221} userData={{ name: 'Object_2' }} />
@@ -19,4 +22,4 @@ export function Model(props) {
   )
 }
 
-useGLTF.preload('/models/sky_blue_crystal.glb')
+useGLTF.preload(MODEL_URL)
