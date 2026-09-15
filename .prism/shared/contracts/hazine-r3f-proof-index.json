@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "product": "Hazine",
+  "implementationCommit": "716481d7d85ab11e2e483103dd504ce7ad35261c",
+  "repository": "https://github.com/TheDigitalGriot/hazine",
+  "capturedAt": "2026-09-14T22:23:00-04:00",
+  "proofs": {
+    "sceneComposition": [
+      "src/components/HazineScene.jsx",
+      "src/scene/ActorDirector.jsx",
+      "src/scene/CameraDirector.jsx",
+      "src/scene/sceneProfiles.js"
+    ],
+    "scrollAndMotionBoundaries": [
+      "src/App.jsx",
+      "src/hooks/useMotionPolicy.js",
+      "src/scene/TheatreSequenceAdapter.jsx",
+      "src/components/KnowledgeTransform.jsx"
+    ],
+    "stateAndDomR3fBridge": [
+      "src/state/experience.js",
+      "src/config/experienceManifest.js",
+      "src/components/InstrumentRail.jsx",
+      "src/components/LiveSystemOverlay.jsx"
+    ],
+    "assetsAndLoading": [
+      "src/config/modelAssets.js",
+      "src/lib/assetManifest.js",
+      "src/scene/ActorDirector.jsx",
+      "scripts/inspect-assets.mjs",
+      "scripts/optimize-assets.mjs",
+      "scripts/generate-models.mjs"
+    ],
+    "resilience": [
+      "src/components/SceneErrorBoundary.jsx",
+      "src/components/StaticSceneFallback.jsx",
+      "scripts/verify-project.mjs",
+      "scripts/capture-acceptance.mjs"
+    ],
+    "hybridInterface": [
+      "src/data/liveMeeting.js",
+      "src/components/live/IntelligenceView.jsx",
+      "src/components/live/MomentList.jsx",
+      "src/components/live/SurfaceToggle.jsx",
+      "src/workbench/WorkbenchApp.jsx"
+    ],
+    "deployment": [
+      "vite.config.js",
+      "scripts/prepare-pages.mjs",
+      ".github/workflows/deploy-pages.yml"
+    ],
+    "tests": [
+      "tests/sceneProfiles.test.mjs",
+      ".prism/shared/spectrum-marathon/hazine-and-griot-r3f-starter/03_validate-hazine/output/verification.json",
+      ".prism/shared/spectrum-marathon/hazine-and-griot-r3f-starter/03_validate-hazine/output/screenshots"
+    ]
+  },
+  "recipeSources": [
+    "griot-r3f/references/scene-setup.md",
+    "griot-r3f/references/loading.md",
+    "griot-r3f/references/state.md",
+    "griot-r3f/references/animation.md",
+    "griot-r3f/references/controls.md",
+    "griot-r3f/references/interop-tools.md",
+    "griot-r3f/references/materials.md",
+    "griot-r3f/references/postprocessing.md",
+    "griot-r3f/references/perf.md"
+  ],
+  "extractionRules": [
+    "Copy neutral mechanisms, tests, and contracts; do not copy Hazine copy, brand assets, or licensed Hazine GLBs.",
+    "Keep GSAP as the scroll clock, R3F refs as the frame-loop mutation surface, Anime.js as scoped DOM motion, and Theatre as an optional authoring adapter.",
+    "Retain failure, reduced-motion, responsive, asset-manifest, and Pages-base proofs in the starter."
+  ]
+}

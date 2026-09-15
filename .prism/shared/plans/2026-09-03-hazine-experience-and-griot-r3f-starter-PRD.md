@@ -9,7 +9,7 @@ tags: [prd, hazine, r3f, theatre-js, anime-js, claude-plugin, desktop, provenanc
 
 # Hazine — Experiential Walkthrough and `griot-r3f-starter` PRD
 
-> **Acceptance reconciliation — 2026-09-14:** Hazine requirements are mapped to fresh pass/defer evidence in the stage-03 acceptance report. GitHub publication remains the stage-04 gate; `griot-r3f-starter` remains a separate open deliverable. See `.prism/shared/validation/2026-09-14-hazine-acceptance-consolidation.md`.
+> **Acceptance reconciliation — 2026-09-14:** Hazine requirements are mapped to fresh pass/defer evidence in the stage-03 acceptance report, and GitHub Pages publication passed in stage 04. `griot-r3f-starter` remains a separate open deliverable. See `.prism/shared/validation/2026-09-14-hazine-acceptance-consolidation.md`.
 
 ## 1. Executive Summary
 

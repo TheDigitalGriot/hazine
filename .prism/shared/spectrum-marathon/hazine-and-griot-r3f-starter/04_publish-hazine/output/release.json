@@ -1,0 +1,34 @@
+{
+  "stage": "04_publish-hazine",
+  "status": "pass",
+  "verifiedAt": "2026-09-14T22:23:00-04:00",
+  "repository": "https://github.com/TheDigitalGriot/hazine",
+  "pages": "https://thedigitalgriot.github.io/hazine/",
+  "workbench": "https://thedigitalgriot.github.io/hazine/workbench/",
+  "implementationCommit": "716481d7d85ab11e2e483103dd504ce7ad35261c",
+  "workflow": {
+    "runId": 34920622039,
+    "url": "https://github.com/TheDigitalGriot/hazine/actions/runs/34920622039",
+    "status": "completed",
+    "conclusion": "success",
+    "initialEnablementFailureRun": "https://github.com/TheDigitalGriot/hazine/actions/runs/34878247356"
+  },
+  "http": {
+    "root": 200,
+    "workbench": 200,
+    "javascriptAsset": 200
+  },
+  "browser": {
+    "rootRendered": true,
+    "workbenchRendered": true,
+    "pluginDefault": true,
+    "applicationErrors": 0
+  },
+  "canonicalCheckout": {
+    "path": "C:/Users/digit/GriotClients/Hazine",
+    "branch": "main",
+    "commit": "716481d7d85ab11e2e483103dd504ce7ad35261c",
+    "recoveryBranch": "recovery/pre-spectrum-sync-2026-09-14",
+    "recoveryCommit": "485f7defb66ed0464f225217c82f52ca399cbd7c"
+  }
+}
