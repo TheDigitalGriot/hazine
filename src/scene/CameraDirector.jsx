@@ -3,7 +3,7 @@ import { useFrame, useThree } from '@react-three/fiber'
 import * as THREE from 'three'
 import { useExperience } from '../state/experience.js'
 import { profileForViewport, smoothstep } from './sceneProfiles.js'
-import { frameEase } from './useMotionPolicy.js'
+import { sceneCoordinate } from './sceneCoordinate.js'
 
 function sampleCamera(keys, progress, position, look) {
   let nextIndex = 1
@@ -31,7 +31,8 @@ export function CameraDirector() {
   }, [camera, profile])
 
   useFrame((state, delta) => {
-    const { progress, reducedMotion } = useExperience.getState()
+    const { reducedMotion } = useExperience.getState()
+    const progress = sceneCoordinate(useExperience.getState().progress)
     sampleCamera(profile.cameraKeys, progress, target, lookAt)
 
     const [vaultStart, vaultEnd] = profile.vaultWindow
@@ -51,10 +52,9 @@ export function CameraDirector() {
       target.y += state.pointer.y * profile.pointer[1]
     }
 
-    target.x += profile.sceneOffsetX
-    lookAt.x += profile.sceneOffsetX
-
-    camera.position.lerp(target, frameEase(delta, 2.7, reducedMotion))
+    // Actor placement owns the scene offset. Camera never cancels it by
+    // applying the same displacement again, and replay does not depend on lag.
+    camera.position.copy(target)
     camera.lookAt(lookAt)
   })
 

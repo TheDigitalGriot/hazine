@@ -1,0 +1,25 @@
+/* Self-hosted, unmodified Google Fonts binaries. Notices: public/fonts/*-OFL.txt.
+   Vite rebases these public URLs for /hazine/ and every direct-refresh route. */
+@font-face {
+  font-family: 'Cinzel';
+  src: url('/fonts/Cinzel-Variable.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Variable.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('/fonts/Inter-Italic-Variable.ttf') format('truetype');
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}

@@ -1,0 +1,7 @@
+# Quarry projection observation — 2026-09-15
+
+Recorded before edits by the spatial-placement worker. Root-owned real-browser screenshots `desktop-quarry.png` and `desktop-extraction-mid.png` under `C:/Users/digit/.codex/visualizations/2026/09/01/01a05da2-4aa2-7fc1-a63e-59cb67397ab6/continuation-2026-09-15/` show readable quarry terraces but no meaningful truck in the unobstructed central region (x520..890, y125..800). Root measured scrollY5505, story height12402, viewport900: raw5505/11502=.4786124, mapped scene≈.5597541. Extraction-mid also shows giant crystal fragments behind the inspector before the knowledge reveal.
+
+Actual source: truck follows cached approved quarry triangle samples; extraction frame rotates -.38 and scales .42 after origin[-2.416,1.541,-3.733], root scene offset .18. Camera .55→.64 interpolates toward a low knowledge pose. The crystal envelope begins .625-.085=.54, so presence during extraction is observed behavior of its authored envelope, not an asset-loader fault.
+
+No numerical fix is inferred here. Next gate: project actual generated-model vertices and cached route using the runtime frame/camera transforms, measure central-region placement and terrain line-of-sight, then preserve or refresh exact source-triangle cache as necessary. Source assets, office, vault journey, mapper, Theatre and pages are out of worker edit scope. Browser acceptance belongs to root.

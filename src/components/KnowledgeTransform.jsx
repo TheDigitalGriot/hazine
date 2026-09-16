@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { animate, stagger } from 'animejs'
 import { useMotionPolicy } from '../hooks/useMotionPolicy.js'
+import { useExperience } from '../state/experience.js'
+import { knowledgeStageAtProgress } from '../config/knowledgeNarrative.js'
 
 const stages = [
   { name: 'Capture', note: 'Fragments retain their origin' },
@@ -18,26 +20,12 @@ const fragments = [
 
 export default function KnowledgeTransform() {
   const root = useRef(null)
-  const stageRef = useRef(0)
-  const [stage, setStage] = useState(0)
+  const narrativeStage = useExperience((state) => knowledgeStageAtProgress(state.progress))
+  const [manualStage, setManualStage] = useState(null)
+  const stage = manualStage?.narrativeStage === narrativeStage ? manualStage.index : narrativeStage
   const motionPolicy = useMotionPolicy()
 
-  useEffect(() => {
-    const onScroll = () => {
-      const bounds = root.current?.getBoundingClientRect()
-      if (!bounds) return
-      const travel = window.innerHeight + bounds.height
-      const local = Math.max(0, Math.min(0.999, (window.innerHeight - bounds.top) / travel))
-      const next = Math.min(3, Math.floor(local * 4))
-      if (next !== stageRef.current) {
-        stageRef.current = next
-        setStage(next)
-      }
-    }
-    onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+  useEffect(() => { setManualStage(null) }, [narrativeStage])
 
   useEffect(() => {
     if (!root.current) return
@@ -51,12 +39,15 @@ export default function KnowledgeTransform() {
       duration: 520,
       ease: 'out(4)',
     })
-    return () => motion.cancel()
+    // v4 revert cancels and restores the previous inline styles, including
+    // when reduced motion is enabled while an entrance is still in flight.
+    return () => motion.revert()
   }, [motionPolicy.reduced, stage])
 
   const chooseStage = (index) => {
-    stageRef.current = index
-    setStage(index)
+    // Manual inspection persists within this semantic beat; the next shared
+    // narrative beat resumes following without another scroll/timer owner.
+    setManualStage({ index, narrativeStage })
   }
 
   return (

@@ -22,12 +22,12 @@ export const chapters = [
 export const actors = [
   { key: 'threshold', focus: 0.035, spread: 0.085, scale: 0.13, position: [-1.25, -4.2, 0], rotation: [0, 0.7, 0], mobile: { scale: 0.1, position: [-0.5, -3.8, 0] } },
   { key: 'vault', focus: 0.14, spread: 0.11, scale: 0.34, position: [0, -0.78, 0], rotation: [0, 0, 0], passage: true, mobile: { scale: 0.28 } },
-  { key: 'office', focus: 0.265, spread: 0.064, scale: 0.42, position: [-1.25, -0.16, 0.05], rotation: [0, -0.06, 0], hide: ['Background'], mobile: { scale: 0.34, position: [-0.55, -0.2, 0.1] } },
-  { key: 'caller', focus: 0.265, spread: 0.06, scale: 1.48, position: [0.72, -1.08, 0.7], rotation: [0, 2.72, 0], mobile: { scale: 1.08, position: [0.45, -1.05, 0.5] } },
-  { key: 'building', focus: 0.338, spread: 0.048, scale: 0.021, position: [-0.72, -2.3, 0.62], rotation: [0, -0.22, 0], mobile: { scale: 0.016, position: [-0.3, -2.1, 0.5] } },
-  { key: 'quarry', focus: 0.505, spread: 0.085, scale: 0.42, position: [1.48, -0.82, 0], rotation: [-0.2, -0.7, 0], mobile: { scale: 0.31, position: [0.6, -0.7, 0] } },
-  { key: 'truck', focus: 0.565, spread: 0.07, scale: 0.11, position: [1.45, -2.35, 0], rotation: [0, 0.54, 0], drift: true, mobile: { scale: 0.08, position: [0.7, -2.05, 0] } },
-  { key: 'crystal', focus: 0.625, spread: 0.085, scale: 0.55, position: [1.7, -0.62, 0], rotation: [0.05, -0.4, 0], crystal: true, mobile: { scale: 0.4, position: [0.72, -0.5, 0] } },
+  { key: 'office', frame: 'office', focus: 0.267, spread: 0.063, scale: 1, position: [0, 0, 0], rotation: [0, 0, 0], hide: ['Background'] },
+  { key: 'caller', frame: 'office', focus: 0.267, spread: 0.063, scale: 0.893228687828, position: [2.1, -0.598376986362, -2.8], rotation: [0, Math.PI, 0] },
+  { key: 'building', focus: 0.342, spread: 0.024, scale: 0.015, position: [-0.4, -2.3, 0.62], rotation: [0, -0.22, 0], mobile: { scale: 0.012, position: [-0.3, -2.1, 0.5] } },
+  { key: 'quarry', frame: 'extraction', focus: 0.552, spread: 0.067, scale: 1, position: [0, 0, 0], rotation: [0, 0, 0] },
+  { key: 'truck', frame: 'extraction', focus: 0.552, spread: 0.067, scale: 0.017, position: [6.65, 0, 2.35], rotation: [0, 0, 0], terrainRoute: true },
+  { key: 'crystal', focus: 0.685, spread: 0.055, scale: 0.55, position: [1.7, -0.62, 0], rotation: [0.05, -0.4, 0], crystal: true, mobile: { scale: 0.4, position: [0.72, -0.5, 0] } },
 ]
 
 export const safeZones = {

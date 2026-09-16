@@ -6,6 +6,7 @@ import { useExperience } from '../state/experience.js'
 import IntelligenceView from '../components/live/IntelligenceView.jsx'
 import MomentList from '../components/live/MomentList.jsx'
 import SurfaceToggle from '../components/live/SurfaceToggle.jsx'
+import PageNavigation from '../pages/PageNavigation.jsx'
 import '../components/live/live-components.css'
 import './workbench.css'
 
@@ -58,7 +59,7 @@ export default function WorkbenchApp() {
       <header className="hwb-topbar hwb-reveal">
         <a className="hwb-brand" href={assetUrl('/')}><span>{surface === 'plugin' ? 'CLAUDE' : 'HAZINE'}</span><small>{surface === 'plugin' ? 'HAZINE PLUGIN · CONNECTED' : 'LIVE INTELLIGENCE'}</small></a>
         <div className="hwb-status"><i /> Live meeting <span>{selectedMoment.time}</span></div>
-        <div className="hwb-actions"><SurfaceToggle surface={surface} onChange={setSurface} compact /><button type="button" onClick={() => setPlaying(!playing)}>{playing ? 'Pause' : 'Resume'}</button><a href={assetUrl('/')}>Return to story</a></div>
+        <div className="hwb-actions"><SurfaceToggle surface={surface} onChange={setSurface} compact /><button type="button" onClick={() => setPlaying(!playing)}>{playing ? 'Pause' : 'Resume'}</button><PageNavigation current="workbench" /></div>
       </header>
 
       <nav className="hwb-nav hwb-reveal" aria-label="Hazine desktop sections">

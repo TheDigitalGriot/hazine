@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "starter": "griot-r3f-starter",
+  "exports": [
+    { "name": "railShellPlacement", "path": "src/components/InstrumentRail.tsx", "hazineProof": ["src/components/InstrumentRail.jsx", "src/styles.css"], "recipes": ["state.md", "scene-setup.md"] },
+    { "name": "experienceManifest", "path": "src/config/experienceManifest.ts", "hazineProof": ["src/config/experienceManifest.js", "src/scene/sceneProfiles.js"], "recipes": ["scene-setup.md", "controls.md"] },
+    { "name": "useExperience", "path": "src/state/experience.ts", "hazineProof": ["src/state/experience.js"], "recipes": ["state.md"] },
+    { "name": "ScrollDirector", "path": "src/motion/ScrollDirector.tsx", "hazineProof": ["src/App.jsx"], "recipes": ["animation.md", "state.md"] },
+    { "name": "CameraDirector", "path": "src/scene/CameraDirector.tsx", "hazineProof": ["src/scene/CameraDirector.jsx"], "recipes": ["animation.md", "perf.md"] },
+    { "name": "ActorDirector", "path": "src/scene/ActorDirector.tsx", "hazineProof": ["src/scene/ActorDirector.jsx", "src/scene/sceneProfiles.js"], "recipes": ["scene-setup.md", "loading.md", "perf.md"] },
+    { "name": "KnowledgeTransform", "path": "src/motion/KnowledgeTransform.tsx", "hazineProof": ["src/components/KnowledgeTransform.jsx"], "recipes": ["interop-tools.md", "animation.md"] },
+    { "name": "TheatreBridge", "path": "src/theatre/TheatreBridge.tsx", "hazineProof": ["src/scene/TheatreSequenceAdapter.jsx"], "recipes": ["interop-tools.md", "animation.md"] },
+    { "name": "CanvasRuntime", "path": "src/runtime/CanvasRuntime.tsx", "hazineProof": ["src/components/HazineScene.jsx", "src/components/SceneErrorBoundary.jsx", "src/components/StaticSceneFallback.jsx"], "recipes": ["loading.md", "perf.md"] },
+    { "name": "assetPipeline", "path": "scripts/asset-manifest.mjs", "hazineProof": ["src/config/modelAssets.js", "src/lib/assetManifest.js", "scripts/inspect-assets.mjs", "scripts/optimize-assets.mjs", "scripts/generate-models.mjs"], "recipes": ["loading.md", "interop-tools.md"] },
+    { "name": "responsiveSafeZones", "path": "src/config/experienceManifest.ts", "hazineProof": ["src/config/experienceManifest.js", "src/scene/sceneProfiles.js"], "recipes": ["controls.md", "perf.md"] },
+    { "name": "pagesDeployment", "path": "vite.config.ts", "hazineProof": ["vite.config.js", "scripts/prepare-pages.mjs", ".github/workflows/deploy-pages.yml"], "recipes": ["scene-setup.md"] },
+    { "name": "acceptanceCapture", "path": "scripts/capture-acceptance.mjs", "hazineProof": ["scripts/capture-acceptance.mjs", "tests/sceneProfiles.test.mjs"], "recipes": ["perf.md", "controls.md"] }
+  ]
+}

@@ -1,0 +1,30 @@
+# Hazine spatial calibration — 2026-09-15
+
+Observation recorded before transform edits. User screenshots establish intersecting woman/floor/table, oversized truck, floating building, side-on quarry and wrong geographic targeting. Numerical evidence: `2026-09-15-native-scene-calibration.json`, produced by `node scripts/calibrate-scenes.mjs` from approved public GLBs and the generated gltfjsx mesh transforms. Background is excluded from office bounds and sampling. Normalized quantized attributes are decoded by Three BufferAttribute; raw integer extrema are not spatial dimensions.
+
+## Observed measurements
+
+- Post-hide office bounds: X -0.112511..9.183; Y -1.449406..2.860489; Z -4.451..4.451. Carpet top -1.438594. Table top -.637271, bottom -1.448729, desk height .811458. Back glass reaches Z -4.375179.
+- Generated caller height 1.903208, foot minimum -.951729. Existing world caller height 2.816748; existing office desk height .340812. The caller is 8.26 desk heights rather than ~2.1. Grounding must be evaluated in office coordinates, not the scene's unrelated plane.
+- Quarry generated bounds: width16.877971, height3.712772, depth11.370108. Truck generated length52.796, height24.19622, ground minimum-.188110. Existing truck world length5.80756 is82% of quarry world width7.08875.
+- Mesh raycast grid is in the numerical record: upper-east terrace around X6..8, Z2..5 descends from Y≈-.2..-.5 to≈-1.3. Broad northern bench X2..6,Z6..7 sits Y≈-.6..-1.6.
+
+## Derived composition (pending screenshots)
+
+Additional wheel measurement before contact refinement: generated truck vertices transformed to quarry-native orientation, selecting Y<.1, cluster left/right and front/rear. Rear-left472 vertices centroid(-10.553621,-.046265,-9.698401); rear-right472(8.195418,-.046265,-9.735201); front-left236(-14.337316,-.046265,14.210322); front-right238(11.333553,-.046996,14.216440). These low rubber patches supply asymmetric native wheel-contact offsets, rather than bounding-box half extents. Route support plane will fit actual four wheel patch positions against terrain.
+
+Office and caller share one parent frame: .62 desktop / .49 mobile; the caller is1.70 office-native units tall (scale1.70/1.903208=.89323), about2.1 desk heights. Position X2.1,Z-2.8 clears table extent X3.532..4.238,Z±1.272 and approaches back glass. An additional real mesh raycast at this exact foot location from Y=-1 returned **Structure floor Y=-1.4484886318552204**, not Carpet (caller is beyond the carpet's Z±2.013 extent). Feet anchor to this observed triangle height. Caller local Y=-.59837698636181 equals floor minus scaled foot minimum. Parent transforms preserve this relation throughout fades and mobile layout. No influence-dependent child entrance displacements.
+
+Quarry and truck share a parent frame. Truck local scale.017 produces length.897532:5.32% of quarry width, not equal-height normalization. Its route begins on the visible eastern terrace, approaches the broad northern bench, and is sampled against the actual generated quarry mesh. Contact transforms come from front/rear and left/right terrain samples plus wheel-bottom clearance. Route progress is a pure function of normalized story progress. Root will validate the texture-visible terrace alignment and may refine waypoints based on screenshots.
+
+Geographic coordinates remain source data Toronto43.6532,-79.3832 and Antofagasta-23.65,-70.4. ThreeGlobe.getCoords supplies the geographic vector, Quaternion rotates that vector toward the actual camera direction, and the existing camera approaches the corridor before quarry handoff. Disable initialization spin; no delta-accumulated globe orientation. Building releases before globe presence; globe releases before extraction presence. Vault-door curve is untouched.
+
+Primary APIs checked this session: https://github.com/vasturiano/three-globe (getCoords,getGlobeRadius,setPointOfView,animateIn); https://threejs.org/docs/#Raycaster and https://threejs.org/docs/#Quaternion. Installed three-globe2.45.2 README corroborates utilities; installed Three0.185.1 is used. griot-r3f scene-setup/loading/animation/state/interop-tools read in full.
+
+## Acceptance status
+
+Numerical reconstruction observed; implementation written; fresh root-owned desktop/mobile screenshots pending. This document is not a visual pass. Replay fixtures saved at `2026-09-15-scene-replay-fixtures.json`; fixtures .267 office, .395 Toronto, .448 Antofagasta, .468 corridor approach, .505/.535/.575/.61 extraction. Viewports1440×900 and390×844. Drive actual scroll to normalized fraction of `.experience` scrollable extent; verify backward sequence as well. Dev command `pnpm dev -- --host 127.0.0.1 --port 4173` from Hazine repo.
+
+Actual triangle bake costs10.4–12s. To prevent a rendering-frame freeze, its exact49 measured samples are cached in `src/scene/measuredHaulRoute.json`; runtime only interpolates those samples. Targeted tests reconstruct actual triangles, compare every cached position/quaternion/contact, and gate quarry GLB SHA256 `8ee06ebc04f47848b362d536b2565761bfc9ff45e78ff94569747304635f3bde` plus generated component SHA256 `76896e49792c3767c0f8349b108f3e0326dd1dc81b854dc06822af26ad099005`. Geometry changes fail loudly until contact cache is refreshed. Refresh path: `node scripts/calibrate-scenes.mjs --route`; then review hash changes and rerun `node --test tests/sceneProfiles.test.mjs tests/spatialCalibration.test.mjs`. The helper has actual callers in tests and this refresh command.
+
+Fresh final targeted test run passed7/7 in10496.9112ms, including exact foot-floor raycast, caller dimensions, API-projected endpoint orientation, building/globe/quarry exclusivity, cached49contact equality, sourcegeometry hashes and reverse replay. `pnpm run build:vite` passed after the geographic helper:1024 modules transformed;918ms Vite build (existing chunk-size warning remains). Evidence checkpoint2026-09-15T14:10:29Z. No approved GLB or brand asset bytes are changed. Root screenshots are required to assess facing/window placement, visible bench alignment, and mobile crop.

@@ -1,15 +1,130 @@
 {
   "sheetsById": {
     "Guided Experience": {
-      "staticOverrides": { "byObject": {} },
+      "staticOverrides": {
+        "byObject": {}
+      },
       "sequence": {
         "subUnitsPerUnit": 30,
         "length": 8,
         "type": "PositionalSequence",
-        "tracksByObject": {}
+        "tracksByObject": {
+          "Semantic reveal halo": {
+            "trackIdByPropPath": {
+              "[\"opacity\"]": "semantic-halo-opacity"
+            },
+            "trackData": {
+              "semantic-halo-opacity": {
+                "type": "BasicKeyframedTrack",
+                "__debugName": "Semantic reveal halo:[\"opacity\"]",
+                "keyframes": [
+                  {
+                    "id": "semantic-halo-0",
+                    "position": 0,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0
+                  },
+                  {
+                    "id": "semantic-halo-1",
+                    "position": 1.12,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0.12
+                  },
+                  {
+                    "id": "semantic-halo-2",
+                    "position": 2.12,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0.62
+                  },
+                  {
+                    "id": "semantic-halo-3",
+                    "position": 2.88,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0.1
+                  },
+                  {
+                    "id": "semantic-halo-4",
+                    "position": 4.04,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0.7
+                  },
+                  {
+                    "id": "semantic-halo-5",
+                    "position": 5.12,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0.15
+                  },
+                  {
+                    "id": "semantic-halo-6",
+                    "position": 6.24,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0.85
+                  },
+                  {
+                    "id": "semantic-halo-7",
+                    "position": 8,
+                    "connectedRight": true,
+                    "handles": [
+                      0.5,
+                      1,
+                      0.5,
+                      0
+                    ],
+                    "value": 0.3
+                  }
+                ]
+              }
+            }
+          }
+        }
       }
     }
   },
   "definitionVersion": "0.4.0",
-  "revisionHistory": ["hazine-scroll-story-v1"]
+  "revisionHistory": [
+    "hazine-scroll-story-v1",
+    "semantic-halo-authored-2026-09-15"
+  ]
 }

@@ -1,0 +1,1678 @@
+{
+  "observedAt": "2026-09-16T05:34:44.766Z",
+  "method": "Actual generated post-hide office/person vertices; mobile runtime camera and shared frame; neutral pointer.",
+  "fixtures": [
+    {
+      "room": {
+        "key": "office",
+        "progress": 0.255,
+        "width": 375,
+        "height": 844,
+        "min": [
+          -1.6724253815811467,
+          196.5591050092147
+        ],
+        "max": [
+          373.3908667283516,
+          358.8389199294587
+        ],
+        "size": [
+          375.0632921099328,
+          162.279814920244
+        ]
+      },
+      "human": {
+        "key": "caller",
+        "progress": 0.255,
+        "width": 375,
+        "height": 844,
+        "min": [
+          200.82399760479603,
+          270.01555021088353
+        ],
+        "max": [
+          214.20099321609774,
+          316.410551850155
+        ],
+        "size": [
+          13.376995611301709,
+          46.39500163927147
+        ]
+      },
+      "sight": {
+        "progress": 0.255,
+        "width": 375,
+        "height": 844,
+        "personPixelRays": 18,
+        "visibleRays": 17,
+        "results": [
+          {
+            "pixel": [
+              204.83709628818656,
+              273.32947889940294
+            ],
+            "personDistance": 9.659445072492186,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.5124954104469,
+              273.32947889940294
+            ],
+            "personDistance": 9.64683303428604,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.83709628818656,
+              279.9573362764417
+            ],
+            "personDistance": 9.648810458055237,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.5124954104469,
+              279.9573362764417
+            ],
+            "personDistance": 9.631139109760632,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.18789453270722,
+              279.9573362764417
+            ],
+            "personDistance": 9.658597133360347,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              202.1616971659262,
+              286.5851936534805
+            ],
+            "personDistance": 9.710365611090804,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.5124954104469,
+              286.5851936534805
+            ],
+            "personDistance": 9.652729909274491,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.18789453270722,
+              286.5851936534805
+            ],
+            "personDistance": 9.658067060802278,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.83709628818656,
+              293.2130510305193
+            ],
+            "personDistance": 9.661560711124883,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.5124954104469,
+              293.2130510305193
+            ],
+            "personDistance": 9.64688719741205,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.18789453270722,
+              293.2130510305193
+            ],
+            "personDistance": 9.657222285219536,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.83709628818656,
+              299.84090840755806
+            ],
+            "personDistance": 9.68544046464999,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.5124954104469,
+              299.84090840755806
+            ],
+            "personDistance": 9.676478945956239,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.18789453270722,
+              299.84090840755806
+            ],
+            "personDistance": 9.67459710132325,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.83709628818656,
+              306.4687657845968
+            ],
+            "personDistance": 9.68711375360895,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.5124954104469,
+              306.4687657845968
+            ],
+            "personDistance": 9.67868485904463,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              202.1616971659262,
+              313.0966231616356
+            ],
+            "personDistance": 9.679217409944634,
+            "blocker": "Minimalistic_Modern_Office_Table_0",
+            "visible": false
+          },
+          {
+            "pixel": [
+              204.83709628818656,
+              313.0966231616356
+            ],
+            "personDistance": 9.68841575095967,
+            "blocker": null,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "room": {
+        "key": "office",
+        "progress": 0.265,
+        "width": 375,
+        "height": 844,
+        "min": [
+          -3.009745169701164,
+          195.35639971991662
+        ],
+        "max": [
+          374.83033464959595,
+          357.97881916587477
+        ],
+        "size": [
+          377.8400798192971,
+          162.62241944595814
+        ]
+      },
+      "human": {
+        "key": "caller",
+        "progress": 0.265,
+        "width": 375,
+        "height": 844,
+        "min": [
+          200.91300142329746,
+          269.13759206257424
+        ],
+        "max": [
+          214.37912835955896,
+          315.85387035141827
+        ],
+        "size": [
+          13.466126936261503,
+          46.71627828884402
+        ]
+      },
+      "sight": {
+        "progress": 0.265,
+        "width": 375,
+        "height": 844,
+        "personPixelRays": 18,
+        "visibleRays": 17,
+        "results": [
+          {
+            "pixel": [
+              204.9528395041759,
+              272.474469083206
+            ],
+            "personDistance": 9.596581490424603,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              272.474469083206
+            ],
+            "personDistance": 9.583984731742243,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              279.1482231244694
+            ],
+            "personDistance": 9.585817759258743,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              279.1482231244694
+            ],
+            "personDistance": 9.568166262979805,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.33929027868052,
+              279.1482231244694
+            ],
+            "personDistance": 9.595594721922447,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              202.25961411692361,
+              285.82197716573285
+            ],
+            "personDistance": 9.647223595285737,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              285.82197716573285
+            ],
+            "personDistance": 9.589681374704261,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.33929027868052,
+              285.82197716573285
+            ],
+            "personDistance": 9.594969338506976,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              292.49573120699625
+            ],
+            "personDistance": 9.598327863045704,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              292.49573120699625
+            ],
+            "personDistance": 9.583668698764576,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.33929027868052,
+              292.49573120699625
+            ],
+            "personDistance": 9.593985304169708,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              299.16948524825966
+            ],
+            "personDistance": 9.622068951616175,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              299.16948524825966
+            ],
+            "personDistance": 9.613121037772078,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.33929027868052,
+              299.16948524825966
+            ],
+            "personDistance": 9.611240957436973,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              305.8432392895231
+            ],
+            "personDistance": 9.623623254734676,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              305.8432392895231
+            ],
+            "personDistance": 9.615212460747939,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              202.25961411692361,
+              312.51699333078653
+            ],
+            "personDistance": 9.615674377479854,
+            "blocker": "Minimalistic_Modern_Office_Table_0",
+            "visible": false
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              312.51699333078653
+            ],
+            "personDistance": 9.624797072458659,
+            "blocker": null,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "room": {
+        "key": "office",
+        "progress": 0.285,
+        "width": 375,
+        "height": 844,
+        "min": [
+          -10.72123007438014,
+          184.0803100346006
+        ],
+        "max": [
+          383.169203921062,
+          352.7547257789663
+        ],
+        "size": [
+          393.8904339954421,
+          168.67441574436572
+        ]
+      },
+      "human": {
+        "key": "caller",
+        "progress": 0.285,
+        "width": 375,
+        "height": 844,
+        "min": [
+          201.4253708542732,
+          264.02630099890234
+        ],
+        "max": [
+          215.40428006094047,
+          312.59142957687754
+        ],
+        "size": [
+          13.978909206667254,
+          48.5651285779752
+        ]
+      },
+      "sight": {
+        "progress": 0.285,
+        "width": 375,
+        "height": 844,
+        "personPixelRays": 18,
+        "visibleRays": 17,
+        "results": [
+          {
+            "pixel": [
+              205.6190436162734,
+              267.495238754472
+            ],
+            "personDistance": 9.250629021101524,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              208.41482545760684,
+              267.495238754472
+            ],
+            "personDistance": 9.23811836885583,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.6190436162734,
+              274.4331142656113
+            ],
+            "personDistance": 9.239116137804713,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              208.41482545760684,
+              274.4331142656113
+            ],
+            "personDistance": 9.221579631265003,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              211.2106072989403,
+              274.4331142656113
+            ],
+            "personDistance": 9.248855064726797,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              202.82326177493994,
+              281.3709897767506
+            ],
+            "personDistance": 9.299673799403333,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              208.41482545760684,
+              281.3709897767506
+            ],
+            "personDistance": 9.242607985508716,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              211.2106072989403,
+              281.3709897767506
+            ],
+            "personDistance": 9.247665513872649,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.6190436162734,
+              288.30886528788994
+            ],
+            "personDistance": 9.250244322441077,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              208.41482545760684,
+              288.30886528788994
+            ],
+            "personDistance": 9.235608170125127,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              211.2106072989403,
+              288.30886528788994
+            ],
+            "personDistance": 9.245877235718604,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.6190436162734,
+              295.2467407990293
+            ],
+            "personDistance": 9.27318782921248,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              208.41482545760684,
+              295.2467407990293
+            ],
+            "personDistance": 9.264301226643262,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              211.2106072989403,
+              295.2467407990293
+            ],
+            "personDistance": 9.262447635481442,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.6190436162734,
+              302.18461631016856
+            ],
+            "personDistance": 9.274055768264997,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              208.41482545760684,
+              302.18461631016856
+            ],
+            "personDistance": 9.265747682215016,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              202.82326177493994,
+              309.1224918213079
+            ],
+            "personDistance": 9.265742281816381,
+            "blocker": "Minimalistic_Modern_Office_Table_0",
+            "visible": false
+          },
+          {
+            "pixel": [
+              205.6190436162734,
+              309.1224918213079
+            ],
+            "personDistance": 9.27448955461136,
+            "blocker": null,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "room": {
+        "key": "office",
+        "progress": 0.265,
+        "width": 375,
+        "height": 844,
+        "min": [
+          -3.009745169701164,
+          195.35639971991662
+        ],
+        "max": [
+          374.83033464959595,
+          357.97881916587477
+        ],
+        "size": [
+          377.8400798192971,
+          162.62241944595814
+        ]
+      },
+      "human": {
+        "key": "caller",
+        "progress": 0.265,
+        "width": 375,
+        "height": 844,
+        "min": [
+          200.91300142329746,
+          269.13759206257424
+        ],
+        "max": [
+          214.37912835955896,
+          315.85387035141827
+        ],
+        "size": [
+          13.466126936261503,
+          46.71627828884402
+        ]
+      },
+      "sight": {
+        "progress": 0.265,
+        "width": 375,
+        "height": 844,
+        "personPixelRays": 18,
+        "visibleRays": 17,
+        "results": [
+          {
+            "pixel": [
+              204.9528395041759,
+              272.474469083206
+            ],
+            "personDistance": 9.596581490424603,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              272.474469083206
+            ],
+            "personDistance": 9.583984731742243,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              279.1482231244694
+            ],
+            "personDistance": 9.585817759258743,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              279.1482231244694
+            ],
+            "personDistance": 9.568166262979805,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.33929027868052,
+              279.1482231244694
+            ],
+            "personDistance": 9.595594721922447,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              202.25961411692361,
+              285.82197716573285
+            ],
+            "personDistance": 9.647223595285737,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              285.82197716573285
+            ],
+            "personDistance": 9.589681374704261,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.33929027868052,
+              285.82197716573285
+            ],
+            "personDistance": 9.594969338506976,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              292.49573120699625
+            ],
+            "personDistance": 9.598327863045704,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              292.49573120699625
+            ],
+            "personDistance": 9.583668698764576,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.33929027868052,
+              292.49573120699625
+            ],
+            "personDistance": 9.593985304169708,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              299.16948524825966
+            ],
+            "personDistance": 9.622068951616175,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              299.16948524825966
+            ],
+            "personDistance": 9.613121037772078,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              210.33929027868052,
+              299.16948524825966
+            ],
+            "personDistance": 9.611240957436973,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              305.8432392895231
+            ],
+            "personDistance": 9.623623254734676,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              207.6460648914282,
+              305.8432392895231
+            ],
+            "personDistance": 9.615212460747939,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              202.25961411692361,
+              312.51699333078653
+            ],
+            "personDistance": 9.615674377479854,
+            "blocker": "Minimalistic_Modern_Office_Table_0",
+            "visible": false
+          },
+          {
+            "pixel": [
+              204.9528395041759,
+              312.51699333078653
+            ],
+            "personDistance": 9.624797072458659,
+            "blocker": null,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "room": {
+        "key": "office",
+        "progress": 0.255,
+        "width": 375,
+        "height": 667,
+        "min": [
+          37.99999084180732,
+          155.33758654164242
+        ],
+        "max": [
+          334.40664467750065,
+          283.58478624756987
+        ],
+        "size": [
+          296.4066538356933,
+          128.24719970592744
+        ]
+      },
+      "human": {
+        "key": "caller",
+        "progress": 0.255,
+        "width": 375,
+        "height": 667,
+        "min": [
+          198.02974692227363,
+          213.3890663396437
+        ],
+        "max": [
+          208.60137734020998,
+          250.0543105261296
+        ],
+        "size": [
+          10.571630417936348,
+          36.66524418648589
+        ]
+      },
+      "sight": {
+        "progress": 0.255,
+        "width": 375,
+        "height": 667,
+        "personPixelRays": 18,
+        "visibleRays": 17,
+        "results": [
+          {
+            "pixel": [
+              201.20123604765453,
+              216.00801235296413
+            ],
+            "personDistance": 9.659445072492186,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.3155621312418,
+              216.00801235296413
+            ],
+            "personDistance": 9.64683303428604,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.20123604765453,
+              221.24590437960498
+            ],
+            "personDistance": 9.648810458055237,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.3155621312418,
+              221.24590437960498
+            ],
+            "personDistance": 9.631139109760632,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.42988821482908,
+              221.24590437960498
+            ],
+            "personDistance": 9.658597133360347,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              199.08690996406727,
+              226.4837964062458
+            ],
+            "personDistance": 9.710365611090804,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.3155621312418,
+              226.4837964062458
+            ],
+            "personDistance": 9.652729909274491,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.42988821482908,
+              226.4837964062458
+            ],
+            "personDistance": 9.658067060802278,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.20123604765453,
+              231.72168843288665
+            ],
+            "personDistance": 9.661560711124883,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.3155621312418,
+              231.72168843288665
+            ],
+            "personDistance": 9.64688719741205,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.42988821482908,
+              231.72168843288665
+            ],
+            "personDistance": 9.657222285219536,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.20123604765453,
+              236.9595804595275
+            ],
+            "personDistance": 9.68544046464999,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.3155621312418,
+              236.9595804595275
+            ],
+            "personDistance": 9.676478945956237,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.42988821482908,
+              236.9595804595275
+            ],
+            "personDistance": 9.67459710132325,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.20123604765453,
+              242.19747248616832
+            ],
+            "personDistance": 9.68711375360895,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.3155621312418,
+              242.19747248616832
+            ],
+            "personDistance": 9.67868485904463,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              199.08690996406727,
+              247.43536451280917
+            ],
+            "personDistance": 9.679217409944634,
+            "blocker": "Minimalistic_Modern_Office_Table_0",
+            "visible": false
+          },
+          {
+            "pixel": [
+              201.20123604765453,
+              247.43536451280917
+            ],
+            "personDistance": 9.68841575095967,
+            "blocker": null,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "room": {
+        "key": "office",
+        "progress": 0.265,
+        "width": 375,
+        "height": 667,
+        "min": [
+          36.943127928684014,
+          154.38710736159285
+        ],
+        "max": [
+          335.5442336626547,
+          282.9050620659223
+        ],
+        "size": [
+          298.60110573397066,
+          128.51795470432947
+        ]
+      },
+      "human": {
+        "key": "caller",
+        "progress": 0.265,
+        "width": 375,
+        "height": 667,
+        "min": [
+          198.10008524803246,
+          212.6952297461339
+        ],
+        "max": [
+          208.74215475808748,
+          249.61437384407108
+        ],
+        "size": [
+          10.642069510055023,
+          36.91914409793719
+        ]
+      },
+      "sight": {
+        "progress": 0.265,
+        "width": 375,
+        "height": 667,
+        "personPixelRays": 18,
+        "visibleRays": 17,
+        "results": [
+          {
+            "pixel": [
+              201.29270610104896,
+              215.3323114674151
+            ],
+            "personDistance": 9.596581490424603,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              215.3323114674151
+            ],
+            "personDistance": 9.583984731742243,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              220.60647490997758
+            ],
+            "personDistance": 9.585817759258743,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              220.60647490997758
+            ],
+            "personDistance": 9.568166262979805,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.54953390507097,
+              220.60647490997758
+            ],
+            "personDistance": 9.595594721922447,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              199.16429219903796,
+              225.88063835254002
+            ],
+            "personDistance": 9.647223595285737,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              225.88063835254002
+            ],
+            "personDistance": 9.589681374704261,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.54953390507097,
+              225.88063835254002
+            ],
+            "personDistance": 9.594969338506976,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              231.1548017951025
+            ],
+            "personDistance": 9.598327863045704,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              231.1548017951025
+            ],
+            "personDistance": 9.583668698764576,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.54953390507097,
+              231.1548017951025
+            ],
+            "personDistance": 9.593985304169708,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              236.42896523766495
+            ],
+            "personDistance": 9.622068951616175,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              236.42896523766495
+            ],
+            "personDistance": 9.613121037772078,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.54953390507097,
+              236.42896523766495
+            ],
+            "personDistance": 9.611240957436973,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              241.7031286802274
+            ],
+            "personDistance": 9.623623254734676,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              241.7031286802274
+            ],
+            "personDistance": 9.615212460747939,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              199.16429219903796,
+              246.97729212278986
+            ],
+            "personDistance": 9.615674377479854,
+            "blocker": "Minimalistic_Modern_Office_Table_0",
+            "visible": false
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              246.97729212278986
+            ],
+            "personDistance": 9.624797072458657,
+            "blocker": null,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "room": {
+        "key": "office",
+        "progress": 0.285,
+        "width": 375,
+        "height": 667,
+        "min": [
+          30.84886201467825,
+          145.47579003919265
+        ],
+        "max": [
+          342.1343116295597,
+          278.7765427660788
+        ],
+        "size": [
+          311.28544961488143,
+          133.30075272688617
+        ]
+      },
+      "human": {
+        "key": "caller",
+        "progress": 0.285,
+        "width": 375,
+        "height": 667,
+        "min": [
+          198.50500279597182,
+          208.65585635813727
+        ],
+        "max": [
+          209.552316114511,
+          247.0361179239068
+        ],
+        "size": [
+          11.047313318539182,
+          38.38026156576953
+        ]
+      },
+      "sight": {
+        "progress": 0.285,
+        "width": 375,
+        "height": 667,
+        "personPixelRays": 18,
+        "visibleRays": 17,
+        "results": [
+          {
+            "pixel": [
+              201.81919679153359,
+              211.3973036128351
+            ],
+            "personDistance": 9.250629021101524,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.0286594552414,
+              211.3973036128351
+            ],
+            "personDistance": 9.23811836885583,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.81919679153359,
+              216.88019812223075
+            ],
+            "personDistance": 9.239116137804713,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.0286594552414,
+              216.88019812223075
+            ],
+            "personDistance": 9.221579631265003,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              206.23812211894924,
+              216.88019812223075
+            ],
+            "personDistance": 9.248855064726797,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              199.60973412782573,
+              222.3630926316264
+            ],
+            "personDistance": 9.299673799403333,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.0286594552414,
+              222.3630926316264
+            ],
+            "personDistance": 9.242607985508716,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              206.23812211894924,
+              222.3630926316264
+            ],
+            "personDistance": 9.247665513872649,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.81919679153359,
+              227.84598714102202
+            ],
+            "personDistance": 9.250244322441077,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.0286594552414,
+              227.84598714102202
+            ],
+            "personDistance": 9.235608170125127,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              206.23812211894924,
+              227.84598714102202
+            ],
+            "personDistance": 9.245877235718604,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.81919679153359,
+              233.32888165041769
+            ],
+            "personDistance": 9.27318782921248,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.0286594552414,
+              233.32888165041769
+            ],
+            "personDistance": 9.264301226643262,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              206.23812211894924,
+              233.32888165041769
+            ],
+            "personDistance": 9.262447635481442,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.81919679153359,
+              238.81177615981332
+            ],
+            "personDistance": 9.274055768264997,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              204.0286594552414,
+              238.81177615981332
+            ],
+            "personDistance": 9.265747682215016,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              199.60973412782573,
+              244.29467066920898
+            ],
+            "personDistance": 9.265742281816381,
+            "blocker": "Minimalistic_Modern_Office_Table_0",
+            "visible": false
+          },
+          {
+            "pixel": [
+              201.81919679153359,
+              244.29467066920898
+            ],
+            "personDistance": 9.274489554611359,
+            "blocker": null,
+            "visible": true
+          }
+        ]
+      }
+    },
+    {
+      "room": {
+        "key": "office",
+        "progress": 0.265,
+        "width": 375,
+        "height": 667,
+        "min": [
+          36.943127928684014,
+          154.38710736159285
+        ],
+        "max": [
+          335.5442336626547,
+          282.9050620659223
+        ],
+        "size": [
+          298.60110573397066,
+          128.51795470432947
+        ]
+      },
+      "human": {
+        "key": "caller",
+        "progress": 0.265,
+        "width": 375,
+        "height": 667,
+        "min": [
+          198.10008524803246,
+          212.6952297461339
+        ],
+        "max": [
+          208.74215475808748,
+          249.61437384407108
+        ],
+        "size": [
+          10.642069510055023,
+          36.91914409793719
+        ]
+      },
+      "sight": {
+        "progress": 0.265,
+        "width": 375,
+        "height": 667,
+        "personPixelRays": 18,
+        "visibleRays": 17,
+        "results": [
+          {
+            "pixel": [
+              201.29270610104896,
+              215.3323114674151
+            ],
+            "personDistance": 9.596581490424603,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              215.3323114674151
+            ],
+            "personDistance": 9.583984731742243,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              220.60647490997758
+            ],
+            "personDistance": 9.585817759258743,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              220.60647490997758
+            ],
+            "personDistance": 9.568166262979805,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.54953390507097,
+              220.60647490997758
+            ],
+            "personDistance": 9.595594721922447,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              199.16429219903796,
+              225.88063835254002
+            ],
+            "personDistance": 9.647223595285737,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              225.88063835254002
+            ],
+            "personDistance": 9.589681374704261,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.54953390507097,
+              225.88063835254002
+            ],
+            "personDistance": 9.594969338506976,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              231.1548017951025
+            ],
+            "personDistance": 9.598327863045704,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              231.1548017951025
+            ],
+            "personDistance": 9.583668698764576,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.54953390507097,
+              231.1548017951025
+            ],
+            "personDistance": 9.593985304169708,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              236.42896523766495
+            ],
+            "personDistance": 9.622068951616175,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              236.42896523766495
+            ],
+            "personDistance": 9.613121037772078,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              205.54953390507097,
+              236.42896523766495
+            ],
+            "personDistance": 9.611240957436973,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              241.7031286802274
+            ],
+            "personDistance": 9.623623254734676,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              203.42112000305997,
+              241.7031286802274
+            ],
+            "personDistance": 9.615212460747939,
+            "blocker": null,
+            "visible": true
+          },
+          {
+            "pixel": [
+              199.16429219903796,
+              246.97729212278986
+            ],
+            "personDistance": 9.615674377479854,
+            "blocker": "Minimalistic_Modern_Office_Table_0",
+            "visible": false
+          },
+          {
+            "pixel": [
+              201.29270610104896,
+              246.97729212278986
+            ],
+            "personDistance": 9.624797072458657,
+            "blocker": null,
+            "visible": true
+          }
+        ]
+      }
+    }
+  ]
+}

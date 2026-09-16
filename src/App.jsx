@@ -12,6 +12,7 @@ import { chapters } from './data/chapters.js'
 import { useExperience } from './state/experience.js'
 import { assetUrl } from './lib/assetUrl.js'
 import { useMotionPolicy } from './hooks/useMotionPolicy.js'
+import PageNavigation from './pages/PageNavigation.jsx'
 import './styles.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -84,7 +85,8 @@ function Navigation() {
     <header className="topbar">
       <a href="#threshold" className="brand-link"><span>HAZINE</span><small>living intelligence</small></a>
       <div className="chapter-readout"><span>{chapters[chapter]?.index}</span>{chapters[chapter]?.eyebrow}</div>
-      <a className="quiet-link" href={assetUrl('/workbench/')}>Enter the live system</a>
+      <PageNavigation current="landing" />
+      <a className="quiet-link hz-enter-live" href={assetUrl('/workbench/')}>Enter live system →</a>
     </header>
   )
 }
@@ -209,7 +211,7 @@ export default function App() {
             <div className="story-card center-copy"><p className="reveal chapter-index">08 / Desktop + agent</p><h2 className="reveal">One intelligence.<br />Two natural surfaces.</h2><p className="reveal">The desktop is the treasury. The plugin is the doorway that follows Ezgi into the work.</p></div>
             <div className="reveal"><HybridWidget /></div>
             <a className="reveal workbench-bridge" href={assetUrl('/workbench/')}><span>Enter the working system</span><strong>Experience Hazine during a live deal conversation →</strong></a>
-            <figure className="reveal approved-system"><img src={assetUrl('/brand/hazine-design-system-with-icon.png')} alt="Approved Hazine design system, wordmark, glyph, lockup, and mineral-sparkle app icon" /><figcaption>Approved visual system · immutable source assets</figcaption></figure>
+            <div className="reveal story-page-bridges"><a className="workbench-bridge" href={assetUrl('/design-system/')}><span>Inspect the approved visual language</span><strong>Explore the component-based design system →</strong></a><a className="workbench-bridge" href={assetUrl('/specification/')}><span>Read the product contract</span><strong>Product Requirements & Technical Experience Specification →</strong></a></div>
           </div>
         </Section>
 
