@@ -34,3 +34,5 @@ All full results, including pixel coordinates, distances, blocker names and actu
 ## Scope and acceptance
 
 No CSS, page, mapper, Theatre, desktop camera, desktop office transform, quarry route, asset or vault-door routing was changed in this mobile correction. Root owns the final browser screenshot and must verify that Ezgi is visually discernible in the textured composition; numerical visibility alone is not presented as visual acceptance.
+
+Fresh bounded test evidence: `node --test tests/sceneProfiles.test.mjs tests/spatialCalibration.test.mjs` completed exit0 on2026-09-16:10 tests /10 pass /0 fail /15527.6748ms. This run refreshed both mobile projection and exact terrain replay JSON evidence after scoped write permission was restored.
